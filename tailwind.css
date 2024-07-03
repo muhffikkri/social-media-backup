@@ -79,7 +79,7 @@
 	}
 
 	.container-sidebar-icon {
-		@apply w-14 h-11 hover:bg-d-secondary transition-300 rounded p-2 cursor-pointer md:w-20 md:h-16 md:p-3 xl:flex xl:items-center xl:justify-start xl:w-full xl:p-2 xl:rounded-lg xl:h-14;
+		@apply w-14 h-11 hover:bg-d-secondary transition-300 rounded p-2 cursor-pointer md:w-20 md:h-16 md:p-3 xl:flex xl:items-center xl:justify-start xl:w-full xl:p-2 xl:rounded-lg xl:h-14 xl:mb-[6px];
 	}
 
 	.sidebar-icon {
@@ -96,7 +96,7 @@
 	.hr {
 		@apply hidden xl:block border-t-[1px] border-d-text w-full rounded-xl opacity-20 my-4;
 	}
-	
+
 	.post {
 		@apply shadow-[0px_0px_25px_-7px_rgba(214,215,216,0.11)];
 		-webkit-box-shadow: 0px 0px 25px -7px rgba(214, 215, 216, 0.11);

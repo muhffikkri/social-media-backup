@@ -30,18 +30,27 @@ export default function Navbar() {
 						Home
 					</p>
 				</div>
+
 				<hr className="hr order-2" />
 				<div className="container-sidebar-icon xl:order-1">
 					<img src="./icons/d-search.svg" alt="home" className="sidebar-icon" />
 					<p className="sidebar-text">Search</p>
 				</div>
-				<div className="container-sidebar-icon xl:my-3 xl:order-4">
+				<div className="container-sidebar-icon xl:order-4">
+					<img
+						src="./icons/d-post.svg"
+						alt="home"
+						className="sidebar-icon"
+					/>
+					<p className="sidebar-text">Post</p>
+				</div>
+				<div className="container-sidebar-icon xl:order-5">
 					<img
 						src="./icons/d-notifications.svg"
 						alt="home"
 						className="sidebar-icon"
 					/>
-					<p className="sidebar-text">Post</p>
+					<p className="sidebar-text">Notification</p>
 				</div>
 				<div className="w-12 h-12 hover:bg-d-secondary transition-300 rounded p-2 cursor-pointer md:w-16 md:h-16 md:p-3 xl:flex xl:items-center xl:justify-start xl:w-full xl:p-2 xl:rounded-lg xl:h-14 xl:order-5">
 					<img
