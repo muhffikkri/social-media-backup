@@ -1,4 +1,4 @@
-export default function Friendlist() {
+export default function Friendlist(Friends) {
 	// dummy
 	const friends = [
 		{
