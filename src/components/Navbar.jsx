@@ -32,16 +32,12 @@ export default function Navbar() {
 				</div>
 
 				<hr className="hr order-2" />
-				<div className="container-sidebar-icon xl:order-1">
+				<div className="container-sidebar-icon xl:order-1 mb-0">
 					<img src="./icons/d-search.svg" alt="home" className="sidebar-icon" />
 					<p className="sidebar-text">Search</p>
 				</div>
 				<div className="container-sidebar-icon xl:order-4">
-					<img
-						src="./icons/d-post.svg"
-						alt="home"
-						className="sidebar-icon"
-					/>
+					<img src="./icons/d-post.svg" alt="home" className="sidebar-icon" />
 					<p className="sidebar-text">Post</p>
 				</div>
 				<div className="container-sidebar-icon xl:order-5">
