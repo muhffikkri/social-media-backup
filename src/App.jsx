@@ -16,6 +16,10 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Login handleShowToast={handleShowToast} />} />
 				<Route
+					path="/login"
+					element={<Login handleShowToast={handleShowToast} />}
+				/>
+				<Route
 					path="/signup"
 					element={<SignUp handleShowToast={handleShowToast} />}
 				/>

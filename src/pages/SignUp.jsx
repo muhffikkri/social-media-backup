@@ -24,16 +24,15 @@ export default function SignUp({ handleShowToast }) {
 			})
 			.catch((err) => console.log(err));
 	};
-
 	return (
-		<div className="bg-d-bgc px-6 py-2 lg:py-4 lg:px-12 ">
+		<div className="bg-d-bgc w-screen h-screen px-6 py-2 xl:py-4 xl:px-12">
 			<NavbarPlain />
-			<div className="container flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between lg:h-[660px]">
+			<div className="container flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between lg:h-[500px]">
 				<div className="text-d-text font-open-sans lg:w-1/2">
 					<p className="font-semibold opacity-70 text-sm md:text-lg">
 						START FOR FREE
 					</p>
-					<h2 className="text-3xl font-extrabold my-1 md:text-5xl md:my-2 lg:text-6xl">
+					<h2 className="text-3xl font-extrabold mb-1  md:text-5xl md:my-2 lg:text-6xl">
 						Create new account
 					</h2>
 					<p className="opacity-70 text-sm md:text-base">
