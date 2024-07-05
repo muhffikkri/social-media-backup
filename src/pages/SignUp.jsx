@@ -37,7 +37,7 @@ export default function SignUp({ handleShowToast }) {
 					</h2>
 					<p className="opacity-70 text-sm md:text-base">
 						Already have an account?
-						<Link to="/">
+						<Link to="/login">
 							<span className="pl-1 text-d-accent underline cursor-pointer font-semibold">
 								Login
 							</span>
