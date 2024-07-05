@@ -6,14 +6,12 @@ export default function Post() {
     <>
       <div className="container h-16 sm:hidden"></div>
 
-
       <div className="w-[calc(100% - 288px)] sm:h-[calc(100vh-73px)] xl:ml-[288px] xl:mt-[73px] p-3">
-	  	<div className="text-d-text text-4xl w-full text-center font-semibold">
-			<p>Create Post</p>
-			</div>
+        <div className="text-d-text text-4xl w-full text-center font-semibold">
+          <p>Create Post</p>
+        </div>
         <div className="bg-d-primary rounded-md p-3 h-full flex flex-col gap-3 relative">
           <div className="bg-d-secondary border-dashed border-2 border-d-accent flex grow justify-center content-center">
-
             {/* <input
               className="block w-full h-60 text-sm file:text-center file:content-center text-slate-500 file:rounded-none file:border-none file:text-sm file:font-semibold file:bg-d-secondary file:text-d-text hover:file:bg-slate-300"
               type="file"
@@ -21,10 +19,7 @@ export default function Post() {
             /> */}
 
             <div class="flex items-center justify-center w-full">
-              <label
-                for="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-64 border-2 border-none cursor-pointer bg-d-secondary hover:bg-gray-700"
-              >
+              <label for="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-none cursor-pointer bg-d-secondary hover:bg-gray-700">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                   <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                     <path
