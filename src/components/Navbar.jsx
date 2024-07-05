@@ -3,7 +3,9 @@ export default function Navbar({ activePage }) {
 	return (
 		<>
 			<nav className="nav-container">
-				<h1 className="nav-brand">SociaLink</h1>
+				<NavLink to="/home" className="nav-brand cursor-pointer">
+					SociaLink
+				</NavLink>
 				<div className="w-1/2 flex justify-end items-center text-d-text">
 					<img
 						src="./icons/d-sunny.svg"
