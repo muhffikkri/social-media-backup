@@ -977,6 +977,16 @@ video {
   margin-bottom: 1rem;
 }
 
+.mx-5{
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
+.my-5{
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 .-mt-4{
   margin-top: -1rem;
 }
@@ -1035,6 +1045,18 @@ video {
 
 .mt-auto{
   margin-top: auto;
+}
+
+.mb-5{
+  margin-bottom: 1.25rem;
+}
+
+.mb-16{
+  margin-bottom: 4rem;
+}
+
+.mb-24{
+  margin-bottom: 6rem;
 }
 
 .block{
@@ -1161,6 +1183,10 @@ video {
   height: 100vh;
 }
 
+.h-\[40px\]{
+  height: 40px;
+}
+
 .w-1\/2{
   width: 50%;
 }
@@ -1261,6 +1287,14 @@ video {
   width: 100vw;
 }
 
+.w-1{
+  width: 0.25rem;
+}
+
+.w-3{
+  width: 0.75rem;
+}
+
 .max-w-7xl{
   max-width: 80rem;
 }
@@ -1300,6 +1334,10 @@ video {
 
 .resize-none{
   resize: none;
+}
+
+.flex-row{
+  flex-direction: row;
 }
 
 .flex-col{
@@ -1342,6 +1380,10 @@ video {
   gap: 0.75rem;
 }
 
+.gap-1{
+  gap: 0.25rem;
+}
+
 .gap-x-3{
   -moz-column-gap: 0.75rem;
        column-gap: 0.75rem;
@@ -1349,6 +1391,14 @@ video {
 
 .place-self-end{
   place-self: end;
+}
+
+.self-end{
+  align-self: flex-end;
+}
+
+.self-center{
+  align-self: center;
 }
 
 .overflow-hidden{
@@ -1588,6 +1638,10 @@ video {
   padding-top: 1.25rem;
 }
 
+.pl-\[6px\]{
+  padding-left: 6px;
+}
+
 .text-left{
   text-align: left;
 }
@@ -1672,6 +1726,10 @@ video {
 
 .font-semibold{
   font-weight: 600;
+}
+
+.leading-3{
+  line-height: .75rem;
 }
 
 .tracking-tight{
@@ -1967,6 +2025,10 @@ video {
 }
 
 @media (min-width: 640px){
+  .sm\:mb-28{
+    margin-bottom: 7rem;
+  }
+
   .sm\:hidden{
     display: none;
   }
@@ -2026,6 +2088,18 @@ video {
     margin-top: 73px;
   }
 
+  .md\:mb-4{
+    margin-bottom: 1rem;
+  }
+
+  .md\:mb-20{
+    margin-bottom: 5rem;
+  }
+
+  .md\:hidden{
+    display: none;
+  }
+
   .md\:h-16{
     height: 4rem;
   }
@@ -2036,6 +2110,10 @@ video {
 
   .md\:h-\[256px\]{
     height: 256px;
+  }
+
+  .md\:h-\[50px\]{
+    height: 50px;
   }
 
   .md\:w-16{
@@ -2080,6 +2158,10 @@ video {
 
   .md\:pr-14{
     padding-right: 3.5rem;
+  }
+
+  .md\:pb-4{
+    padding-bottom: 1rem;
   }
 
   .md\:text-3xl{
@@ -2144,6 +2226,22 @@ video {
 
   .lg\:mt-4{
     margin-top: 1rem;
+  }
+
+  .lg\:mb-16{
+    margin-bottom: 4rem;
+  }
+
+  .lg\:mb-28{
+    margin-bottom: 7rem;
+  }
+
+  .lg\:mb-24{
+    margin-bottom: 6rem;
+  }
+
+  .lg\:hidden{
+    display: none;
   }
 
   .lg\:h-10{
