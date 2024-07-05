@@ -19,7 +19,7 @@ function App() {
 	return (
 		<>
 			<Routes>
-				<Route path="/" element={<Home handleShowToast={handleShowToast} />} />
+				<Route path="/" element={<CreatePost handleShowToast={handleShowToast} />} />
 				<Route
 					path="/login"
 					element={<Login handleShowToast={handleShowToast} />}

@@ -3,56 +3,55 @@ import { useState } from "react";
 export default function Post() {
 	const [isLiked, setLike] = useState(false);
 	return (
-		<div className="w-full h-auto flex flex-col bg-d-primary rounded-xl mb-2">
-			<div className="flex flex-col p-4 pb-2">
-				<div className="w-full h-14 flex items-center" id="headerPost">
-					<div className="w-12 h-12 rounded-full bg-d-bgc" id="image"></div>
-					<div className="flex flex-col px-2 text-d-text" id="nameAndLocation">
-						<p className="font-bold text-xl">Nama</p>
-						<p className="font-semibold opacity-80">location</p>
-					</div>
-				</div>
-				<div className="w-full h-auto pt-2">
-					<p className="text-d-text text-lg text-left">
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-						reiciendis, ullam aut quisquam temporibus quod placeat repellendus
-						sequi. Quo voluptatem beatae quia at minima excepturi nobis, iste
-						veniam quas. Necessitatibus?
-					</p>
-				</div>
+    <>
+      <div className="container h-16 sm:hidden"></div>
+
+
+      <div className="w-[calc(100% - 288px)] sm:h-[calc(100vh-73px)] xl:ml-[288px] xl:mt-[73px] p-3">
+	  	<div className="text-d-text text-4xl w-full text-center font-semibold">
+			<p>Create Post</p>
 			</div>
-			<div className="w-full mb-2 md:mb-4 flex justify-center">
-				<img src="/images/alien.jpg" alt="" />
-			</div>
-			<div
-				className="w-full h-[40px] md:h-[50px] flex flex-row px-2 pb-2 md:pb-4"
-				id="likes"
-			>
-				<div className="flex flex-row justify-center">
-					<img
-						src={`./icons/${isLiked ? "like-active.svg" : "d-like.svg"}`}
-						alt="like"
-						className="cursor-pointer"
-						onClick={() => {
-							setLike(!isLiked);
-						}}
-					/>
-					<p className="text-d-text font-semibold text-lg pl-1 self-center">
-						12
-					</p>
-				</div>
-				<div className="flex flex-row justify-center">
-					<img
-						src="./icons/d-comment.svg"
-						alt="comment"
-						className="cursor-pointer"
-					/>
-					<p className="text-d-text font-semibold text-lg pl-[6px] self-center">
-						32
-					</p>
-				</div>
-				<img src="./icons/d-share.svg" alt="share" className="cursor-pointer" />
-			</div>
-		</div>
-	);
+        <div className="bg-d-primary rounded-md p-3 h-full flex flex-col gap-3 relative">
+          <div className="bg-d-secondary border-dashed border-2 border-d-accent flex grow justify-center content-center">
+
+            {/* <input
+              className="block w-full h-60 text-sm file:text-center file:content-center text-slate-500 file:rounded-none file:border-none file:text-sm file:font-semibold file:bg-d-secondary file:text-d-text hover:file:bg-slate-300"
+              type="file"
+              value=""
+            /> */}
+
+            <div class="flex items-center justify-center w-full">
+              <label
+                for="dropzone-file"
+                className="flex flex-col items-center justify-center w-full h-64 border-2 border-none cursor-pointer bg-d-secondary hover:bg-gray-700"
+              >
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                  <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                    <span class="font-semibold">Click to upload</span> or drag and drop
+                  </p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                </div>
+                <input id="dropzone-file" type="file" class="hidden" />
+              </label>
+            </div>
+          </div>
+
+          <div className="flex flex-col grow">
+            <textarea name="description" id="description" cols="10" rows="5" className="rounded-md min-h-1 bg-d-secondary text-d-text p-2 text-lg mb-2 md:h-" placeholder="What's on your mind?"></textarea>
+            {/* <input type="text" className="rounded-md bg-d-secondary h-8" /> */}
+            <button className="w-24 h-10 bg-d-accent rounded-md mt-3 place-self-end">Post</button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
