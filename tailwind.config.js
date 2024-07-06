@@ -1,7 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/*.jsx", "./src/components/*.jsx", "./src/pages/*.jsx", "./index.html"],
-  theme: {
+	content: [
+		"./src/*.jsx",
+		"./src/components/*.jsx",
+		"./src/pages/*.jsx",
+		"./index.html",
+	],
+	theme: {
 		extend: {
 			colors: {
 				"d-bgc": "#17181C",
@@ -19,8 +24,6 @@ export default {
 				"bounce-slow": "bounce 5s ease-in-out infinite",
 			},
 		},
-		
 	},
-  plugins: [],
-}
-
+	plugins: [],
+};

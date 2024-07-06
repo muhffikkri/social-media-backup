@@ -75,7 +75,8 @@
 
 	/* Sidebar */
 	.sidebar-container {
-		@apply w-full h-14 bg-d-primary fixed bottom-0 left-0 p-1 flex flex-row items-center justify-around border-t-2 border-d-secondary md:h-[4.5rem] xl:p-3 xl:left-0 xl:top-[73px] xl:h-[calc(100vh-73px)] xl:flex-col xl:w-72 xl:justify-start xl:items-start xl:text-d-text xl:border-r-2 xl:border-d-secondary xl:border-t-0 font-open-sans;
+		@apply w-full h-14 bg-d-primary fixed bottom-0 left-0 p-1 flex flex-row items-center justify-around border-t-2 
+		z-50 border-d-secondary md:h-[4.5rem] xl:p-3 xl:left-0 xl:top-[73px] xl:h-[calc(100vh-73px)] xl:flex-col xl:w-72 xl:justify-start xl:items-start xl:text-d-text xl:border-r-2 xl:border-d-secondary xl:border-t-0 font-open-sans;
 	}
 
 	.container-sidebar-icon {
