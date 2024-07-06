@@ -913,13 +913,11 @@ video {
   right: -300px;
 }
 
+
 .left-0{
   left: 0px;
 }
 
-.right-0{
-  right: 0px;
-}
 
 .right-2{
   right: 0.5rem;
@@ -1266,12 +1264,9 @@ video {
   width: 365px;
 }
 
+
 .w-\[80\%\]{
   width: 80%;
-}
-
-.w-\[calc\(100\%-90px\)\]{
-  width: calc(100% - 90px);
 }
 
 .w-full{
@@ -1397,6 +1392,7 @@ video {
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
+
 
 .place-self-end{
   place-self: end;
