@@ -15,12 +15,15 @@ export default function Post() {
 			<div className="w-full h-auto flex flex-col bg-d-primary rounded-xl mb-2">
 				<div className="flex flex-col p-4 pb-2">
 					<div className="w-full h-14 flex items-center" id="headerPost">
-						<div className="w-12 h-12 rounded-full bg-d-bgc" id="image"></div>
+						<div
+							className="w-12 h-12 rounded-full bg-d-bgc cursor-pointer"
+							id="image"
+						></div>
 						<div
 							className="flex flex-col px-2 text-d-text"
 							id="nameAndLocation"
 						>
-							<p className="font-bold text-xl">Nama</p>
+							<p className="font-bold text-xl cursor-pointer">Nama</p>
 							<p className="font-semibold opacity-80">location</p>
 						</div>
 					</div>
@@ -30,6 +33,9 @@ export default function Post() {
 							Aspernatur reiciendis, ullam aut quisquam temporibus quod placeat
 							repellendus sequi. Quo voluptatem beatae quia at minima excepturi
 							nobis, iste veniam quas. Necessitatibus?
+						</p>
+						<p className="text-d-accent text-lg font-semibold py-1">
+							#hashtags #kirim #socialmedia
 						</p>
 					</div>
 				</div>

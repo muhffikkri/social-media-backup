@@ -3,14 +3,13 @@ export default function CommentsSection({ setCommentActive }) {
 	return (
 		<>
 			<section
-				className="w-screen h-[calc(100vh-61px)] md:h-[calc(100vh-73px)] top-[61px] md:top-[73px] left-0 font-bold fixed flex flex-col justify-end md:justify-center z-[999] bg-[rgba(214,215,216,0.4)] cursor-pointer"
+				className="w-screen h-[calc(100vh-61px)] md:h-[calc(100vh-73px)] top-[61px] md:top-[73px] left-0 font-bold fixed flex flex-col justify-end md:justify-center z-[999] bg-[rgba(214,215,216,0.2)] cursor-pointer"
 				onClick={() => {
 					setCommentActive(false);
 				}}
 			>
 				<div
 					className="bg-d-primary w-full md:w-4/5 max-w-screen-md h-[80%] self-center relative rounded-lg shadow-lg flex flex-col cursor-auto"
-					id="COMMENT_SECTION"
 					onClick={(event) => {
 						event.stopPropagation();
 					}}
@@ -33,17 +32,10 @@ export default function CommentsSection({ setCommentActive }) {
 							}}
 						/>
 					</div>
-
-					{/* Comments Section */}
 					<div className="p-4 flex-1 overflow-y-auto">
-						{/* Sample Comment */}
 						<Comment />
 						<Comment />
 					</div>
-
-					{/* Separator */}
-
-					{/* Input Field */}
 					<div className="p-3 border-t border-d-text flex justify-between ">
 						<input
 							type="text"
