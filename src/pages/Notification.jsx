@@ -39,12 +39,12 @@ export default function Notification() {
                 </div>
 
                 <div className="flex gap-2 p-1 content-center">
-                  <div className="w-8 flex justify-center content-center">
-                    <img src="./icons/d-checkmark.svg" alt="like" className="cursor-pointer w-full" />
+                  <div className="w-8 h-8 flex justify-center content-center">
+                    <div className="w-full h-full rounded-full bg-d-bgc" id="image"></div>
                   </div>
                   <div className="py-1 flex text-sm">Lorem ipsum dolor sit.</div>
                 </div>
-
+                
                 <div className="flex gap-2 p-1 content-center">
                   <div className="w-8 h-8 flex justify-center content-center">
                     <div className="w-full h-full rounded-full bg-d-bgc" id="image"></div>
@@ -59,8 +59,8 @@ export default function Notification() {
                 </div>
 
                 <div className="flex gap-2 p-1 content-center">
-                  <div className="w-8 flex justify-center content-center">
-                    <img src="./icons/d-checkmark.svg" alt="like" className="cursor-pointer w-full" />
+                  <div className="w-8 h-8 flex justify-center content-center">
+                    <div className="w-full h-full rounded-full bg-d-bgc" id="image"></div>
                   </div>
                   <div className="py-1 flex text-sm">Lorem ipsum dolor sit.</div>
                 </div>
