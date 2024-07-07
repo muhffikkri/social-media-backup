@@ -745,6 +745,7 @@ video {
   position: fixed;
   bottom: 0px;
   left: 0px;
+  z-index: 50;
   display: flex;
   height: 3.5rem;
   width: 100%;
@@ -912,9 +913,11 @@ video {
   right: -300px;
 }
 
-.right-0{
-  right: 0px;
+
+.left-0{
+  left: 0px;
 }
+
 
 .right-2{
   right: 0.5rem;
@@ -928,12 +931,20 @@ video {
   top: 50%;
 }
 
+.top-\[61px\]{
+  top: 61px;
+}
+
 .-z-10{
   z-index: -10;
 }
 
 .z-10{
   z-index: 10;
+}
+
+.z-\[999\]{
+  z-index: 999;
 }
 
 .order-2{
@@ -1137,12 +1148,20 @@ video {
   height: 55%;
 }
 
+.h-\[80\%\]{
+  height: 80%;
+}
+
 .h-\[calc\(100\%-36px\)\]{
   height: calc(100% - 36px);
 }
 
 .h-\[calc\(100\%-37px\)\]{
   height: calc(100% - 37px);
+}
+
+.h-\[calc\(100vh-61px\)\]{
+  height: calc(100vh - 61px);
 }
 
 .h-\[calc\(100vh-73px\)\]{
@@ -1233,6 +1252,10 @@ video {
   width: 128px;
 }
 
+.w-\[15\%\]{
+  width: 15%;
+}
+
 .w-\[28\%\]{
   width: 28%;
 }
@@ -1241,8 +1264,9 @@ video {
   width: 365px;
 }
 
-.w-\[calc\(100\%-90px\)\]{
-  width: calc(100% - 90px);
+
+.w-\[80\%\]{
+  width: 80%;
 }
 
 .w-full{
@@ -1255,6 +1279,14 @@ video {
 
 .max-w-7xl{
   max-width: 80rem;
+}
+
+.max-w-screen-md{
+  max-width: 768px;
+}
+
+.flex-1{
+  flex: 1 1 0%;
 }
 
 .flex-none{
@@ -1286,6 +1318,10 @@ video {
   animation: bounce 5s ease-in-out infinite;
 }
 
+.cursor-auto{
+  cursor: auto;
+}
+
 .cursor-pointer{
   cursor: pointer;
 }
@@ -1312,6 +1348,10 @@ video {
 
 .content-center{
   align-content: center;
+}
+
+.items-start{
+  align-items: flex-start;
 }
 
 .items-center{
@@ -1346,6 +1386,13 @@ video {
   -moz-column-gap: 0.75rem;
        column-gap: 0.75rem;
 }
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 
 .place-self-end{
   place-self: end;
@@ -1407,6 +1454,14 @@ video {
   border-width: 2px;
 }
 
+.border-b{
+  border-bottom-width: 1px;
+}
+
+.border-t{
+  border-top-width: 1px;
+}
+
 .border-dashed{
   border-style: dashed;
 }
@@ -1420,8 +1475,22 @@ video {
   border-color: rgb(42 134 254 / var(--tw-border-opacity));
 }
 
+.border-d-bgc{
+  --tw-border-opacity: 1;
+  border-color: rgb(23 24 28 / var(--tw-border-opacity));
+}
+
+.border-d-text{
+  --tw-border-opacity: 1;
+  border-color: rgb(214 215 216 / var(--tw-border-opacity));
+}
+
 .border-transparent{
   border-color: transparent;
+}
+
+.bg-\[rgba\(214\2c 215\2c 216\2c 0\.4\)\]{
+  background-color: rgba(214,215,216,0.4);
 }
 
 .bg-blue-600{
@@ -1466,6 +1535,14 @@ video {
 .bg-red-800{
   --tw-bg-opacity: 1;
   background-color: rgb(153 27 27 / var(--tw-bg-opacity));
+}
+
+.bg-\[rgba\(214\2c 215\2c 216\2c 0\.25\)\]{
+  background-color: rgba(214,215,216,0.25);
+}
+
+.bg-\[rgba\(214\2c 215\2c 216\2c 0\.2\)\]{
+  background-color: rgba(214,215,216,0.2);
 }
 
 .bg-cover{
@@ -1691,6 +1768,10 @@ video {
   font-weight: 500;
 }
 
+.font-normal{
+  font-weight: 400;
+}
+
 .font-semibold{
   font-weight: 600;
 }
@@ -1763,6 +1844,10 @@ video {
   opacity: 0.8;
 }
 
+.opacity-90{
+  opacity: 0.9;
+}
+
 .shadow-\[inset_0_2px_4px_0_rgba\(0\2c 0\2c 0\2c 0\.15\)\]{
   --tw-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.15);
   --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
@@ -1823,6 +1908,10 @@ video {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.delay-150{
+  transition-delay: 150ms;
 }
 
 .duration-300{
@@ -2034,6 +2123,10 @@ video {
 }
 
 @media (min-width: 768px){
+  .md\:top-\[73px\]{
+    top: 73px;
+  }
+
   .md\:my-2{
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
@@ -2071,6 +2164,10 @@ video {
     height: 50px;
   }
 
+  .md\:h-\[calc\(100vh-73px\)\]{
+    height: calc(100vh - 73px);
+  }
+
   .md\:w-16{
     width: 4rem;
   }
@@ -2083,6 +2180,10 @@ video {
     width: 75%;
   }
 
+  .md\:w-4\/5{
+    width: 80%;
+  }
+
   .md\:w-40{
     width: 10rem;
   }
@@ -2093,6 +2194,10 @@ video {
 
   .md\:w-\[256px\]{
     width: 256px;
+  }
+
+  .md\:justify-center{
+    justify-content: center;
   }
 
   .md\:rounded-xl{
