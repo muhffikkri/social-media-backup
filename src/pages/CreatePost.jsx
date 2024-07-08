@@ -1,10 +1,11 @@
 import Navbar from "../components/Navbar";
-import Post from "../components/PostForm";
+import PostForm from "../components/PostForm";
 export default function CreatePost() {
+	const activePage = "post";
 	return (
 		<>
-			<Navbar/>
-			<Post />
+			<Navbar activePage={activePage} />
+			<PostForm />
 		</>
 	);
 }

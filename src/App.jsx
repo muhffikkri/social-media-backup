@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Error from "./components/Error";
+import Error from "./pages/Error";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
@@ -31,12 +31,11 @@ function App() {
 				<Route
 					path="/create"
 					element={<CreateProfile handleShowToast={handleShowToast} />}
-					
 				/>
 				<Route path="/post" element={<CreatePost />} />
 				<Route path="/home" element={<Home />} />
 				<Route path="/notification" element={<Notification />} />
-				<Route path="/search-page" element={<SearchPage/>} />
+				<Route path="/search-page" element={<SearchPage />} />
 				<Route path="*" element={<Error />} />
 			</Routes>
 
