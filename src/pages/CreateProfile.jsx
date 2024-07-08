@@ -1,39 +1,71 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import axios from "axios";
 
 export default function CreateProfile({ handleShowToast }) {
+	const [banner, setBanner] = useState();
+	const [profilePict, setProfilePict] = useState();
 	const LOCATION = useLocation();
 	const navigate = useNavigate();
 	const displayName = useRef(null);
 	const bio = useRef(null);
 	const loc = useRef(null);
 	const handleCreate = async (displayName, bio = "", location = "") => {
-		const user = {
-			_id: LOCATION.state._id,
-			displayName,
-			bio,
-			location,
-		};
+		try {
+			const user = {
+				_id: LOCATION.state._id,
+				displayName,
+				bio,
+				location,
+			};
 
-		return fetch("http://localhost:3000/createUser", {
-			method: "POST",
-			headers: {
-				Authorization: `Bearer ${LOCATION.state.token}`,
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(user),
-		})
-			.then((response) => response.json())
-			.then((response) => {
-				handleShowToast(response.status, response.msg);
-				if (response.status === "success") {
-					navigate("/home", {
-						state: { token: response.accessToken, _id: response._id },
-					});
-				}
+			return fetch("http://localhost:3000/createUser", {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${LOCATION.state.token}`,
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(user),
 			})
+				.then((response) => response.json())
+				.then((response) => {
+					handleShowToast(response.status, response.msg);
+					if (response.status === "success") {
+						navigate("/home", {
+							state: { token: response.accessToken, _id: response._id },
+						});
+					}
+				})
+				.catch((err) => {
+					handleShowToast("error", "Internal server error!");
+					console.log(err);
+				});
+		} catch (err) {
+			handleShowToast("error", err.message);
+		}
+	};
+
+	const uploadBanner = () => {
+		const formData = new FormData();
+		formData.append("banner", banner);
+		formData.append("_id", LOCATION.state._id);
+		axios
+			.post("http://localhost:3000/upload-banner", formData)
+			.then((res) => {})
 			.catch((err) => {
-				handleShowToast("error", "Internal server error!");
+				handleShowToast("error", err.message);
+				console.log(err);
+			});
+	};
+	const uploadProfilePict = () => {
+		const formData = new FormData();
+		formData.append("profilePict", profilePict);
+		formData.append("_id", LOCATION.state._id);
+		axios
+			.post("http://localhost:3000/upload-profile-pict", formData)
+			.then((res) => {})
+			.catch((err) => {
+				handleShowToast("error", err.message);
 				console.log(err);
 			});
 	};
@@ -44,6 +76,12 @@ export default function CreateProfile({ handleShowToast }) {
 				action="POST"
 				onSubmit={(e) => {
 					e.preventDefault();
+					if (banner) {
+						uploadBanner();
+					}
+					if (profilePict) {
+						uploadProfilePict();
+					}
 					handleCreate(
 						displayName.current.value,
 						bio.current.value,
@@ -51,12 +89,23 @@ export default function CreateProfile({ handleShowToast }) {
 					);
 				}}
 			>
-				<input type="file" name="banner" id="banner" className="hidden" />
+				<input
+					type="file"
+					name="banner"
+					id="banner"
+					className="hidden"
+					onChange={(e) => {
+						setBanner(e.target.files[0]);
+					}}
+				/>
 				<input
 					type="file"
 					name="profile-pict"
 					id="profile-pict"
 					className="hidden"
+					onChange={(e) => {
+						setProfilePict(e.target.files[0]);
+					}}
 				/>
 				<div className="w-screen h-screen overflow-hidden flex items-center justify-center shadow-lg relative">
 					<div className="flex flex-col lg:w-3/5 bg-d-primary rounded-lg overflow-hidden items-center justify-center w-4/5">
@@ -154,9 +203,9 @@ export default function CreateProfile({ handleShowToast }) {
 							<div className="group">
 								<div className="w-[365px] h-[365px] rounded-full bg-red-800 absolute -bottom-[200px] -left-[300px] lg:-left-[200px] blur-[256px] -z-10 animate-bounce-slow group-hover:-bottom-[125px] group-hover:bg-red-700 transition-all"></div>
 								<Link to="/">
-									<div className="lg:w-24 w-20 bg-red-700 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text ml-2 lg:text-base text-sm opacity-80 transition-all duration-300 hover:opacity-100">
+									<button className="lg:w-24 w-20 bg-red-700 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text ml-2 lg:text-base text-sm opacity-80 transition-all duration-300 hover:opacity-100">
 										<p className="w-full h-full rounded-[inherit]">Back</p>
-									</div>
+									</button>
 								</Link>
 							</div>
 							<div className="group">
