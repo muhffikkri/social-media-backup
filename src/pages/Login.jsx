@@ -22,10 +22,15 @@ export default function Login({ handleShowToast }) {
 			.then((response) => {
 				handleShowToast(response.status, response.msg);
 				if (response.status === "success") {
-					console.log(response.accessToken);
-					navigate("/create", {
-						state: { token: response.accessToken, _id: response._id },
-					});
+					if (response.displayName.length > 3) {
+						navigate("/home", {
+							state: { token: response.accessToken, _id: response._id },
+						});
+					} else {
+						navigate("/create", {
+							state: { token: response.accessToken, _id: response._id },
+						});
+					}
 				} // Perform navigation here
 			})
 			.catch((err) => {

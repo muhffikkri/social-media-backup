@@ -1493,8 +1493,8 @@ video {
   border-color: transparent;
 }
 
-.bg-\[rgba\(214\2c 215\2c 216\2c 0\.4\)\]{
-  background-color: rgba(214,215,216,0.4);
+.bg-\[rgba\(214\2c 215\2c 216\2c 0\.2\)\]{
+  background-color: rgba(214,215,216,0.2);
 }
 
 .bg-blue-600{
@@ -1539,14 +1539,6 @@ video {
 .bg-red-800{
   --tw-bg-opacity: 1;
   background-color: rgb(153 27 27 / var(--tw-bg-opacity));
-}
-
-.bg-\[rgba\(214\2c 215\2c 216\2c 0\.25\)\]{
-  background-color: rgba(214,215,216,0.25);
-}
-
-.bg-\[rgba\(214\2c 215\2c 216\2c 0\.2\)\]{
-  background-color: rgba(214,215,216,0.2);
 }
 
 .bg-cover{
@@ -1701,11 +1693,6 @@ video {
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
-}
-
-.text-4xl{
-  font-size: 2.25rem;
-  line-height: 2.5rem;
 }
 
 .text-7xl{

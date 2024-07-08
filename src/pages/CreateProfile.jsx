@@ -1,7 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import axios from "axios";
 
-export default function CreateProfile({handleShowToast}) {
+export default function CreateProfile({ handleShowToast }) {
+	const [file, setFile] = useState();
 	const LOCATION = useLocation();
 	const navigate = useNavigate();
 	const displayName = useRef(null);
@@ -14,7 +16,6 @@ export default function CreateProfile({handleShowToast}) {
 			bio,
 			location,
 		};
-
 
 		return fetch("http://localhost:3000/createUser", {
 			method: "POST",
@@ -39,6 +40,15 @@ export default function CreateProfile({handleShowToast}) {
 			});
 	};
 
+	const upload = () => {
+		const formData = new FormData();
+		formData.append("file", file);
+		axios
+			.post("http://localhost:3000/upload", formData)
+			.then((res) => {})
+			.catch((err) => console.log(err));
+	};
+
 	return (
 		<>
 			<form
@@ -50,9 +60,18 @@ export default function CreateProfile({handleShowToast}) {
 						bio.current.value,
 						loc.current.value
 					);
+					upload();
 				}}
 			>
-				<input type="file" name="banner" id="banner" className="hidden" />
+				<input
+					type="file"
+					name="banner"
+					id="banner"
+					className="hidden"
+					onChange={(e) => {
+						setFile(e.target.files[0]);
+					}}
+				/>
 				<input
 					type="file"
 					name="profile-pict"
