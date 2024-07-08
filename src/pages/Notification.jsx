@@ -8,7 +8,7 @@ export default function Notification() {
       <Navbar activePage={activePage} />
       <div className="xl:flex mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-between xl:mr-[28%]">
         {/* Main content */}
-        <div className="font-open-sans w-full py-2 px-4 mx-auto ">
+        <div className="font-open-sans w-full py-2 md:px-4 mx-auto ">
           {/* Posts container */}
           <div className="w-full h-auto mt-2 " id="postsContainer">
             <div className="w-full h-auto flex flex-col bg-d-primary rounded-xl mb-2 p-4 pb-2 text-d-text">
@@ -16,12 +16,15 @@ export default function Notification() {
 
               {/* Container section */}
               <div className="w-full flex flex-col mt-2 gap-3">
-                {/* Permintaan Mengikuti */}
-                <div className="flex gap-2 p-1 content-center">
-                  <div className="w-8 flex justify-center content-center">
+
+                <div className="flex gap-2 content-center">
+                  <div className="w-7 flex justify-center content-center">
                     <img src="./icons/d-checkmark.svg" alt="like" className="cursor-pointer w-full" />
                   </div>
-                  <div className="py-1 flex text-sm">Lorem ipsum dolor sit.</div>
+                  <div className="py-1 flex text-xs gap-1">
+                    <p className="font-bold">lorem ipsum </p>
+                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
                 </div>
 
                 <div className="flex gap-2 p-1 content-center">
@@ -32,7 +35,7 @@ export default function Notification() {
                 </div>
               </div>
 
-				{/* Container Section */}
+				      {/* Container Section */}
               <div className="w-full flex flex-col mt-2 gap-3">
                 <div className="flex gap-2 p-1 content-center">
                   <div className="py-1 flex text-md font-bold">Hari ini</div>
