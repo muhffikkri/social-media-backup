@@ -14,14 +14,13 @@ import PageTester from "./pages/PageTester";
 import handleShowToast from "./functions/showToast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CreateUserForm from "./pages/Createprofiletester";
 // import "../public/style.css"
 
 function App() {
 	return (
 		<>
 			<Routes>
-				<Route path="/" element={<Home handleShowToast={handleShowToast} />} />
+				<Route path="/" element={<Login handleShowToast={handleShowToast} />} />
 				<Route
 					path="/login"
 					element={<Login handleShowToast={handleShowToast} />}

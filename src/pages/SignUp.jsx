@@ -3,7 +3,7 @@ import NavbarPlain from "../components/navbarPlain";
 import Form from "../components/Form";
 import HeroImage from "../components/HeroImage";
 export default function SignUp({ handleShowToast }) {
-	const navigate = useNavigate(); // Store the navigation function
+	const navigate = useNavigate();
 	const handleSignUp = async (email, password) => {
 		const user = {
 			email,
@@ -20,7 +20,8 @@ export default function SignUp({ handleShowToast }) {
 			.then((response) => response.json())
 			.then((response) => {
 				handleShowToast(response.status, response.msg);
-				if (response.status === "success") navigate("/", { replace: true }); // Perform navigation here
+				if (response.status === "success")
+					navigate("/login", { replace: true }); // Perform navigation here
 			})
 			.catch((err) => console.log(err));
 	};
