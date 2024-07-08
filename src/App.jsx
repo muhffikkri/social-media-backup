@@ -7,6 +7,7 @@ import CreateProfile from "./pages/CreateProfile";
 import CreatePost from "./pages/CreatePost";
 import Notification from "./pages/Notification";
 import SearchPage from "./pages/SearchPage";
+import Profile from "./pages/Profile";
 
 import PageTester from "./pages/PageTester";
 
@@ -20,7 +21,7 @@ function App() {
 	return (
 		<>
 			<Routes>
-				<Route path="/" element={<Login handleShowToast={handleShowToast} />} />
+				<Route path="/" element={<Home handleShowToast={handleShowToast} />} />
 				<Route
 					path="/login"
 					element={<Login handleShowToast={handleShowToast} />}
@@ -35,6 +36,7 @@ function App() {
 				/>
 				<Route path="/post" element={<CreatePost />} />
 				<Route path="/home" element={<Home />} />
+				<Route path="/profile" element={<Profile />} />
 				<Route path="/notification" element={<Notification />} />
 				<Route path="/search-page" element={<SearchPage />} />
 				<Route path="*" element={<Error />} />

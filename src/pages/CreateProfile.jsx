@@ -174,9 +174,9 @@ export default function CreateProfile({ handleShowToast }) {
 							<div className="group">
 								<div className="w-[365px] h-[365px] rounded-full bg-red-800 absolute -bottom-[200px] -left-[300px] lg:-left-[200px] blur-[256px] -z-10 animate-bounce-slow group-hover:-bottom-[125px] group-hover:bg-red-700 transition-all"></div>
 								<Link to="/">
-									<button className="lg:w-24 w-20 bg-red-700 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text ml-2 lg:text-base text-sm opacity-80 transition-all duration-300 hover:opacity-100">
+									<div className="lg:w-24 w-20 bg-red-700 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text ml-2 lg:text-base text-sm opacity-80 transition-all duration-300 hover:opacity-100">
 										<p className="w-full h-full rounded-[inherit]">Back</p>
-									</button>
+									</div>
 								</Link>
 							</div>
 							<div className="group">
