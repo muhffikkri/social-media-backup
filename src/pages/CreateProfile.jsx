@@ -70,20 +70,6 @@ export default function CreateProfile({ handleShowToast }) {
       });
   };
 
-  function getBanner(event) {
-	setBanner(URL.createObjectURL(event.target.files[0]));
-
-	const bannerLabel = document.getElementById("bannerLabel");
-	const bannerImage = document.getElementById("bannerImage");
-	console.log(bannerLabel);
-	console.log(bannerImage);
-
-	// bannerLabel.innerText = "Change Banner";
-	// bannerLabel.classList.remove("bg-d-secondary");
-
-	// bannerImage.classList.remove("hidden");
-  }
-
   return (
     <>
       <form
@@ -104,7 +90,9 @@ export default function CreateProfile({ handleShowToast }) {
           name="banner"
           id="banner"
           className="hidden"
-          onChange={getBanner}
+          onChange={(e) => {
+			setBanner(URL.createObjectURL(e.target.files[0]))
+			}}
         />
         <input
           type="file"
@@ -138,7 +126,7 @@ export default function CreateProfile({ handleShowToast }) {
             </div>
             <div className="rounded-full lg:w-24 lg:h-24 w-16 h-16 bg-d-text -translate-y-1/2 shadow-inner ring-2 ring-d-primary group bg-cover cursor-pointer">
               <label htmlFor="profile-pict">
-                <img src="./images/default-profile-picture.png" alt="" className="bg-cover rounded-full w-full h-full" />
+                <img src={profilePict ? profilePict : "./images/default-profile-picture.png"} alt="" className="bg-cover rounded-full w-full h-full" />
               </label>
               <label
                 htmlFor="profile-pict"
