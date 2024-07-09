@@ -1006,8 +1006,8 @@ video {
   margin-bottom: 1rem;
 }
 
-.ml-10{
-  margin-left: 2.5rem;
+.ml-1{
+  margin-left: 0.25rem;
 }
 
 .ml-2{
@@ -1052,22 +1052,6 @@ video {
 
 .mt-auto{
   margin-top: auto;
-}
-
-.ml-1{
-  margin-left: 0.25rem;
-}
-
-.ml-3{
-  margin-left: 0.75rem;
-}
-
-.ml-4{
-  margin-left: 1rem;
-}
-
-.ml-5{
-  margin-left: 1.25rem;
 }
 
 .box-border{
@@ -1705,14 +1689,6 @@ video {
   text-align: center;
 }
 
-.align-baseline{
-  vertical-align: baseline;
-}
-
-.align-middle{
-  vertical-align: middle;
-}
-
 .align-bottom{
   vertical-align: bottom;
 }
@@ -2058,20 +2034,16 @@ video {
     margin-bottom: 7rem;
   }
 
-  .sm\:h-\[calc\(100vh-73px\)\]{
-    height: calc(100vh - 73px);
-  }
-
-  .sm\:h-12{
-    height: 3rem;
-  }
-
   .sm\:h-10{
     height: 2.5rem;
   }
 
-  .sm\:w-11\/12{
-    width: 91.666667%;
+  .sm\:h-\[calc\(100vh-73px\)\]{
+    height: calc(100vh - 73px);
+  }
+
+  .sm\:w-12{
+    width: 3rem;
   }
 
   .sm\:w-5\/6{
@@ -2080,18 +2052,6 @@ video {
 
   .sm\:w-auto{
     width: auto;
-  }
-
-  .sm\:w-12{
-    width: 3rem;
-  }
-
-  .sm\:w-16{
-    width: 4rem;
-  }
-
-  .sm\:w-10{
-    width: 2.5rem;
   }
 
   .sm\:flex-row{
@@ -2146,16 +2106,16 @@ video {
     margin-bottom: 1rem;
   }
 
+  .md\:ml-3{
+    margin-left: 0.75rem;
+  }
+
   .md\:mt-9{
     margin-top: 2.25rem;
   }
 
   .md\:mt-\[73px\]{
     margin-top: 73px;
-  }
-
-  .md\:ml-3{
-    margin-left: 0.75rem;
   }
 
   .md\:h-16{
@@ -2178,8 +2138,8 @@ video {
     height: calc(100vh - 73px);
   }
 
-  .md\:h-12{
-    height: 3rem;
+  .md\:w-12{
+    width: 3rem;
   }
 
   .md\:w-16{
@@ -2210,32 +2170,8 @@ video {
     width: 256px;
   }
 
-  .md\:w-12{
-    width: 3rem;
-  }
-
-  .md\:w-14{
-    width: 3.5rem;
-  }
-
-  .md\:w-10{
-    width: 2.5rem;
-  }
-
-  .md\:w-11{
-    width: 2.75rem;
-  }
-
   .md\:justify-center{
     justify-content: center;
-  }
-
-  .md\:gap-2{
-    gap: 0.5rem;
-  }
-
-  .md\:gap-1{
-    gap: 0.25rem;
   }
 
   .md\:gap-0{
@@ -2289,21 +2225,6 @@ video {
   .md\:text-lg{
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-sm{
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-
-  .md\:text-xl{
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
-  .md\:text-2xl{
-    font-size: 1.5rem;
-    line-height: 2rem;
   }
 
   .md\:blur-\[192px\]{
