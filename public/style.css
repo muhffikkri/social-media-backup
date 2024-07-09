@@ -913,6 +913,10 @@ video {
   right: -300px;
 }
 
+.bottom-0{
+  bottom: 0px;
+}
+
 .left-0{
   left: 0px;
 }
@@ -927,6 +931,10 @@ video {
 
 .right-4{
   right: 1rem;
+}
+
+.top-0{
+  top: 0px;
 }
 
 .top-1\/2{
@@ -1551,6 +1559,11 @@ video {
 
 .bg-cover{
   background-size: cover;
+}
+
+.object-fill{
+  -o-object-fit: fill;
+     object-fit: fill;
 }
 
 .p-1{
