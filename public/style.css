@@ -1474,6 +1474,10 @@ video {
   border-width: 2px;
 }
 
+.border-0{
+  border-width: 0px;
+}
+
 .border-b{
   border-bottom-width: 1px;
 }
@@ -1939,6 +1943,10 @@ video {
 .after\:content-\[\'\*\'\]::after{
   --tw-content: '*';
   content: var(--tw-content);
+}
+
+.hover\:absolute:hover{
+  position: absolute;
 }
 
 .hover\:bg-blue-700:hover{
