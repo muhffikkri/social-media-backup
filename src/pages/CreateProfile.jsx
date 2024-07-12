@@ -3,72 +3,72 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 
 export default function CreateProfile({ handleShowToast }) {
-  const [banner, setBanner] = useState();
-  const [profilePict, setProfilePict] = useState();
-  const LOCATION = useLocation();
-  const navigate = useNavigate();
-  const displayName = useRef(null);
-  const bio = useRef(null);
-  const loc = useRef(null);
-  const handleCreate = async (displayName, bio = "", location = "") => {
-    try {
-      const user = {
-        _id: LOCATION.state._id,
-        displayName,
-        bio,
-        location,
-      };
+	const [banner, setBanner] = useState();
+	const [profilePict, setProfilePict] = useState();
+	const LOCATION = useLocation();
+	const navigate = useNavigate();
+	const displayName = useRef(null);
+	const bio = useRef(null);
+	const loc = useRef(null);
+	const handleCreate = async (displayName, bio = "", location = "") => {
+		try {
+			const user = {
+				_id: LOCATION.state._id,
+				displayName,
+				bio,
+				location,
+			};
 
-      return fetch("http://localhost:3000/createUser", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${LOCATION.state.token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      })
-        .then((response) => response.json())
-        .then((response) => {
-          handleShowToast(response.status, response.msg);
-          if (response.status === "success") {
-            navigate("/home", {
-              state: { token: response.accessToken, _id: response._id },
-            });
-          }
-        })
-        .catch((err) => {
-          handleShowToast("error", "Internal server error!");
-          console.log(err);
-        });
-    } catch (err) {
-      handleShowToast("error", err.message);
-    }
-  };
+			return fetch("http://localhost:3000/createUser", {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${LOCATION.state.token}`,
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(user),
+			})
+				.then((response) => response.json())
+				.then((response) => {
+					handleShowToast(response.status, response.msg);
+					if (response.status === "success") {
+						navigate("/home", {
+							state: { token: response.accessToken, _id: response._id },
+						});
+					}
+				})
+				.catch((err) => {
+					handleShowToast("error", "Internal server error!");
+					console.log(err);
+				});
+		} catch (err) {
+			handleShowToast("error", err.message);
+		}
+	};
 
-  const uploadBanner = () => {
-    const formData = new FormData();
-    formData.append("banner", banner);
-    formData.append("_id", LOCATION.state._id);
-    axios
-      .post("http://localhost:3000/upload-banner", formData)
-      .then((res) => {})
-      .catch((err) => {
-        handleShowToast("error", err.message);
-        console.log(err);
-      });
-  };
-  const uploadProfilePict = () => {
-    const formData = new FormData();
-    formData.append("profilePict", profilePict);
-    formData.append("_id", LOCATION.state._id);
-    axios
-      .post("http://localhost:3000/upload-profile-pict", formData)
-      .then((res) => {})
-      .catch((err) => {
-        handleShowToast("error", err.message);
-        console.log(err);
-      });
-  };
+	const uploadBanner = () => {
+		const formData = new FormData();
+		formData.append("banner", banner);
+		formData.append("_id", LOCATION.state._id);
+		axios
+			.post("http://localhost:3000/upload-banner", formData)
+			.then((res) => {})
+			.catch((err) => {
+				handleShowToast("error", err.message);
+				console.log(err);
+			});
+	};
+	const uploadProfilePict = () => {
+		const formData = new FormData();
+		formData.append("profilePict", profilePict);
+		formData.append("_id", LOCATION.state._id);
+		axios
+			.post("http://localhost:3000/upload-profile-pict", formData)
+			.then((res) => {})
+			.catch((err) => {
+				handleShowToast("error", err.message);
+				console.log(err);
+			});
+	};
 
   return (
     <>
@@ -91,8 +91,13 @@ export default function CreateProfile({ handleShowToast }) {
           id="banner"
           className="hidden"
           onChange={(e) => {
-			setBanner(URL.createObjectURL(e.target.files[0]))
-			}}
+            if (e.target.files[0].size > 2097152) {
+              handleShowToast("error", "Maximum file size is 2MB");
+            } else {
+              setBanner(URL.createObjectURL(e.target.files[0]));
+              console.log(URL.createObjectURL(e.target.files[0].size));
+            }
+          }}
         />
         <input
           type="file"
@@ -100,7 +105,12 @@ export default function CreateProfile({ handleShowToast }) {
           id="profile-pict"
           className="hidden"
           onChange={(e) => {
-            setProfilePict(URL.createObjectURL(e.target.files[0]));
+            if (e.target.files[0].size > 2097152) {
+              handleShowToast("error", "Maximum file size is 2MB");
+            } else {
+              setProfilePict(URL.createObjectURL(e.target.files[0]));
+              console.log(URL.createObjectURL(e.target.files[0].size));
+            }
           }}
         />
         <div className="w-screen h-screen overflow-hidden flex items-center justify-center shadow-lg relative">
@@ -112,10 +122,10 @@ export default function CreateProfile({ handleShowToast }) {
                 className="w-full h-full relative bg-d-secondary opacity-0 rounded-lg lg:rounded-xl text-d-text lg:text-5xl text-2xl flex justify-center items-center transition-all duration-300 group-hover:opacity-80 cursor-pointer box-border"
 				
               >
-				<div className="absolute w-full h-full">
-                	<img src={banner} className="w-full h-full object-fill" id="bannerImage" />
-				</div>
-				Upload Banner
+                <div className="absolute w-full h-full">
+                    <img src={banner} className="w-full h-full object-fill" id="bannerImage" />
+                </div>
+                Upload Banner
               </label>
               <label
                 htmlFor="profile-pict"
@@ -155,49 +165,55 @@ export default function CreateProfile({ handleShowToast }) {
                   Bio
                 </label>
 
-                <textarea
-                  name="bio"
-                  id="bio"
-                  cols="30"
-                  rows="4"
-                  ref={bio}
-                  className="text-d-text lg:py-2 lg:px-4 py-1 px-2 my-2 lg:my-1 font-medium lg:text-base text-sm font-open-sans bg-d-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-d-accent transition-all duration-300 resize-none"
-                  placeholder="(optional)"
-                ></textarea>
-              </div>
-              <div className="container lg:mt-2">
-                <label htmlFor="location" className="text-d-text mt-1 lg:py-2 py-1 font-bold lg:text-lg text-base font-poppins cursor-pointer">
-                  Location
-                </label>
-                <input
-                  type="text"
-                  name="location"
-                  id="location"
-                  ref={loc}
-                  placeholder="(optional)"
-                  className="text-d-text lg:px-4 py-3 px-3 my-2 lg:my-1 lg:text-base text-sm font-medium font-open-sans bg-d-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-d-accent transition-all duration-300"
-                />
-              </div>
-            </section>
-            <div className="flex justify-between w-full my-2">
-              <div className="group">
-                <div className="w-[365px] h-[365px] rounded-full bg-red-800 absolute -bottom-[200px] -left-[300px] lg:-left-[200px] blur-[256px] -z-10 animate-bounce-slow group-hover:-bottom-[125px] group-hover:bg-red-700 transition-all"></div>
-                <Link to="/">
-                  <button className="lg:w-24 w-20 bg-red-700 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text ml-2 lg:text-base text-sm opacity-80 transition-all duration-300 hover:opacity-100">
-                    <p className="w-full h-full rounded-[inherit]">Back</p>
-                  </button>
-                </Link>
-              </div>
-              <div className="group">
-                <div className="w-[365px] h-[365px] rounded-full bg-d-accent absolute -bottom-[200px] -right-[300px] lg:-right-[200px] blur-[256px] -z-10 animate-bounce-slow opacity-80 group-hover:-bottom-[125px] transition-all group-hover:bg-d-accent/100"></div>
-                <button type="submit" className="lg:w-24 w-20 bg-d-accent/70 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text mr-2 opacity-80 text-sm transition-all duration-300 hover:opacity-100">
-                  <p className="w-full h-full rounded-[inherit]">Next</p>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </>
-  );
+								<textarea
+									name="bio"
+									id="bio"
+									cols="30"
+									rows="4"
+									ref={bio}
+									className="text-d-text lg:py-2 lg:px-4 py-1 px-2 my-2 lg:my-1 font-medium lg:text-base text-sm font-open-sans bg-d-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-d-accent transition-all duration-300 resize-none"
+									placeholder="(optional)"
+								></textarea>
+							</div>
+							<div className="container lg:mt-2">
+								<label
+									htmlFor="location"
+									className="text-d-text mt-1 lg:py-2 py-1 font-bold lg:text-lg text-base font-poppins cursor-pointer"
+								>
+									Location
+								</label>
+								<input
+									type="text"
+									name="location"
+									id="location"
+									ref={loc}
+									placeholder="(optional)"
+									className="text-d-text lg:px-4 py-3 px-3 my-2 lg:my-1 lg:text-base text-sm font-medium font-open-sans bg-d-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-d-accent transition-all duration-300"
+								/>
+							</div>
+						</section>
+						<div className="flex justify-between w-full my-2">
+							<div className="group">
+								<div className="w-[365px] h-[365px] rounded-full bg-red-800 absolute -bottom-[200px] -left-[300px] lg:-left-[200px] blur-[256px] -z-10 animate-bounce-slow group-hover:-bottom-[125px] group-hover:bg-red-700 transition-all"></div>
+								<Link to="/">
+									<button className="lg:w-24 w-20 bg-red-700 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text ml-2 lg:text-base text-sm opacity-80 transition-all duration-300 hover:opacity-100">
+										<p className="w-full h-full rounded-[inherit]">Back</p>
+									</button>
+								</Link>
+							</div>
+							<div className="group">
+								<div className="w-[365px] h-[365px] rounded-full bg-d-accent absolute -bottom-[200px] -right-[300px] lg:-right-[200px] blur-[256px] -z-10 animate-bounce-slow opacity-80 group-hover:-bottom-[125px] transition-all group-hover:bg-d-accent/100"></div>
+								<button
+									type="submit"
+									className="lg:w-24 w-20 bg-d-accent/70 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text mr-2 opacity-80 text-sm transition-all duration-300 hover:opacity-100"
+								>
+									<p className="w-full h-full rounded-[inherit]">Next</p>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</>
+	);
 }
