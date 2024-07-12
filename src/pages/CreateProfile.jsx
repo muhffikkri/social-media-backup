@@ -108,7 +108,7 @@ export default function CreateProfile({ handleShowToast }) {
             <div className="w-full h-32 bg-d-text rounded-lg relative group md:h-40 md:rounded-xl">
               <label
                 htmlFor="banner"
-				id="bannerLabel"
+				        id="bannerLabel"
                 className="w-full h-full relative bg-d-secondary opacity-0 rounded-lg lg:rounded-xl text-d-text lg:text-5xl text-2xl flex justify-center items-center transition-all duration-300 group-hover:opacity-80 cursor-pointer box-border"
 				
               >
