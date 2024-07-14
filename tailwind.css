@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 @layer base {
+	* {
+		@apply transition-all duration-300;
+	}
 	/* ::selection {
 		@apply bg-d-accent text-d-bgc;
 	} */
@@ -63,24 +66,24 @@
 	/* ! Home */
 	/* Navbar */
 	.nav-container {
-		@apply w-full bg-d-primary p-3.5 flex justify-between items-center fixed top-0 left-0 border-b-[1px] border-d-secondary md:p-3 xl:px-6 xl:py-3 z-50;
+		@apply w-full bg-l-primary dark:bg-d-primary p-3.5 flex justify-between items-center fixed top-0 left-0 border-b-[1px] border-l-secondary dark:border-d-secondary md:p-3 xl:px-6 xl:py-3 z-50;
 	}
 	.nav-brand {
-		@apply font-poppins font-bold text-d-text text-2xl md:text-3xl xl:text-4xl;
+		@apply font-poppins font-bold text-l-accent dark:text-d-accent text-2xl md:text-3xl xl:text-4xl;
 	}
 	.nav-icon {
-		@apply w-8 h-8 cursor-pointer p-1 transition-300 hover:bg-d-secondary rounded-full md:w-12 md:h-12 md:p-2;
+		@apply w-8 h-8 cursor-pointer p-1 hover:bg-l-secondary dark:hover:bg-d-secondary rounded-full md:w-12 md:h-12 md:p-2;
 	}
 	/* End Navbar */
 
 	/* Sidebar */
 	.sidebar-container {
-		@apply w-full h-14 bg-d-primary fixed bottom-0 left-0 p-1 flex flex-row items-center justify-around border-t-2 
-		z-50 border-d-secondary md:h-[4.5rem] xl:p-3 xl:left-0 xl:top-[73px] xl:h-[calc(100vh-73px)] xl:flex-col xl:w-72 xl:justify-start xl:items-start xl:text-d-text xl:border-r-2 xl:border-d-secondary xl:border-t-0 font-open-sans;
+		@apply w-full h-14 bg-l-primary dark:bg-d-primary fixed bottom-0 left-0 p-1 flex flex-row items-center justify-around border-t-2 
+		z-50 border-l-secondary dark:border-d-secondary md:h-[4.5rem] xl:p-3 xl:left-0 xl:top-[73px] xl:h-[calc(100vh-73px)] xl:flex-col xl:w-72 xl:justify-start xl:items-start text-l-text dark:text-d-text xl:border-r-2  xl:border-t-0 font-open-sans;
 	}
 
 	.container-sidebar-icon {
-		@apply w-14 h-11 hover:bg-d-secondary transition-300 rounded p-2 cursor-pointer md:w-20 md:h-16 md:p-3 xl:flex xl:items-center xl:justify-start xl:w-full xl:p-2 xl:rounded-lg xl:h-14 xl:mb-[6px];
+		@apply w-14 h-11 hover:bg-l-secondary dark:hover:bg-d-secondary  rounded p-2 cursor-pointer md:w-20 md:h-16 md:p-3 xl:flex xl:items-center xl:justify-start xl:w-full xl:p-2 xl:rounded-lg xl:h-14 xl:mb-[6px];
 	}
 
 	.sidebar-icon {
@@ -95,7 +98,7 @@
 	}
 
 	.hr {
-		@apply hidden xl:block border-t-[1px] border-d-text w-full rounded-xl opacity-20 my-4;
+		@apply hidden xl:block border-t-[1px] border-l-text dark:border-d-text w-full rounded-xl opacity-20 my-4;
 	}
 
 	.post {

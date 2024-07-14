@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+	darkMode: "class",
 	content: [
 		"./src/*.jsx",
 		"./src/components/*.jsx",
@@ -14,6 +15,12 @@ export default {
 				"d-secondary": "#27292F",
 				"d-accent": "#2A86FE",
 				"d-text": "#D6D7D8",
+				"d-dangger": "",
+				"l-bgc": "#EEF1F3",
+				"l-primary": "#F8F8FD",
+				"l-secondary": "#EBEBEB",
+				"l-accent": "#2A86FE",
+				"l-text": "#0A0A12",
 			},
 			fontFamily: {
 				poppins: "Poppins",

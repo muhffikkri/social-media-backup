@@ -1,19 +1,26 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 export default function Navbar({ activePage }) {
+	const [isDarkMode, setDarkMode] = useState(true);
+	function toggleDarkMode() {
+		setDarkMode(!isDarkMode);
+		document.getElementsByTagName("html")[0].classList.toggle("dark");
+	}
 	return (
 		<>
 			<nav className="nav-container">
 				<NavLink to="/home" className="nav-brand cursor-pointer">
 					SociaLink
 				</NavLink>
-				<div className="w-1/2 flex justify-end items-center text-d-text">
+				<div className="w-1/2 flex justify-end items-center text-l-text dark:text-d-text">
 					<img
-						src="./icons/d-sunny.svg"
+						src={`./icons/${isDarkMode ? "d-sunny" : "moon"}.svg`}
 						alt="toggle dark mode"
 						className="nav-icon mx-2"
+						onClick={toggleDarkMode}
 					/>
 					<img
-						src="./icons/d-settings.svg"
+						src={`./icons/${isDarkMode ? "d-" : ""}settings.svg`}
 						alt="settings"
 						className="nav-icon"
 					/>
@@ -26,7 +33,7 @@ export default function Navbar({ activePage }) {
 				<NavLink
 					to="/home"
 					className={`container-sidebar-icon xl:order-3 ${
-						activePage === "home" ? "bg-d-secondary" : ""
+						activePage === "home" ? "dark:bg-d-secondary bg-l-secondary" : ""
 					}`}
 				>
 					<img
@@ -37,8 +44,8 @@ export default function Navbar({ activePage }) {
 					<p
 						className={`hidden xl:block text-xl px-1 xl:-mb-1 ${
 							activePage === "home"
-								? "font-bold text-d-accent"
-								: "font-semibold text-d-text"
+								? "font-bold dark:text-d-accent text-l-accent"
+								: "font-semibold dark:text-d-text text-l-text"
 						}`}
 					>
 						Home
@@ -49,7 +56,9 @@ export default function Navbar({ activePage }) {
 				<NavLink
 					to="/search-page"
 					className={`container-sidebar-icon xl:order-1 mb-0 ${
-						activePage === "search-page" ? "bg-d-secondary" : ""
+						activePage === "search-page"
+							? "dark:bg-d-secondary bg-l-secondary"
+							: ""
 					}`}
 				>
 					<img
@@ -61,7 +70,9 @@ export default function Navbar({ activePage }) {
 					/>
 					<p
 						className={`sidebar-text ${
-							activePage === "search-page" ? "text-d-accent font-bold" : ""
+							activePage === "search-page"
+								? "dark:text-d-accent text-l-accent font-bold"
+								: "font-semibold dark:text-d-text text-l-text"
 						}`}
 					>
 						Search
@@ -70,7 +81,7 @@ export default function Navbar({ activePage }) {
 				<NavLink
 					to="/post"
 					className={`container-sidebar-icon xl:order-4 ${
-						activePage === "post" ? "bg-d-secondary" : ""
+						activePage === "post" ? "dark:bg-d-secondary bg-l-secondary" : ""
 					}`}
 				>
 					<img
@@ -80,7 +91,9 @@ export default function Navbar({ activePage }) {
 					/>
 					<p
 						className={`sidebar-text ${
-							activePage === "post" ? "text-d-accent font-bold" : ""
+							activePage === "post"
+								? "dark:text-d-accent text-l-accent font-bold"
+								: "font-semibold dark:text-d-text text-l-text"
 						}`}
 					>
 						Post
@@ -89,7 +102,9 @@ export default function Navbar({ activePage }) {
 				<NavLink
 					to="/notification"
 					className={`container-sidebar-icon xl:order-5 ${
-						activePage === "notification" ? "bg-d-secondary" : ""
+						activePage === "notification"
+							? "dark:bg-d-secondary bg-l-secondary"
+							: ""
 					}`}
 				>
 					<img
@@ -101,7 +116,9 @@ export default function Navbar({ activePage }) {
 					/>
 					<p
 						className={`sidebar-text ${
-							activePage === "notification" ? "text-d-accent font-bold" : ""
+							activePage === "notification"
+								? "dark:text-d-accent text-l-accent font-bold"
+								: "font-semibold dark:text-d-text text-l-text"
 						}`}
 					>
 						Notification
@@ -109,8 +126,8 @@ export default function Navbar({ activePage }) {
 				</NavLink>
 				<NavLink
 					to="/profile"
-					className={`w-12 h-12 hover:bg-d-secondary transition-300 rounded p-2 cursor-pointer md:w-16 md:h-16 md:p-3 xl:flex xl:items-center xl:justify-start xl:w-full xl:p-2 xl:rounded-lg xl:h-14 xl:order-5 ${
-						activePage === "profile" ? "bg-d-secondary" : ""
+					className={`w-12 h-12 dark:hover:bg-d-secondary hover:bg-l-secondary transition-300 rounded p-2 cursor-pointer md:w-16 md:h-16 md:p-3 xl:flex xl:items-center xl:justify-start xl:w-full xl:p-2 xl:rounded-lg xl:h-14 xl:order-5 ${
+						activePage === "profile" ? "dark:bg-d-secondary bg-l-secondary" : ""
 					}`}
 				>
 					<img
@@ -120,7 +137,9 @@ export default function Navbar({ activePage }) {
 					/>
 					<p
 						className={`sidebar-text ${
-							activePage === "profile" ? "text-d-accent font-bold" : ""
+							activePage === "profile"
+								? "dark:text-d-accent text-l-accent font-bold"
+								: "font-semibold dark:text-d-text text-l-text"
 						}`}
 					>
 						Profile
