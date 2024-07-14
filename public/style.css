@@ -1602,6 +1602,11 @@ video {
   background-size: cover;
 }
 
+.object-fill{
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
 .p-1{
   padding: 0.25rem;
 }
