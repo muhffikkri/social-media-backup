@@ -9,11 +9,12 @@ import Notification from "./pages/Notification";
 import SearchPage from "./pages/SearchPage";
 import Profile from "./pages/Profile";
 
-import PageTester from "./pages/PageTester";
+// import PageTester from "./pages/PageTester";
 
 import handleShowToast from "./functions/showToast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Layout from "./components/Layout";
 // import "../public/style.css"
 
 function App() {
@@ -33,11 +34,15 @@ function App() {
 					path="/create"
 					element={<CreateProfile handleShowToast={handleShowToast} />}
 				/>
-				<Route path="/post" element={<CreatePost />} />
-				<Route path="/home" element={<Home />} />
-				<Route path="/profile" element={<Profile />} />
-				<Route path="/notification" element={<Notification />} />
-				<Route path="/search-page" element={<SearchPage />} />
+				{/* Routes that need Navbar */}
+				<Route element={<Layout />}>
+					<Route path="/post" element={<CreatePost />} />
+					<Route path="/home" element={<Home />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/notification" element={<Notification />} />
+					<Route path="/search-page" element={<SearchPage />} />
+				</Route>
+
 				<Route path="*" element={<Error />} />
 			</Routes>
 

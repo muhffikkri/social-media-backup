@@ -5,7 +5,7 @@ export default function SearchPage() {
 	const activePage = "search-page";
 	return (
 		<>
-			<Navbar activePage={activePage} />
+			{/* <Navbar activePage={activePage} /> */}
 			<div className="xl:flex mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-between xl:mr-[28%]">
 				{/* Main content */}
 				<div className="font-open-sans w-full py-2 px-4 mx-auto ">

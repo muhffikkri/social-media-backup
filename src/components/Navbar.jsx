@@ -45,7 +45,7 @@ export default function Navbar({ activePage }) {
 						className={`hidden xl:block text-xl px-1 xl:-mb-1 ${
 							activePage === "home"
 								? "font-bold dark:text-d-accent text-l-accent"
-								: "font-semibold dynamic-text"
+								: "font-semibold dark:text-d-text text-l-text"
 						}`}
 					>
 						Home
@@ -72,7 +72,7 @@ export default function Navbar({ activePage }) {
 						className={`sidebar-text ${
 							activePage === "search-page"
 								? "dark:text-d-accent text-l-accent font-bold"
-								: "font-semibold dynamic-text"
+								: "font-semibold dark:text-d-text text-l-text"
 						}`}
 					>
 						Search
@@ -93,7 +93,7 @@ export default function Navbar({ activePage }) {
 						className={`sidebar-text ${
 							activePage === "post"
 								? "dark:text-d-accent text-l-accent font-bold"
-								: "font-semibold dynamic-text"
+								: "font-semibold dark:text-d-text text-l-text"
 						}`}
 					>
 						Post
@@ -118,7 +118,7 @@ export default function Navbar({ activePage }) {
 						className={`sidebar-text ${
 							activePage === "notification"
 								? "dark:text-d-accent text-l-accent font-bold"
-								: "font-semibold dynamic-text"
+								: "font-semibold dark:text-d-text text-l-text"
 						}`}
 					>
 						Notification
@@ -139,7 +139,7 @@ export default function Navbar({ activePage }) {
 						className={`sidebar-text ${
 							activePage === "profile"
 								? "dark:text-d-accent text-l-accent font-bold"
-								: "font-semibold dynamic-text"
+								: "font-semibold dark:text-d-text text-l-text"
 						}`}
 					>
 						Profile
