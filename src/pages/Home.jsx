@@ -1,9 +1,9 @@
+import { useOutletContext } from "react-router-dom";
 import Friendlist from "../components/Friendlist";
-import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 
 export default function Home() {
-	const activePage = "home";
+	const { isDarkMode } = useOutletContext();
 	return (
 		<>
 			{/* <Navbar activePage={activePage} /> */}
@@ -12,9 +12,9 @@ export default function Home() {
 				<div className="font-open-sans w-full py-2 px-4 mx-auto pb-[54px] md:pb-[72px] xl:pb-0">
 					{/* Posts container */}
 					<div className="w-full h-auto mb-2 " id="postsContainer">
-						<Post />
-						<Post />
-						<Post />
+						<Post isDarkMode={isDarkMode} />
+						<Post isDarkMode={isDarkMode} />
+						<Post isDarkMode={isDarkMode} />
 					</div>
 					{/* End Posts */}
 				</div>

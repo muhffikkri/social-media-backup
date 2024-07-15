@@ -8,10 +8,10 @@ export default function Comment() {
 					alt="User avatar"
 				/>
 				<div className="flex flex-col">
-					<span className="font-semibold text-d-text text-sm lg:text-base">
+					<span className="font-semibold text-d-text text-sm lg:text-base dynamic-text">
 						User Name
 					</span>
-					<span className="text-d-text text-sm lg:text-base font-normal">
+					<span className="text-d-text text-sm lg:text-base font-normal dynamic-text">
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas
 						libero earum cum cupiditate! Temporibus ex voluptatibus distinctio
 						saepe, autem atque numquam. Quos eveniet consectetur unde mollitia

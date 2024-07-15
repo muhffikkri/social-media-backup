@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-export default function Navbar({ activePage }) {
-	const [isDarkMode, setDarkMode] = useState(true);
+export default function Navbar({ isDarkMode, setDarkMode }) {
+	const [activePage, setActivePage] = useState("home-page");
 	function toggleDarkMode() {
 		setDarkMode(!isDarkMode);
 		document.getElementsByTagName("html")[0].classList.toggle("dark");
 	}
+
 	return (
 		<>
 			<nav className="nav-container">
@@ -14,13 +15,13 @@ export default function Navbar({ activePage }) {
 				</NavLink>
 				<div className="w-1/2 flex justify-end items-center text-l-text dark:text-d-text">
 					<img
-						src={`./icons/${isDarkMode ? "d-sunny" : "moon"}.svg`}
+						src={`./icons/${isDarkMode ? "d-sunny" : "l-moon"}.svg`}
 						alt="toggle dark mode"
 						className="nav-icon mx-2"
 						onClick={toggleDarkMode}
 					/>
 					<img
-						src={`./icons/${isDarkMode ? "d-" : ""}settings.svg`}
+						src={`./icons/${isDarkMode ? "d-" : "l-"}settings.svg`}
 						alt="settings"
 						className="nav-icon"
 					/>
@@ -33,19 +34,24 @@ export default function Navbar({ activePage }) {
 				<NavLink
 					to="/home"
 					className={`container-sidebar-icon xl:order-3 ${
-						activePage === "home" ? "dark:bg-d-secondary bg-l-secondary" : ""
+						activePage === "home-page" ? "dynamic-secondary" : ""
 					}`}
+					onClick={() => {
+						setActivePage("home-page");
+					}}
 				>
 					<img
-						src={`./icons/home${activePage === "home" ? "-active" : ""}.svg`}
+						src={`./icons/${
+							activePage === "home-page" ? "active-" : isDarkMode ? "d-" : "l-"
+						}home.svg`}
 						alt="home"
 						className="sidebar-icon"
 					/>
 					<p
 						className={`hidden xl:block text-xl px-1 xl:-mb-1 ${
-							activePage === "home"
+							activePage === "home-page"
 								? "font-bold dark:text-d-accent text-l-accent"
-								: "font-semibold dark:text-d-text text-l-text"
+								: "font-semibold dynamic-text"
 						}`}
 					>
 						Home
@@ -56,23 +62,28 @@ export default function Navbar({ activePage }) {
 				<NavLink
 					to="/search-page"
 					className={`container-sidebar-icon xl:order-1 mb-0 ${
-						activePage === "search-page"
-							? "dark:bg-d-secondary bg-l-secondary"
-							: ""
+						activePage === "search-page" ? "dynamic-secondary" : ""
 					}`}
+					onClick={() => {
+						setActivePage("search-page");
+					}}
 				>
 					<img
-						src={`./icons/d-search${
-							activePage === "search-page" ? "-active" : ""
-						}.svg`}
-						alt="home"
+						src={`./icons/${
+							activePage === "search-page"
+								? "active-"
+								: isDarkMode
+								? "d-"
+								: "l-"
+						}search.svg`}
+						alt="search"
 						className="sidebar-icon"
 					/>
 					<p
 						className={`sidebar-text ${
 							activePage === "search-page"
 								? "dark:text-d-accent text-l-accent font-bold"
-								: "font-semibold dark:text-d-text text-l-text"
+								: "font-semibold dynamic-text"
 						}`}
 					>
 						Search
@@ -81,19 +92,24 @@ export default function Navbar({ activePage }) {
 				<NavLink
 					to="/post"
 					className={`container-sidebar-icon xl:order-4 ${
-						activePage === "post" ? "dark:bg-d-secondary bg-l-secondary" : ""
+						activePage === "post-page" ? "dynamic-secondary" : ""
 					}`}
+					onClick={() => {
+						setActivePage("post-page");
+					}}
 				>
 					<img
-						src={`./icons/d-post${activePage === "post" ? "-active" : ""}.svg`}
+						src={`./icons/${
+							activePage === "post-page" ? "active-" : isDarkMode ? "d-" : "l-"
+						}post.svg`}
 						alt="post"
 						className="sidebar-icon"
 					/>
 					<p
 						className={`sidebar-text ${
-							activePage === "post"
+							activePage === "post-page"
 								? "dark:text-d-accent text-l-accent font-bold"
-								: "font-semibold dark:text-d-text text-l-text"
+								: "font-semibold dynamic-text"
 						}`}
 					>
 						Post
@@ -102,23 +118,28 @@ export default function Navbar({ activePage }) {
 				<NavLink
 					to="/notification"
 					className={`container-sidebar-icon xl:order-5 ${
-						activePage === "notification"
-							? "dark:bg-d-secondary bg-l-secondary"
-							: ""
+						activePage === "notification-page" ? "dynamic-secondary" : ""
 					}`}
+					onClick={() => {
+						setActivePage("notification-page");
+					}}
 				>
 					<img
-						src={`./icons/d-notifications${
-							activePage === "notification" ? "-active" : ""
-						}.svg`}
-						alt="home"
+						src={`./icons/${
+							activePage === "notification-page"
+								? "active-"
+								: isDarkMode
+								? "d-"
+								: "l-"
+						}notification.svg`}
+						alt="notification"
 						className="sidebar-icon"
 					/>
 					<p
 						className={`sidebar-text ${
-							activePage === "notification"
+							activePage === "notification-page"
 								? "dark:text-d-accent text-l-accent font-bold"
-								: "font-semibold dark:text-d-text text-l-text"
+								: "font-semibold dynamic-text"
 						}`}
 					>
 						Notification
@@ -127,19 +148,22 @@ export default function Navbar({ activePage }) {
 				<NavLink
 					to="/profile"
 					className={`w-12 h-12 dark:hover:bg-d-secondary hover:bg-l-secondary transition-300 rounded p-2 cursor-pointer md:w-16 md:h-16 md:p-3 xl:flex xl:items-center xl:justify-start xl:w-full xl:p-2 xl:rounded-lg xl:h-14 xl:order-5 ${
-						activePage === "profile" ? "dark:bg-d-secondary bg-l-secondary" : ""
+						activePage === "profile-page" ? "dynamic-secondary" : ""
 					}`}
+					onClick={() => {
+						setActivePage("profile-page");
+					}}
 				>
 					<img
 						src="/images/default-profile-picture.png"
-						alt="home"
+						alt="profile"
 						className="w-full h-full rounded-full xl:w-14 xl:h-14 xl:p-2"
 					/>
 					<p
 						className={`sidebar-text ${
-							activePage === "profile"
+							activePage === "profile-page"
 								? "dark:text-d-accent text-l-accent font-bold"
-								: "font-semibold dark:text-d-text text-l-text"
+								: "font-semibold dynamic-text"
 						}`}
 					>
 						Profile
