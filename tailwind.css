@@ -115,4 +115,16 @@
 	.center {
 		@apply flex items-center justify-center;
 	}
+	.dynamic-text {
+		@apply text-l-text dark:text-d-text;
+	}
+	.dynamic-primary {
+		@apply bg-l-primary dark:bg-d-primary;
+	}
+	.dynamic-secondary {
+		@apply bg-l-secondary dark:bg-d-secondary;
+	}
+	.dynamic-bg {
+		@apply bg-l-bgc dark:bg-d-bgc;
+	}
 }

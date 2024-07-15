@@ -40,7 +40,7 @@ export default function CommentsSection({ setCommentActive }) {
 						<input
 							type="text"
 							placeholder="Add a comment..."
-							className="w-[80%] p-3 border-d-bgc text-d-text font-medium rounded-md outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base bg-d-secondary transition-all delay-150"
+							className="w-[80%] p-3 border-d-bgc text-d-text font-medium rounded-md outline-none focus:ring-2 focus:ring-d-accent text-sm md:text-base bg-d-secondary transition-all delay-150"
 						/>
 						<button className="text-base lg:text-lg bg-d-accent opacity-90 text-d-text transition-all rounded-md w-[15%] hover:opacity-100">
 							Post
