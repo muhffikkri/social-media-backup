@@ -5,6 +5,8 @@ import axios from "axios";
 export default function CreateProfile({ handleShowToast }) {
 	const [banner, setBanner] = useState();
 	const [profilePict, setProfilePict] = useState();
+	const [previewBanner, setPreviewBanner] = useState(null);
+	const [previewProfilePict, setPreviewProfilePict] = useState();
 	const LOCATION = useLocation();
 	const navigate = useNavigate();
 	const displayName = useRef(null);
@@ -46,16 +48,20 @@ export default function CreateProfile({ handleShowToast }) {
 	};
 
 	const uploadBanner = () => {
-		const formData = new FormData();
-		formData.append("banner", banner);
-		formData.append("_id", LOCATION.state._id);
-		axios
-			.post("http://localhost:3000/upload-banner", formData)
-			.then((res) => {})
-			.catch((err) => {
-				handleShowToast("error", err.message);
-				console.log(err);
-			});
+		try {
+			const formData = new FormData();
+			formData.append("banner", banner);
+			formData.append("_id", LOCATION.state._id);
+			axios
+				.post("http://localhost:3000/upload-banner", formData)
+				.then((res) => {})
+				.catch((err) => {
+					handleShowToast("error", err.message);
+					console.log(err);
+				});
+		} catch (err) {
+			handleShowToast("error", "You dont have a permission!");
+		}
 	};
 	const uploadProfilePict = () => {
 		const formData = new FormData();
@@ -70,100 +76,133 @@ export default function CreateProfile({ handleShowToast }) {
 			});
 	};
 
-  return (
-    <>
-      <form
-        action="POST"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (banner) {
-            uploadBanner();
-          }
-          if (profilePict) {
-            uploadProfilePict();
-          }
-          handleCreate(displayName.current.value, bio.current.value, loc.current.value);
-        }}
-      >
-        <input
-          type="file"
-          name="banner"
-          id="banner"
-          className="hidden"
-          onChange={(e) => {
-            if (e.target.files[0].size > 2097152) {
-              handleShowToast("error", "Maximum file size is 2MB");
-            } else {
-              setBanner(URL.createObjectURL(e.target.files[0]));
-              console.log(URL.createObjectURL(e.target.files[0].size));
-            }
-          }}
-        />
-        <input
-          type="file"
-          name="profile-pict"
-          id="profile-pict"
-          className="hidden"
-          onChange={(e) => {
-            if (e.target.files[0].size > 2097152) {
-              handleShowToast("error", "Maximum file size is 2MB");
-            } else {
-              setProfilePict(URL.createObjectURL(e.target.files[0]));
-              console.log(URL.createObjectURL(e.target.files[0].size));
-            }
-          }}
-        />
-        <div className="w-screen h-screen overflow-hidden flex items-center justify-center shadow-lg relative">
-          <div className="flex flex-col lg:w-3/5 bg-d-primary rounded-lg overflow-hidden items-center justify-center w-4/5">
-            <div className="w-full h-32 bg-d-text rounded-lg relative group md:h-40 md:rounded-xl">
-              <label
-                htmlFor="banner"
-				        id="bannerLabel"
-                className="w-full h-full relative bg-d-secondary opacity-0 rounded-lg lg:rounded-xl text-d-text lg:text-5xl text-2xl flex justify-center items-center transition-all duration-300 group-hover:opacity-80 cursor-pointer box-border"
-				
-              >
-                <div className="absolute w-full h-full">
-                    <img src={banner} className="w-full h-full object-fill" id="bannerImage" />
-                </div>
-                Upload Banner
-              </label>
-              <label
-                htmlFor="profile-pict"
-                className="rounded-full bg-d-text w-7 h-7 lg:w-10 lg:h-10 flex items-center justify-center bg-cover absolute lg:-bottom-5 lg:right-4 -bottom-4 right-2 backdrop:cursor-pointer transition-all duration-300 hover:bg-d-secondary shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.15)]"
-              >
-                <img src="./icons/pencil.svg" alt="upload" className="lg:w-8 lg:h-8 w-5 h-5" />
-              </label>
-            </div>
-            <div className="rounded-full lg:w-24 lg:h-24 w-16 h-16 bg-d-text -translate-y-1/2 shadow-inner ring-2 ring-d-primary group bg-cover cursor-pointer">
-              <label htmlFor="profile-pict">
-                <img src={profilePict ? profilePict : "./images/default-profile-picture.png"} alt="" className="bg-cover rounded-full w-full h-full" />
-              </label>
-              <label
-                htmlFor="profile-pict"
-                className="rounded-full bg-d-text lg:w-8 lg:h-8 w-6 h-6 flex items-center justify-center bg-cover absolute -bottom-2 right-0 cursor-pointer transition-all duration-300 shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.15)] hover:bg-d-secondary"
-              >
-                <img src="./icons/pencil.svg" alt="upload" className="lg:w-6 lg:h-6 w-4 h-4" />
-              </label>
-            </div>
-            <section className="flex flex-col lg:w-1/2 w-3/4 h-84 items-center justify-between lg:-mt-8 -mt-4 py-4 lg:py-2">
-              <div className="container lg:mb-2">
-                <label htmlFor="displayName" className="text-d-text lg:py-2 py-1 font-bold font-poppins cursor-pointer lg:text-lg text-base after:content-['*'] after:text-red-500">
-                  Display name
-                </label>
-                <input
-                  type="textarea"
-                  name="displayName"
-                  id="displayName"
-                  ref={displayName}
-                  required
-                  autoComplete="off"
-                  className="text-d-text lg:my-1 my-2 lg:px-4 lg:py-2 py-3 px-3 font-medium font-open-sans lg:text-base text-sm bg-d-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-d-accent transition-all duration-300"
-                />
-              </div>
-              <div className="container">
-                <label htmlFor="bio" className="text-d-text py-1 mt-1 font-bold font-poppins cursor-pointer lg:text-lg text-base">
-                  Bio
-                </label>
+	return (
+		<>
+			<form
+				action="POST"
+				onSubmit={(e) => {
+					e.preventDefault();
+					if (banner) {
+						uploadBanner();
+					}
+					if (profilePict) {
+						uploadProfilePict();
+					}
+					handleCreate(
+						displayName.current.value,
+						bio.current.value,
+						loc.current.value
+					);
+				}}
+			>
+				<input
+					type="file"
+					name="banner"
+					id="banner"
+					className="hidden"
+					onChange={(e) => {
+						if (e.target.files[0].size > 2097152) {
+							handleShowToast("error", "Maximum file size is 2MB");
+						} else {
+							setPreviewBanner(URL.createObjectURL(e.target.files[0]));
+							setBanner(e.target.files[0]);
+						}
+					}}
+				/>
+				<input
+					type="file"
+					name="profile-pict"
+					id="profile-pict"
+					className="hidden"
+					onChange={(e) => {
+						if (e.target.files[0].size > 2097152) {
+							handleShowToast("error", "Maximum file size is 2MB");
+						} else {
+							setPreviewProfilePict(URL.createObjectURL(e.target.files[0]));
+							setProfilePict(e.target.files[0]);
+						}
+					}}
+				/>
+				<div className="w-screen h-screen overflow-hidden flex items-center justify-center shadow-lg relative">
+					<div className="flex flex-col lg:w-3/5 bg-d-primary rounded-lg overflow-hidden items-center justify-center w-4/5">
+						<div className="w-full h-32 bg-d-text rounded-lg relative group md:h-40 md:rounded-x ">
+							<label
+								htmlFor="banner"
+								id="bannerLabel"
+								className={`w-full h-full relative bg-d-secondary rounded-lg lg:rounded-xl text-d-text lg:text-5xl text-2xl flex justify-center items-center transition-all duration-300 cursor-pointer box-border  ${
+									previewBanner
+										? "opacity-100"
+										: "opacity-0  group-hover:opacity-80"
+								}`}
+							>
+								<div className="absolute w-full h-full ">
+									<img
+										src={previewBanner}
+										className="w-full h-full object-fill"
+										id="bannerImage"
+									/>
+								</div>
+								Upload Banner
+							</label>
+							<label
+								htmlFor="profile-pict"
+								className="rounded-full bg-d-text w-7 h-7 lg:w-10 lg:h-10 flex items-center justify-center bg-cover absolute lg:-bottom-5 lg:right-4 -bottom-4 right-2 backdrop:cursor-pointer transition-all duration-300 hover:bg-d-secondary shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.15)]"
+							>
+								<img
+									src="./icons/pencil.svg"
+									alt="upload"
+									className="lg:w-8 lg:h-8 w-5 h-5"
+								/>
+							</label>
+						</div>
+						<div className="rounded-full lg:w-24 lg:h-24 w-16 h-16 bg-d-text -translate-y-1/2 shadow-inner ring-2 ring-d-primary group bg-cover cursor-pointer">
+							<label htmlFor="profile-pict">
+								<img
+									src={
+										previewProfilePict
+											? previewProfilePict
+											: "./images/default-profile-picture.png"
+									}
+									alt=""
+									className="bg-cover rounded-full w-full h-full"
+								/>
+							</label>
+							<label
+								htmlFor="profile-pict"
+								className="rounded-full bg-d-text lg:w-8 lg:h-8 w-6 h-6 flex items-center justify-center bg-cover absolute -bottom-2 right-0 cursor-pointer transition-all duration-300 shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.15)] hover:bg-d-secondary"
+							>
+								<img
+									src="./icons/pencil.svg"
+									alt="upload"
+									className="lg:w-6 lg:h-6 w-4 h-4"
+								/>
+							</label>
+						</div>
+						<section className="flex flex-col lg:w-1/2 w-3/4 h-84 items-center justify-between lg:-mt-8 -mt-4 py-4 lg:py-2">
+							<div className="container lg:mb-2">
+								<label
+									htmlFor="displayName"
+									className="text-d-text lg:py-2 py-1 font-bold font-poppins cursor-pointer lg:text-lg text-base after:content-['*'] after:text-red-500"
+								>
+									Display name
+								</label>
+								<input
+									type="textarea"
+									name="displayName"
+									id="displayName"
+									ref={displayName}
+									required
+									autoComplete="off"
+									className="text-d-text lg:my-1 my-2 lg:px-4 lg:py-2 py-3 px-3 font-medium font-open-sans lg:text-base text-sm bg-d-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-d-accent transition-all duration-300"
+								/>
+							</div>
+							<div className="container">
+								<label
+									htmlFor="bio"
+									className="text-d-text py-1 mt-1 font-bold font-poppins cursor-pointer lg:text-lg text-base"
+								>
+									Bio
+								</label>
 
 								<textarea
 									name="bio"

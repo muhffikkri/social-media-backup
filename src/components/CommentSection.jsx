@@ -40,6 +40,7 @@ export default function CommentsSection({ setCommentActive, isDarkMode }) {
 						<input
 							type="text"
 							placeholder="Add a comment..."
+
 							className="w-[80%] p-3 border-l-bgc dark:border-d-bgc dynamic-text font-medium rounded-md outline-none focus:ring-2 focus:ring-d-accent text-sm md:text-base dynamic-secondary transition-all"
 						/>
 						<button className="text-base lg:text-lg bg-d-accent opacity-90 dynamic-text transition-all rounded-md w-[15%] hover:opacity-100 ">

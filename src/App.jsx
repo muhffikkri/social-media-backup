@@ -37,7 +37,10 @@ function App() {
 				{/* Routes that need Navbar */}
 				<Route element={<Layout />}>
 					<Route path="/post" element={<CreatePost />} />
-					<Route path="/home" element={<Home />} />
+					<Route
+						path="/home"
+						element={<Home handleShowToast={handleShowToast} />}
+					/>
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/notification" element={<Notification />} />
 					<Route path="/search-page" element={<SearchPage />} />

@@ -29,10 +29,13 @@ export default function Friendlist(Friends) {
 					<div className="w-full h-full dynamic-primary rounded-2xl p-4">
 						<h1 className="dynamic-text font-bold text-xl">Your Friend</h1>
 						<hr className="hr my-2" />
-						<div class="flex flex-col h-[calc(100%-37px)] overflow-y-auto rounded-lg">
-							{friends.map((friend) => {
+						<div className="flex flex-col h-[calc(100%-37px)] overflow-y-auto rounded-lg">
+							{friends.map((friend, i) => {
 								return (
-									<div className="flex w-full items-center justify-between mb-2 pr-2 dynamic-text	 ">
+									<div
+										key={i}
+										className="flex w-full items-center justify-between mb-2 pr-2 dynamic-text	 "
+									>
 										<img
 											src="/images/default-profile-picture.png"
 											alt="profile picture"
@@ -65,10 +68,13 @@ export default function Friendlist(Friends) {
 							Suggested Friends
 						</h1>
 						<hr className="hr my-2" />
-						<div class="flex flex-col h-[calc(100%-36px)] overflow-y-auto rounded-lg">
-							{friends.map((friend) => {
+						<div className="flex flex-col h-[calc(100%-36px)] overflow-y-auto rounded-lg">
+							{friends.map((friend, i) => {
 								return (
-									<div className="flex w-full items-center justify-between mb-2 pr-2 dynamic-text	 ">
+									<div
+										key={i}
+										className="flex w-full items-center justify-between mb-2 pr-2 dynamic-text	 "
+									>
 										<img
 											src="/images/default-profile-picture.png"
 											alt="profile picture"
