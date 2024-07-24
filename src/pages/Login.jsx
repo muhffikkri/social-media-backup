@@ -2,9 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Form from "../components/Form";
 import NavbarPlain from "../components/navbarPlain";
 import HeroImage from "../components/HeroImage";
-
 export default function Login({ handleShowToast }) {
-	const navigate = useNavigate(); // Store the navigation function
+	const navigate = useNavigate();
 	const handleLogIn = async (email, password) => {
 		const user = {
 			email,
@@ -23,15 +22,17 @@ export default function Login({ handleShowToast }) {
 				handleShowToast(response.status, response.msg);
 				if (response.status === "success") {
 					if (response.displayName.length > 3) {
-						navigate("/home", {
-							state: { token: response.accessToken, _id: response._id },
-						});
+						console.log(response);
+						localStorage.setItem("user", response._id);
+						localStorage.setItem("picturePath", response.picturePath);
+						localStorage.setItem("token", response.accessToken);
+						navigate("/home");
 					} else {
 						navigate("/create", {
 							state: { token: response.accessToken, _id: response._id },
 						});
 					}
-				} // Perform navigation here
+				}
 			})
 			.catch((err) => {
 				handleShowToast("error", "Internal server error!");

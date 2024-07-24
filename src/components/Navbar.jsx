@@ -6,6 +6,10 @@ export default function Navbar({ isDarkMode, setDarkMode }) {
 		setDarkMode(!isDarkMode);
 		document.getElementsByTagName("html")[0].classList.toggle("dark");
 	}
+	const path = localStorage
+		.getItem("picturePath")
+		.replace(/^public\\/, "")
+		.replace(/\\/g, "/");
 
 	return (
 		<>
@@ -155,7 +159,11 @@ export default function Navbar({ isDarkMode, setDarkMode }) {
 					}}
 				>
 					<img
-						src="/images/default-profile-picture.png"
+						src={
+							localStorage.getItem("picturePath") !== ""
+								? `http://localhost:3000/${path}`
+								: "/images/default-profile-picture.png"
+						}
 						alt="profile"
 						className="w-full h-full rounded-full xl:w-14 xl:h-14 xl:p-2"
 					/>

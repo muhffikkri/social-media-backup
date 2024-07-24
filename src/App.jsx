@@ -15,7 +15,6 @@ import handleShowToast from "./functions/showToast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "./components/Layout";
-// import "../public/style.css"
 
 function App() {
 	return (
@@ -36,7 +35,10 @@ function App() {
 				/>
 				{/* Routes that need Navbar */}
 				<Route element={<Layout />}>
-					<Route path="/post" element={<CreatePost />} />
+					<Route
+						path="/post"
+						element={<CreatePost handleShowToast={handleShowToast} />}
+					/>
 					<Route
 						path="/home"
 						element={<Home handleShowToast={handleShowToast} />}

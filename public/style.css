@@ -1176,10 +1176,6 @@ video {
   height: 365px;
 }
 
-.h-\[400px\]{
-  height: 400px;
-}
-
 .h-\[40px\]{
   height: 40px;
 }
@@ -1597,9 +1593,19 @@ video {
   background-size: cover;
 }
 
-.object-fill{
-  -o-object-fit: fill;
-     object-fit: fill;
+.object-contain{
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.object-cover{
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.object-center{
+  -o-object-position: center;
+     object-position: center;
 }
 
 .p-1{
@@ -2270,6 +2276,10 @@ video {
 
   .md\:h-40{
     height: 10rem;
+  }
+
+  .md\:h-\[168px\]{
+    height: 168px;
   }
 
   .md\:h-\[256px\]{

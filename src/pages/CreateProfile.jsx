@@ -33,9 +33,10 @@ export default function CreateProfile({ handleShowToast }) {
 				.then((response) => {
 					handleShowToast(response.status, response.msg);
 					if (response.status === "success") {
-						navigate("/home", {
-							state: { token: response.accessToken, _id: response._id },
-						});
+						localStorage.setItem("user", response._id);
+
+						localStorage.setItem("token", response.accessToken);
+						navigate("/home");
 					}
 				})
 				.catch((err) => {
@@ -47,7 +48,7 @@ export default function CreateProfile({ handleShowToast }) {
 		}
 	};
 
-	const uploadBanner = () => {
+	const uploadBanner = async () => {
 		try {
 			const formData = new FormData();
 			formData.append("banner", banner);
@@ -63,13 +64,15 @@ export default function CreateProfile({ handleShowToast }) {
 			handleShowToast("error", "You dont have a permission!");
 		}
 	};
-	const uploadProfilePict = () => {
+	const uploadProfilePict = async () => {
 		const formData = new FormData();
 		formData.append("profilePict", profilePict);
 		formData.append("_id", LOCATION.state._id);
 		axios
 			.post("http://localhost:3000/upload-profile-pict", formData)
-			.then((res) => {})
+			.then((res) => {
+				localStorage.setItem("picturePath", res.data.picturePath);
+			})
 			.catch((err) => {
 				handleShowToast("error", err.message);
 				console.log(err);
@@ -80,13 +83,13 @@ export default function CreateProfile({ handleShowToast }) {
 		<>
 			<form
 				action="POST"
-				onSubmit={(e) => {
+				onSubmit={async (e) => {
 					e.preventDefault();
-					if (banner) {
-						uploadBanner();
-					}
 					if (profilePict) {
-						uploadProfilePict();
+						await uploadProfilePict();
+					}
+					if (banner) {
+						await uploadBanner();
 					}
 					handleCreate(
 						displayName.current.value,
@@ -98,11 +101,21 @@ export default function CreateProfile({ handleShowToast }) {
 				<input
 					type="file"
 					name="banner"
+					accept=".jpg, .jpeg, .png"
 					id="banner"
 					className="hidden"
 					onChange={(e) => {
 						if (e.target.files[0].size > 2097152) {
 							handleShowToast("error", "Maximum file size is 2MB");
+						} else if (
+							!["image/jpg", "image/jpeg", "image/png"].includes(
+								e.target.files[0].type
+							)
+						) {
+							handleShowToast(
+								"error",
+								"File format must be .jpg, .jpeg or .png"
+							);
 						} else {
 							setPreviewBanner(URL.createObjectURL(e.target.files[0]));
 							setBanner(e.target.files[0]);
@@ -112,11 +125,21 @@ export default function CreateProfile({ handleShowToast }) {
 				<input
 					type="file"
 					name="profile-pict"
+					accept=".jpg, .jpeg, .png"
 					id="profile-pict"
 					className="hidden"
 					onChange={(e) => {
 						if (e.target.files[0].size > 2097152) {
 							handleShowToast("error", "Maximum file size is 2MB");
+						} else if (
+							!["image/jpg", "image/jpeg", "image/png"].includes(
+								e.target.files[0].type
+							)
+						) {
+							handleShowToast(
+								"error",
+								"File format must be .jpg, .jpeg or .png"
+							);
 						} else {
 							setPreviewProfilePict(URL.createObjectURL(e.target.files[0]));
 							setProfilePict(e.target.files[0]);
@@ -125,7 +148,7 @@ export default function CreateProfile({ handleShowToast }) {
 				/>
 				<div className="w-screen h-screen overflow-hidden flex items-center justify-center shadow-lg relative">
 					<div className="flex flex-col lg:w-3/5 bg-d-primary rounded-lg overflow-hidden items-center justify-center w-4/5">
-						<div className="w-full h-32 bg-d-text rounded-lg relative group md:h-40 md:rounded-x ">
+						<div className="w-full h-32 bg-d-text rounded-lg relative group md:h-[168px] md:rounded-xl ">
 							<label
 								htmlFor="banner"
 								id="bannerLabel"
@@ -135,10 +158,14 @@ export default function CreateProfile({ handleShowToast }) {
 										: "opacity-0  group-hover:opacity-80"
 								}`}
 							>
-								<div className="absolute w-full h-full ">
+								<div
+									className={`absolute w-full h-full ${
+										previewBanner ? "block" : "hidden"
+									}`}
+								>
 									<img
 										src={previewBanner}
-										className="w-full h-full object-fill"
+										className="w-full h-full object-cover object-center"
 										id="bannerImage"
 									/>
 								</div>
@@ -234,8 +261,11 @@ export default function CreateProfile({ handleShowToast }) {
 						<div className="flex justify-between w-full my-2">
 							<div className="group">
 								<div className="w-[365px] h-[365px] rounded-full bg-red-800 absolute -bottom-[200px] -left-[300px] lg:-left-[200px] blur-[256px] -z-10 animate-bounce-slow group-hover:-bottom-[125px] group-hover:bg-red-700 transition-all"></div>
-								<Link to="/">
-									<button className="lg:w-24 w-20 bg-red-700 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text ml-2 lg:text-base text-sm opacity-80 transition-all duration-300 hover:opacity-100">
+								<Link to="/login">
+									<button
+										type="button"
+										className="lg:w-24 w-20 bg-red-700 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text ml-2 lg:text-base text-sm opacity-80 transition-all duration-300 hover:opacity-100"
+									>
 										<p className="w-full h-full rounded-[inherit]">Back</p>
 									</button>
 								</Link>
