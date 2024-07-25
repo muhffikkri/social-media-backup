@@ -15,6 +15,7 @@ import handleShowToast from "./functions/showToast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "./components/Layout";
+import PageTester from "./pages/PageTester";
 
 function App() {
 	return (

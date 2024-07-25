@@ -1,20 +1,30 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import handleShowToast from "../functions/showToast";
 export default function Navbar({ isDarkMode, setDarkMode }) {
 	const [activePage, setActivePage] = useState("home-page");
 	function toggleDarkMode() {
 		setDarkMode(!isDarkMode);
 		document.getElementsByTagName("html")[0].classList.toggle("dark");
 	}
-	const path = localStorage
-		.getItem("picturePath")
-		.replace(/^public\\/, "")
-		.replace(/\\/g, "/");
+	let path = "";
+	!localStorage.getItem("user")
+		? handleShowToast("error", "Please login first!")
+		: (path = localStorage
+				.getItem("picturePath")
+				.replace(/^public\\/, "")
+				.replace(/\\/g, "/"));
 
 	return (
 		<>
 			<nav className="nav-container">
-				<NavLink to="/home" className="nav-brand cursor-pointer">
+				<NavLink
+					to="/home"
+					className="nav-brand cursor-pointer"
+					onClick={() => {
+						setActivePage("home-page");
+					}}
+				>
 					SociaLink
 				</NavLink>
 				<div className="w-1/2 flex justify-end items-center text-l-text dark:text-d-text">
