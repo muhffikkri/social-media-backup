@@ -9,8 +9,6 @@ import Notification from "./pages/Notification";
 import SearchPage from "./pages/SearchPage";
 import Profile from "./pages/Profile";
 
-// import PageTester from "./pages/PageTester";
-
 import handleShowToast from "./functions/showToast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

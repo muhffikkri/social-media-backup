@@ -1,18 +1,19 @@
 import { useRef, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function PostForm({ handleShowToast }) {
 	const [previewImage, setPreviewImage] = useState(null);
 	const [image, setImage] = useState(null);
 	const desciption = useRef(null);
 	const hashtags = useRef(null);
+	const navigate = useNavigate();
 
 	const uploadImage = (desc = "", hashtag = "") => {
 		try {
 			const formData = new FormData();
 			if (image !== null) {
 				formData.append("image", image);
-				console.log("ada image");
 			}
 			formData.append("_id", localStorage.getItem("user"));
 			formData.append("description", desc);
@@ -22,6 +23,7 @@ export default function PostForm({ handleShowToast }) {
 				.then((res) => {
 					console.log(res.data);
 					handleShowToast(res.data.status, res.data.msg);
+					navigate("/home");
 				})
 				.catch((err) => {
 					handleShowToast("error", err.message);

@@ -1,9 +1,53 @@
 import { useState } from "react";
 import CommentsSection from "./CommentSection";
+import handleShowToast from "../functions/showToast";
+import axios from "axios";
 
-export default function Post({ isDarkMode }) {
-	const [isLiked, setLike] = useState(false);
+export default function Post({ isDarkMode, item }) {
+	const [hasLiked, setHasLiked] = useState(
+		item.likedBy.includes(localStorage.getItem("user"))
+	);
+	const [likes, setLikes] = useState(item.likes);
 	const [commentActive, setCommentActive] = useState(false);
+	const [optimisticLikes, setOptimisticLikes] = useState(likes);
+	const imagePost = item.imagePath.replace(/^public\\/, "").replace(/\\/g, "/");
+
+	const handleLikePost = async () => {
+		setHasLiked(true);
+		setOptimisticLikes((prevLikes) => prevLikes + 1);
+		try {
+			const response = await axios.post(
+				`http://localhost:3000/posts/${item._id}/like`,
+				{ userId: item.userId }
+			);
+
+			setLikes(response.data.likes);
+			setOptimisticLikes(response.data.likes);
+		} catch (err) {
+			setHasLiked(false);
+			setOptimisticLikes((prevLikes) => prevLikes - 1);
+			console.error("Error liking the post:", error);
+		}
+	};
+	const handleUnlikePost = async () => {
+		setHasLiked(false);
+		setOptimisticLikes((prevLikes) => prevLikes - 1);
+		try {
+			const response = await axios.post(
+				`http://localhost:3000/posts/${item._id}/unlike`,
+				{
+					userId: item.userId,
+				}
+			);
+
+			setLikes(response.data.likes);
+			setOptimisticLikes(response.data.likes);
+		} catch (error) {
+			setHasLiked(true);
+			setOptimisticLikes((prevLikes) => prevLikes + 1);
+			console.error("Error unliking the post:", error);
+		}
+	};
 
 	return (
 		<>
@@ -22,31 +66,46 @@ export default function Post({ isDarkMode }) {
 						<div
 							className="w-12 h-12 rounded-full dynamic-bg cursor-pointer"
 							id="image"
-						></div>
+						>
+							<img
+								src={
+									item.picturePath
+										? `http://localhost:3000/${item.picturePath
+												.replace(/^public\\/, "")
+												.replace(/\\/g, "/")}`
+										: "/images/default-profile-picture.png"
+								}
+								alt="profile pict"
+								className="rounded-full"
+							/>
+						</div>
 						<div
 							className="flex flex-col px-2 dynamic-text"
 							id="nameAndLocation"
 						>
-							<p className="font-bold text-xl cursor-pointer dynamic-text">
-								Name
+							<p className="font-bold text-xl cursor-pointer dynamic-text text-ellipsis whitespace-nowrap overflow-hidden">
+								{item.displayName}
 							</p>
-							<p className="font-semibold opacity-80 dynamic-text">location</p>
+							<p className="font-semibold opacity-80 dynamic-text">
+								{item.location}
+							</p>
 						</div>
 					</div>
 					<div className="w-full h-auto pt-2">
-						<p className="dynamic-text text-lg text-left">
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-							Aspernatur reiciendis, ullam aut quisquam temporibus quod placeat
-							repellendus sequi. Quo voluptatem beatae quia at minima excepturi
-							nobis, iste veniam quas. Necessitatibus?
-						</p>
-						<p className="text-l-accent dark:text-d-accent text-lg font-semibold py-1 cursor-pointer">
-							#hashtags #kirim #socialmedia
-						</p>
+						<p className="dynamic-text text-lg text-left">{item.description}</p>
+						<div className="text-l-accent dark:text-d-accent text-lg font-semibold py-1 flex flex-row gap-1">
+							{item.hashtags.map((hashtag, index) => {
+								return (
+									<p key={index} className="cursor-pointer">
+										{hashtag}
+									</p>
+								);
+							})}
+						</div>
 					</div>
 				</div>
 				<div className="w-full mb-2 md:mb-4 flex justify-center">
-					<img src="/images/alien.jpg" alt="" />
+					<img src={`http://localhost:3000/${imagePost}`} alt="" />
 				</div>
 				<div
 					className="w-full h-[40px] md:h-[50px] flex flex-row px-2 pb-2 md:pb-4 gap-1"
@@ -55,16 +114,16 @@ export default function Post({ isDarkMode }) {
 					<div className="flex flex-row justify-center leading-3">
 						<img
 							src={`./icons/${
-								isLiked ? "active-" : isDarkMode ? "d-" : "l-"
+								hasLiked ? "active-" : isDarkMode ? "d-" : "l-"
 							}like.svg`}
 							alt="like"
 							className="cursor-pointer w-15"
-							onClick={() => {
-								setLike(!isLiked);
+							onClick={async () => {
+								hasLiked ? handleUnlikePost() : handleLikePost();
 							}}
 						/>
 						<p className="dynamic-text font-semibold text-lg pl-1 self-center">
-							12
+							{optimisticLikes}
 						</p>
 					</div>
 					<div className="flex flex-row justify-center">
@@ -75,7 +134,7 @@ export default function Post({ isDarkMode }) {
 							onClick={() => setCommentActive(!commentActive)}
 						/>
 						<p className="dynamic-text font-semibold text-lg pl-[6px] self-center">
-							32
+							{item.comments.length}
 						</p>
 					</div>
 					<img
