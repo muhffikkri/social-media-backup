@@ -1,9 +1,9 @@
 import PostForm from "../components/PostForm";
 
-export default function CreatePost() {
+export default function CreatePost({ handleShowToast }) {
 	return (
 		<>
-			<PostForm />
+			<PostForm handleShowToast={handleShowToast} />
 		</>
 	);
 }

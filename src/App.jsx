@@ -9,13 +9,11 @@ import Notification from "./pages/Notification";
 import SearchPage from "./pages/SearchPage";
 import Profile from "./pages/Profile";
 
-// import PageTester from "./pages/PageTester";
-
 import handleShowToast from "./functions/showToast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "./components/Layout";
-// import "../public/style.css"
+import PageTester from "./pages/PageTester";
 
 function App() {
 	return (
@@ -36,7 +34,10 @@ function App() {
 				/>
 				{/* Routes that need Navbar */}
 				<Route element={<Layout />}>
-					<Route path="/post" element={<CreatePost />} />
+					<Route
+						path="/post"
+						element={<CreatePost handleShowToast={handleShowToast} />}
+					/>
 					<Route
 						path="/home"
 						element={<Home handleShowToast={handleShowToast} />}

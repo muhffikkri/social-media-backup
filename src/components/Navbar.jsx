@@ -1,16 +1,30 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import handleShowToast from "../functions/showToast";
 export default function Navbar({ isDarkMode, setDarkMode }) {
 	const [activePage, setActivePage] = useState("home-page");
 	function toggleDarkMode() {
 		setDarkMode(!isDarkMode);
 		document.getElementsByTagName("html")[0].classList.toggle("dark");
 	}
+	let path = "";
+	!localStorage.getItem("user")
+		? handleShowToast("error", "Please login first!")
+		: (path = localStorage
+				.getItem("picturePath")
+				.replace(/^public\\/, "")
+				.replace(/\\/g, "/"));
 
 	return (
 		<>
 			<nav className="nav-container">
-				<NavLink to="/home" className="nav-brand cursor-pointer">
+				<NavLink
+					to="/home"
+					className="nav-brand cursor-pointer"
+					onClick={() => {
+						setActivePage("home-page");
+					}}
+				>
 					SociaLink
 				</NavLink>
 				<div className="w-1/2 flex justify-end items-center text-l-text dark:text-d-text">
@@ -155,7 +169,11 @@ export default function Navbar({ isDarkMode, setDarkMode }) {
 					}}
 				>
 					<img
-						src="/images/default-profile-picture.png"
+						src={
+							localStorage.getItem("picturePath") !== ""
+								? `http://localhost:3000/${path}`
+								: "/images/default-profile-picture.png"
+						}
 						alt="profile"
 						className="w-full h-full rounded-full xl:w-14 xl:h-14 xl:p-2"
 					/>
