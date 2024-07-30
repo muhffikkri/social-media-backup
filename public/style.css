@@ -971,6 +971,62 @@ video {
   top: 61px;
 }
 
+.top-1\/4{
+  top: 25%;
+}
+
+.top-1\/3{
+  top: 33.333333%;
+}
+
+.top-2\/3{
+  top: 66.666667%;
+}
+
+.top-12{
+  top: 3rem;
+}
+
+.bottom-10{
+  bottom: 2.5rem;
+}
+
+.bottom-5{
+  bottom: 1.25rem;
+}
+
+.bottom-8{
+  bottom: 2rem;
+}
+
+.bottom-16{
+  bottom: 4rem;
+}
+
+.bottom-14{
+  bottom: 3.5rem;
+}
+
+.bottom-20{
+  bottom: 5rem;
+}
+
+.top-20{
+  top: 5rem;
+}
+
+.top-16{
+  top: 4rem;
+}
+
+.top-14{
+  top: 3.5rem;
+}
+
+.bottom-4{
+  bottom: 1rem;
+}
+
 .-z-10{
   z-index: -10;
 }
@@ -1088,6 +1144,14 @@ video {
   margin-top: auto;
 }
 
+.mb-5{
+  margin-bottom: 1.25rem;
+}
+
+.mr-4{
+  margin-right: 1rem;
+}
+
 .box-border{
   box-sizing: border-box;
 }
@@ -1176,10 +1240,6 @@ video {
   height: 365px;
 }
 
-.h-\[400px\]{
-  height: 400px;
-}
-
 .h-\[40px\]{
   height: 40px;
 }
@@ -1222,6 +1282,22 @@ video {
 
 .h-screen{
   height: 100vh;
+}
+
+.h-24{
+  height: 6rem;
+}
+
+.h-1\/2{
+  height: 50%;
+}
+
+.h-48{
+  height: 12rem;
+}
+
+.h-52{
+  height: 13rem;
 }
 
 .w-1\/2{
@@ -1324,6 +1400,26 @@ video {
   width: 100vw;
 }
 
+.w-14{
+  width: 3.5rem;
+}
+
+.w-40{
+  width: 10rem;
+}
+
+.w-44{
+  width: 11rem;
+}
+
+.w-48{
+  width: 12rem;
+}
+
+.w-32{
+  width: 8rem;
+}
+
 .max-w-7xl{
   max-width: 80rem;
 }
@@ -1395,6 +1491,10 @@ video {
 
 .content-center{
   align-content: center;
+}
+
+.content-end{
+  align-content: flex-end;
 }
 
 .items-start{
@@ -1490,6 +1590,10 @@ video {
 
 .rounded-xl{
   border-radius: 0.75rem;
+}
+
+.rounded-3xl{
+  border-radius: 1.5rem;
 }
 
 .border{
@@ -1728,6 +1832,14 @@ video {
 
 .pt-5{
   padding-top: 1.25rem;
+}
+
+.pl-2{
+  padding-left: 0.5rem;
+}
+
+.pl-3{
+  padding-left: 0.75rem;
 }
 
 .text-left{
@@ -2027,6 +2139,16 @@ video {
   content: var(--tw-content);
 }
 
+.hover\:border-spacing-2:hover{
+  --tw-border-spacing-x: 0.5rem;
+  --tw-border-spacing-y: 0.5rem;
+  border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
+}
+
+.hover\:border-2:hover{
+  border-width: 2px;
+}
+
 .hover\:bg-blue-700:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
@@ -2047,6 +2169,16 @@ video {
   background-color: rgb(235 235 235 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-d-primary:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 31 36 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-l-primary:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 248 253 / var(--tw-bg-opacity));
+}
+
 .hover\:text-blue-700:hover{
   --tw-text-opacity: 1;
   color: rgb(29 78 216 / var(--tw-text-opacity));
@@ -2054,6 +2186,16 @@ video {
 
 .hover\:opacity-100:hover{
   opacity: 1;
+}
+
+.hover\:dynamic-primary:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 248 253 / var(--tw-bg-opacity));
+}
+
+:is(.dark .hover\:dynamic-primary:hover){
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 31 36 / var(--tw-bg-opacity));
 }
 
 .focus\:outline-none:focus{
@@ -2176,16 +2318,28 @@ video {
 }
 
 @media (min-width: 640px){
-  .sm\:mb-28{
-    margin-bottom: 7rem;
+  .sm\:top-20{
+    top: 5rem;
+  }
+
+  .sm\:top-24{
+    top: 6rem;
+  }
+
+  .sm\:mt-3{
+    margin-top: 0.75rem;
   }
 
   .sm\:h-10{
     height: 2.5rem;
   }
 
-  .sm\:h-\[calc\(100vh-73px\)\]{
-    height: calc(100vh - 73px);
+  .sm\:h-64{
+    height: 16rem;
+  }
+
+  .sm\:h-36{
+    height: 9rem;
   }
 
   .sm\:w-12{
@@ -2208,9 +2362,17 @@ video {
     gap: 0.75rem;
   }
 
+  .sm\:rounded-xl{
+    border-radius: 0.75rem;
+  }
+
   .sm\:px-6{
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  .sm\:pt-3{
+    padding-top: 0.75rem;
   }
 
   .sm\:text-3xl{
@@ -2282,6 +2444,18 @@ video {
 
   .md\:h-\[calc\(100vh-73px\)\]{
     height: calc(100vh - 73px);
+  }
+
+  .md\:h-48{
+    height: 12rem;
+  }
+
+  .md\:h-36{
+    height: 9rem;
+  }
+
+  .md\:h-64{
+    height: 16rem;
   }
 
   .md\:w-12{
@@ -2405,12 +2579,12 @@ video {
     margin-top: -2rem;
   }
 
-  .lg\:mb-2{
-    margin-bottom: 0.5rem;
+  .lg\:mb-0{
+    margin-bottom: 0px;
   }
 
-  .lg\:mb-24{
-    margin-bottom: 6rem;
+  .lg\:mb-2{
+    margin-bottom: 0.5rem;
   }
 
   .lg\:mt-2{
