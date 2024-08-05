@@ -2348,16 +2348,12 @@ video {
     height: 256px;
   }
 
-  .md\:h-\[50px\]{
-    height: 50px;
+  .md\:h-\[42px\]{
+    height: 42px;
   }
 
   .md\:h-\[calc\(100vh-73px\)\]{
     height: calc(100vh - 73px);
-  }
-
-  .md\:h-\[42px\]{
-    height: 42px;
   }
 
   .md\:w-12{
@@ -2417,8 +2413,8 @@ video {
     padding-right: 1rem;
   }
 
-  .md\:pb-4{
-    padding-bottom: 1rem;
+  .md\:pb-2{
+    padding-bottom: 0.5rem;
   }
 
   .md\:pb-\[72px\]{
@@ -2427,10 +2423,6 @@ video {
 
   .md\:pr-14{
     padding-right: 3.5rem;
-  }
-
-  .md\:pb-2{
-    padding-bottom: 0.5rem;
   }
 
   .md\:text-3xl{

@@ -1,9 +1,33 @@
+import { useEffect, useState } from "react";
 import Friendlist from "../components/Friendlist";
 import NotificationCard from "../components/NotificationCard";
 import { useOutletContext } from "react-router-dom";
+import axios from "axios";
 export default function Notification() {
 	const { setActivePage } = useOutletContext();
+	const [notifications, setNotifications] = useState();
 	setActivePage("notification-page");
+
+	useEffect(() => {
+		fetchUserNotifications(localStorage.getItem("user"));
+	}, []);
+
+	const fetchUserNotifications = async (userId) => {
+		try {
+			await axios
+				.post("http://localhost:3001/api/users/get/notifications", { userId })
+				.then((res) => {
+					console.log(res.data);
+					setNotifications(res.data.notifications);
+				})
+				.catch((err) => {
+					console.error(err.response.data);
+				});
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
 	return (
 		<>
 			<div className="xl:flex h-[calc(100lvh - 117px)] mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-between xl:mr-[28%] sm:mt-3 box-border">

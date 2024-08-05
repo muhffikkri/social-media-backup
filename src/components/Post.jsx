@@ -32,6 +32,7 @@ export default function Post({ isDarkMode, post }) {
 			console.error("Error liking the post:", err.message);
 		}
 	};
+
 	const handleUnlikePost = async () => {
 		setHasLiked((prev) => false);
 		setOptimisticLikes((prevLikes) => prevLikes - 1);

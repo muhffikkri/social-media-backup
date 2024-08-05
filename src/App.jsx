@@ -44,7 +44,10 @@ function App() {
 					/>
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/notification" element={<Notification />} />
-					<Route path="/search-page" element={<SearchPage />} />
+					<Route
+						path="/search-page"
+						element={<SearchPage handleShowToast={handleShowToast} />}
+					/>
 				</Route>
 
 				<Route path="*" element={<Error />} />

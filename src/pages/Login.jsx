@@ -18,9 +18,9 @@ export default function Login({ handleShowToast }) {
 							localStorage.setItem("token", res.data.accessToken);
 							navigate("/home");
 						} else {
-							navigate("/create", {
-								state: { token: res.data.accessToken, _id: res.data._id },
-							});
+							localStorage.setItem("user", res.data._id);
+							localStorage.setItem("token", res.data.accessToken);
+							navigate("/create");
 						}
 					}
 				})

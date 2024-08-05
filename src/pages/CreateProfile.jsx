@@ -30,8 +30,6 @@ export default function CreateProfile({ handleShowToast }) {
 				.then((res) => {
 					handleShowToast(res.data.status, res.data.msg);
 					if (res.data.status === "success") {
-						localStorage.setItem("user", res.data._id);
-						localStorage.setItem("token", res.data.accessToken);
 						navigate("/home");
 					}
 				})

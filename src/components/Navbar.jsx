@@ -15,6 +15,7 @@ export default function Navbar({
 	!localStorage.getItem("user")
 		? handleShowToast("error", "Please login first!")
 		: (path = updatePath(localStorage.getItem("picturePath")));
+	console.log(path);
 
 	return (
 		<>

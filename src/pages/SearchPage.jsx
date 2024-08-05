@@ -1,8 +1,53 @@
+import { useRef, useState } from "react";
 import Friendlist from "../components/Friendlist";
 import { useOutletContext } from "react-router-dom";
-export default function SearchPage() {
+import axios from "axios";
+export default function SearchPage({ handleShowToast }) {
+	const [users, setUsers] = useState({});
 	const { setActivePage } = useOutletContext();
+	const searchQuery = useRef();
 	setActivePage("search-page");
+
+	const searchUsers = async (displayName) => {
+		try {
+			await axios
+				.post("http://localhost:3001/api/search/hashtags", {
+					userId: localStorage.getItem("user"),
+					displayName,
+				})
+				.then((res) => {
+					setUsers(res.data.users);
+					console.log(res.data);
+				})
+				.catch((err) => {
+					console.error(err.response.data);
+					handleShowToast(err.response.data.status, err.response.data.msg);
+				});
+		} catch (err) {
+			console.error(err);
+			handleShowToast("error", "Something went wrong, please try again later!");
+		}
+	};
+
+	const searchHashtags = async (hashtag) => {
+		try {
+			await axios
+				.post("http://localhost:3001/api/search/hashtags", {
+					hashtag,
+				})
+				.then((res) => {
+					setUsers(res.data.posts);
+					console.log(res.data);
+				})
+				.catch((err) => {
+					console.error(err.response.data);
+					handleShowToast(err.response.data.status, err.response.data.msg);
+				});
+		} catch (err) {
+			console.error(err);
+			handleShowToast("error", "Something went wrong, please try again later!");
+		}
+	};
 	return (
 		<>
 			<div className="xl:flex mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-between xl:mr-[28%]">
@@ -13,8 +58,9 @@ export default function SearchPage() {
 						<div className="w-full h-auto flex mb-4">
 							<input
 								type="text"
+								ref={searchQuery}
 								className="rounded-xl dynamic-primary w-full h-12 p-2 pl-4 dynamic-text text-lg focus:ring-2 focus:ring-d-accent outline-none"
-								placeholder="Search Your Friends"
+								placeholder="Search Your Friends Or Hashtags!"
 							/>
 						</div>
 
