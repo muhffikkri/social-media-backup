@@ -2356,6 +2356,10 @@ video {
     height: calc(100vh - 73px);
   }
 
+  .md\:h-\[42px\]{
+    height: 42px;
+  }
+
   .md\:w-12{
     width: 3rem;
   }
@@ -2423,6 +2427,10 @@ video {
 
   .md\:pr-14{
     padding-right: 3.5rem;
+  }
+
+  .md\:pb-2{
+    padding-bottom: 0.5rem;
   }
 
   .md\:text-3xl{

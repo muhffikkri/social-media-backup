@@ -2,6 +2,7 @@ import { useState } from "react";
 import CommentsSection from "./CommentSection";
 import axios from "axios";
 import updatePath from "../functions/updatePath";
+import formatDate from "../functions/formatDate";
 
 export default function Post({ isDarkMode, post }) {
 	const [hasLiked, setHasLiked] = useState(
@@ -115,7 +116,7 @@ export default function Post({ isDarkMode, post }) {
 					)}
 				</div>
 				<div
-					className="w-full h-[40px] md:h-[50px] flex flex-row px-2 pb-2 md:pb-4 gap-1"
+					className="w-full h-[40px] md:h-[42px] flex flex-row px-3 gap-3 pb-2  md:pb-2"
 					id="likes"
 				>
 					<div className="flex flex-row justify-center leading-3">
@@ -124,7 +125,7 @@ export default function Post({ isDarkMode, post }) {
 								hasLiked ? "active-" : isDarkMode ? "d-" : "l-"
 							}like.svg`}
 							alt="like"
-							className="cursor-pointer w-15"
+							className="cursor-pointer w-8"
 							onClick={async () => {
 								hasLiked ? handleUnlikePost() : handleLikePost();
 							}}
@@ -137,7 +138,7 @@ export default function Post({ isDarkMode, post }) {
 						<img
 							src={`./icons/${isDarkMode ? "d-" : "l-"}comment.svg`}
 							alt="comment"
-							className="cursor-pointer"
+							className="cursor-pointer w-8"
 							onClick={() => setSectionActive(!sectionActive)}
 						/>
 						<p className="dynamic-text font-semibold text-lg pl-[6px] self-center">
@@ -147,8 +148,11 @@ export default function Post({ isDarkMode, post }) {
 					<img
 						src={`./icons/${isDarkMode ? "d-" : "l-"}share.svg`}
 						alt="share"
-						className="cursor-pointer"
+						className="cursor-pointer w-8"
 					/>
+				</div>
+				<div className="flex dynamic-text text-sm opacity-80 px-4  pb-2 md:pb-2">
+					{formatDate(post.createdAt)}
 				</div>
 			</div>
 		</>
