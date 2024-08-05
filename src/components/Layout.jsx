@@ -4,16 +4,16 @@ import { Outlet } from "react-router-dom";
 import { useState } from "react";
 export default function Layout() {
 	const [isDarkMode, setDarkMode] = useState(true);
-	const [userData, setUserData] = useState(null);
-
+	const [activePage, setActivePage] = useState("home-page");
 	return (
 		<>
 			<Navbar
 				isDarkMode={isDarkMode}
 				setDarkMode={setDarkMode}
-				userData={userData}
+				activePage={activePage}
+				setActivePage={setActivePage}
 			/>
-			<Outlet context={{ isDarkMode, userData, setUserData }} />
+			<Outlet context={{ isDarkMode, setActivePage }} />
 		</>
 	);
 }

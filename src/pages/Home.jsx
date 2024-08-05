@@ -6,45 +6,55 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 
 export default function Home({ handleShowToast }) {
-	const { isDarkMode } = useOutletContext();
-	const [items, setItems] = useState([]);
+	const { isDarkMode, setActivePage } = useOutletContext();
+	const [posts, setPosts] = useState([]);
 	const [hasMore, setHasMore] = useState(true);
-	const [index, setIndex] = useState(0);
-
+	const [skipPost, setSkipPost] = useState(0);
+	setActivePage("home-page");
 	useEffect(() => {
 		axios
-			.post("http://localhost:3000/get/post", null, {
-				params: { index, limit: 4 },
+			.get("http://localhost:3001/api/posts/get", {
+				params: { skipPost, limit: 4 },
 			})
 			.then((res) => {
-				setItems(res.data.data);
-				setIndex((prevIndex) => prevIndex + 2);
+				setPosts(res.data.data);
+				setSkipPost((prev) => prev + 2);
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				console.error(err.response.data);
+				handleShowToast(err.response.data.status, err.response.data.msg);
+			});
 	}, []);
 
 	const fetchMoreData = async () => {
-		await axios
-			.post("http://localhost:3000/get/post", null, {
-				params: { index, limit: 4 },
-			})
-			.then((res) => {
-				setItems((prevItems) => [...prevItems, ...res.data.data]);
+		try {
+			await axios
+				.get("http://localhost:3001/api/posts/get", {
+					params: { skipPost, limit: 4 },
+				})
+				.then((res) => {
+					setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
+					res.data.data.length > 0 ? setHasMore(true) : setHasMore(false);
+				})
+				.catch((err) => {
+					console.error(err.response.data);
+					handleShowToast(err.response.data.status, err.response.data.msg);
+				});
 
-				res.data.length > 0 ? setHasMore(true) : setHasMore(false);
-			})
-			.catch((err) => console.log(err));
-
-		setIndex((prevIndex) => prevIndex + 4);
+			setSkipPost((prevSkipPost) => prevSkipPost + 4);
+		} catch (err) {
+			console.error(err);
+			handleShowToast("error", "Something went wrong, please try again later!");
+		}
 	};
 	return (
 		<>
-			<div className="xl:flex mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-between xl:mr-[28%]">
+			<div className="xl:flex md:h-[calc(100vh-73px)] mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-between xl:mr-[28%]">
 				{/* Main content */}
-				<div className="font-open-sans w-full py-2 px-4 mx-auto pb-[54px] md:pb-[72px] xl:pb-0">
+				<div className="font-open-sans w-full py-2 px-4 h-full mx-auto pb-[54px] md:pb-[72px] xl:pb-0">
 					{/* Posts container */}
 					<InfiniteScroll
-						dataLength={items.length}
+						dataLength={posts.length}
 						next={fetchMoreData}
 						hasMore={hasMore}
 						loader={<h4 className="dynamic-text center">Loading...</h4>}
@@ -54,13 +64,13 @@ export default function Home({ handleShowToast }) {
 							</p>
 						}
 					>
-						{items.map((item, index) => (
+						{posts.map((post, index) => (
 							<div
 								className="w-full h-auto mb-2 "
 								id="postsContainer"
 								key={index}
 							>
-								<Post isDarkMode={isDarkMode} item={item} />
+								<Post isDarkMode={isDarkMode} post={post} />
 							</div>
 						))}
 					</InfiniteScroll>

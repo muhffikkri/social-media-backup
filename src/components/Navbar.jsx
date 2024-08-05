@@ -1,8 +1,12 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import handleShowToast from "../functions/showToast";
-export default function Navbar({ isDarkMode, setDarkMode }) {
-	const [activePage, setActivePage] = useState("home-page");
+import updatePath from "../functions/updatePath";
+export default function Navbar({
+	isDarkMode,
+	setDarkMode,
+	activePage,
+	setActivePage,
+}) {
 	function toggleDarkMode() {
 		setDarkMode(!isDarkMode);
 		document.getElementsByTagName("html")[0].classList.toggle("dark");
@@ -10,10 +14,7 @@ export default function Navbar({ isDarkMode, setDarkMode }) {
 	let path = "";
 	!localStorage.getItem("user")
 		? handleShowToast("error", "Please login first!")
-		: (path = localStorage
-				.getItem("picturePath")
-				.replace(/^public\\/, "")
-				.replace(/\\/g, "/"));
+		: (path = updatePath(localStorage.getItem("picturePath")));
 
 	return (
 		<>
@@ -50,9 +51,6 @@ export default function Navbar({ isDarkMode, setDarkMode }) {
 					className={`container-sidebar-icon xl:order-3 ${
 						activePage === "home-page" ? "dynamic-secondary" : ""
 					}`}
-					onClick={() => {
-						setActivePage("home-page");
-					}}
 				>
 					<img
 						src={`./icons/${
@@ -78,9 +76,6 @@ export default function Navbar({ isDarkMode, setDarkMode }) {
 					className={`container-sidebar-icon xl:order-1 mb-0 ${
 						activePage === "search-page" ? "dynamic-secondary" : ""
 					}`}
-					onClick={() => {
-						setActivePage("search-page");
-					}}
 				>
 					<img
 						src={`./icons/${
@@ -108,9 +103,6 @@ export default function Navbar({ isDarkMode, setDarkMode }) {
 					className={`container-sidebar-icon xl:order-4 ${
 						activePage === "post-page" ? "dynamic-secondary" : ""
 					}`}
-					onClick={() => {
-						setActivePage("post-page");
-					}}
 				>
 					<img
 						src={`./icons/${
@@ -134,9 +126,6 @@ export default function Navbar({ isDarkMode, setDarkMode }) {
 					className={`container-sidebar-icon xl:order-5 ${
 						activePage === "notification-page" ? "dynamic-secondary" : ""
 					}`}
-					onClick={() => {
-						setActivePage("notification-page");
-					}}
 				>
 					<img
 						src={`./icons/${
@@ -164,14 +153,11 @@ export default function Navbar({ isDarkMode, setDarkMode }) {
 					className={`w-12 h-12 dark:hover:bg-d-secondary hover:bg-l-secondary transition-300 rounded p-2 cursor-pointer md:w-16 md:h-16 md:p-3 xl:flex xl:items-center xl:justify-start xl:w-full xl:p-2 xl:rounded-lg xl:h-14 xl:order-5 ${
 						activePage === "profile-page" ? "dynamic-secondary" : ""
 					}`}
-					onClick={() => {
-						setActivePage("profile-page");
-					}}
 				>
 					<img
 						src={
 							localStorage.getItem("picturePath") !== ""
-								? `http://localhost:3000/${path}`
+								? `http://localhost:3001/${path}`
 								: "/images/default-profile-picture.png"
 						}
 						alt="profile"
