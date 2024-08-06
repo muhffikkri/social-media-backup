@@ -7,7 +7,6 @@ export default function CreateProfile({ handleShowToast }) {
   const [profilePict, setProfilePict] = useState();
   const [previewBanner, setPreviewBanner] = useState(null);
   const [previewProfilePict, setPreviewProfilePict] = useState();
-  const LOCATION = useLocation();
   const navigate = useNavigate();
   const displayName = useRef(null);
   const bio = useRef(null);
@@ -15,36 +14,32 @@ export default function CreateProfile({ handleShowToast }) {
   const handleCreate = async (displayName, bio = "", location = "") => {
     try {
       const user = {
-        _id: LOCATION.state._id,
+        _id: localStorage.getItem("user"),
         displayName,
         bio,
         location,
       };
 
-      return fetch("http://localhost:3000/createUser", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${LOCATION.state.token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      })
-        .then((response) => response.json())
-        .then((response) => {
-          handleShowToast(response.status, response.msg);
-          if (response.status === "success") {
-            localStorage.setItem("user", response._id);
-
-            localStorage.setItem("token", response.accessToken);
+      await axios
+        .post("http://localhost:3001/api/users/createUserProfile", user, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          handleShowToast(res.data.status, res.data.msg);
+          if (res.data.status === "success") {
             navigate("/home");
           }
         })
-        .catch((err) => {
-          handleShowToast("error", "Internal server error!");
-          console.log(err);
+        .catch((res) => {
+          console.error(res.response.data);
+          handleShowToast(res.response.data.status, res.response.data.msg);
         });
     } catch (err) {
-      handleShowToast("error", err.message);
+      console.error(err);
+      handleShowToast("error", "Something went wrong, please try again later!");
     }
   };
 
@@ -52,31 +47,38 @@ export default function CreateProfile({ handleShowToast }) {
     try {
       const formData = new FormData();
       formData.append("banner", banner);
-      formData.append("_id", LOCATION.state._id);
+      formData.append("_id", localStorage.getItem("user"));
       axios
-        .post("http://localhost:3000/upload-banner", formData)
+        .post("http://localhost:3001/api/users/upload-banner", formData)
         .then((res) => {})
         .catch((err) => {
           handleShowToast("error", err.message);
           console.log(err);
         });
     } catch (err) {
-      handleShowToast("error", "You dont have a permission!");
+      console.error(err);
+      handleShowToast("error", "Something went wrong, please try again later!");
     }
   };
+
   const uploadProfilePict = async () => {
-    const formData = new FormData();
-    formData.append("profilePict", profilePict);
-    formData.append("_id", LOCATION.state._id);
-    axios
-      .post("http://localhost:3000/upload-profile-pict", formData)
-      .then((res) => {
-        localStorage.setItem("picturePath", res.data.picturePath);
-      })
-      .catch((err) => {
-        handleShowToast("error", err.message);
-        console.log(err);
-      });
+    try {
+      const formData = new FormData();
+      formData.append("profilePict", profilePict);
+      formData.append("_id", localStorage.getItem("user"));
+      axios
+        .post("http://localhost:3001/api/users/upload-profile-pict", formData)
+        .then((res) => {
+          localStorage.setItem("picturePath", res.data.picturePath);
+        })
+        .catch((err) => {
+          handleShowToast("error", err.response.data.msg);
+          console.error(err);
+        });
+    } catch (err) {
+      console.error(err);
+      handleShowToast("error", "Something went wrong, please try again later!");
+    }
   };
 
   return (
