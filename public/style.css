@@ -975,24 +975,36 @@ video {
   top: 61px;
 }
 
+.top-0{
+  top: 0px;
+}
+
 .top-2{
   top: 0.5rem;
 }
 
-.bottom-2{
-  bottom: 0.5rem;
+.top-10{
+  top: 2.5rem;
 }
 
-.bottom-3{
-  bottom: 0.75rem;
+.top-3{
+  top: 0.75rem;
 }
 
-.bottom-4{
-  bottom: 1rem;
+.left-5{
+  left: 1.25rem;
 }
 
-.left-4{
-  left: 1rem;
+.right-5{
+  right: 1.25rem;
+}
+
+.top-2\.5{
+  top: 0.625rem;
+}
+
+.right-3{
+  right: 0.75rem;
 }
 
 .-z-10{
@@ -1260,11 +1272,6 @@ video {
   height: 100vh;
 }
 
-.min-h-fit{
-  min-height: -moz-fit-content;
-  min-height: fit-content;
-}
-
 .w-1\/2{
   width: 50%;
 }
@@ -1365,9 +1372,8 @@ video {
   width: 100vw;
 }
 
-.min-w-fit{
-  min-width: -moz-fit-content;
-  min-width: fit-content;
+.w-9{
+  width: 2.25rem;
 }
 
 .max-w-7xl{
@@ -1554,6 +1560,10 @@ video {
   border-top-width: 1px;
 }
 
+.border-b-2{
+  border-bottom-width: 2px;
+}
+
 .border-dashed{
   border-style: dashed;
 }
@@ -1578,6 +1588,11 @@ video {
 
 .border-transparent{
   border-color: transparent;
+}
+
+.border-red-50{
+  --tw-border-opacity: 1;
+  border-color: rgb(254 242 242 / var(--tw-border-opacity));
 }
 
 .bg-\[rgba\(214\2c 215\2c 216\2c 0\.7\)\]{
@@ -1761,6 +1776,10 @@ video {
   padding-left: 1rem;
 }
 
+.pl-8{
+  padding-left: 2rem;
+}
+
 .pl-\[6px\]{
   padding-left: 6px;
 }
@@ -1785,8 +1804,12 @@ video {
   padding-top: 1.25rem;
 }
 
-.pl-8{
-  padding-left: 2rem;
+.pl-5{
+  padding-left: 1.25rem;
+}
+
+.pl-6{
+  padding-left: 1.5rem;
 }
 
 .text-left{
@@ -1992,6 +2015,12 @@ video {
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
+.ring-1{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
 .ring-d-primary{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(30 31 36 / var(--tw-ring-opacity));
@@ -2094,6 +2123,10 @@ video {
 .after\:content-\[\'\*\'\]::after{
   --tw-content: '*';
   content: var(--tw-content);
+}
+
+.hover\:border-b-2:hover{
+  border-bottom-width: 2px;
 }
 
 .hover\:bg-blue-700:hover{
