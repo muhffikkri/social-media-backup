@@ -63,7 +63,7 @@ export default function SearchPage({ handleShowToast }) {
                     ref={searchQuery}
                     name="search"
                     id="search"
-                    className="rounded-xl dynamic-primary dynamic-text w-full h-full p-2 pl-6 text-lg hover:ring-1 hover:ring-d-accent focus:ring-2 focus:ring-d-accent outline-none"
+                    className="rounded-xl dynamic-primary dynamic-text w-full h-full p-2 pl-6 text-sm sm:text-xl hover:ring-1 hover:ring-d-accent focus:ring-2 focus:ring-d-accent outline-none"
                     placeholder="Search Your Friends Or Hashtags!"
                   />
                 </label>
@@ -73,7 +73,7 @@ export default function SearchPage({ handleShowToast }) {
               </form>
             </div>
 
-            <div className="w-full dynamic-text flex flex-row text-center py-2 px-5 text-xl font-bold gap-1">
+            <div className="w-full dynamic-text flex flex-row text-center py-2 sm:px-6 text-xl font-bold gap-1">
               <div className="grow border-b hover:border-b-2 py-2 cursor-pointer">
                 <img src="./icons/d-people.svg" alt="" className="w-7 inline-block" />
                 Users
