@@ -58,7 +58,7 @@ export default function SearchPage({ handleShowToast }) {
             <div className="w-full h-auto flex mb-4">
               <form action="post" className="w-full h-12 relative">
                 <label htmlFor="search">
-                  <img src="./icons/d-search.svg" alt="" className="absolute w-7 bottom-4 left-4" />
+                  <img src="./icons/d-search.svg" alt="" className="absolute w-7 bottom-4 left -4" />
                   <input
                     type="text"
                     ref={searchQuery}
