@@ -1,78 +1,91 @@
+import { useEffect, useState } from "react";
 import Friendlist from "../components/Friendlist";
-import Navbar from "../components/Navbar";
-
+import NotificationCard from "../components/NotificationCard";
+import { useOutletContext } from "react-router-dom";
+import axios from "axios";
 export default function Notification() {
-	const activePage = "notification";
-	return (
-		<>
-			<Navbar activePage={activePage} />
-			<div className="xl:flex mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-between xl:mr-[28%]">
-				{/* Main content */}
-				<div className="font-open-sans w-full py-2 px-4 mx-auto ">
-					{/* Posts container */}
-					<div className="w-full h-auto mt-2 " id="postsContainer">
-						<div className="w-full h-auto flex flex-col bg-d-primary rounded-xl mb-2">
-							<div className="flex flex-col p-4 pb-2">
-								<div className="w-full h-14 flex items-center" id="headerPost">
-									<div
-										className="w-12 h-12 rounded-full bg-d-bgc"
-										id="image"
-									></div>
-									<div
-										className="flex flex-col px-2 text-d-text"
-										id="nameAndLocation"
-									>
-										<p className="font-bold text-xl">Nama</p>
-										<p className="font-semibold opacity-80">location</p>
-									</div>
-								</div>
-								<div className="w-full h-auto pt-2">
-									<p className="text-d-text text-lg text-left">
-										Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-										Aspernatur reiciendis, ullam aut quisquam temporibus quod
-										placeat repellendus sequi. Quo voluptatem beatae quia at
-										minima excepturi nobis, iste veniam quas. Necessitatibus?
-									</p>
-								</div>
-							</div>
-							<div className="w-full mb-4">
-								<img src="/images/alien.jpg" alt="" />
-							</div>
-						</div>
-						<div className="w-full h-auto flex flex-col bg-d-primary rounded-xl mb-2">
-							<div className="flex flex-col p-4 pb-2">
-								<div className="w-full h-14 flex items-center" id="headerPost">
-									<div
-										className="w-12 h-12 rounded-full bg-d-bgc"
-										id="image"
-									></div>
-									<div
-										className="flex flex-col px-2 text-d-text"
-										id="nameAndLocation"
-									>
-										<p className="font-bold text-xl">Nama</p>
-										<p className="font-semibold opacity-80">location</p>
-									</div>
-								</div>
-								<div className="w-full h-auto pt-2">
-									<p className="text-d-text text-lg text-left">
-										Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-										Aspernatur reiciendis, ullam aut quisquam temporibus quod
-										placeat repellendus sequi. Quo voluptatem beatae quia at
-										minima excepturi nobis, iste veniam quas. Necessitatibus?
-									</p>
-								</div>
-							</div>
-							<div className="w-full mb-4">
-								<img src="/images/alien.jpg" alt="" />
-							</div>
-						</div>
-					</div>
-					{/* End Posts */}
-				</div>
-				{/* End main content */}
-				<Friendlist />
-			</div>
-		</>
-	);
+  const { setActivePage } = useOutletContext();
+  const [notifications, setNotifications] = useState();
+  setActivePage("notification-page");
+
+  useEffect(() => {
+    fetchUserNotifications(localStorage.getItem("user"));
+  }, []);
+
+  const fetchUserNotifications = async (userId) => {
+    try {
+      await axios
+        .post("http://localhost:3001/api/users/get/notifications", { userId })
+        .then((res) => {
+          console.log(res.data);
+          setNotifications(res.data.notifications);
+        })
+        .catch((err) => {
+          console.error(err.response.data);
+        });
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  return (
+    <>
+      <div className="xl:flex h-[calc(100lvh - 117px)] mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-between xl:mr-[28%] sm:mt-3 box-border">
+        {/* Main content */}
+        <div className="font-open-sans w-full md:px-4 mx-auto sm:pt-3">
+          {/* Posts container */}
+          <div className="w-full h-[100svh] overflow-y-auto" id="postsContainer">
+            <div className="w-full h-auto flex flex-col dynamic-primary sm:rounded-xl mb-2 p-4 pb-2 dynamic-text">
+              <div className="text-2xl font-bold dynamic-text">Notification</div>
+
+              {/* Container section */}
+              <div className="w-full flex flex-col mt-2 gap-2">
+                {/* Card Section */}
+                <div className="flex content-center box-border gap-2 md:gap-0">
+                  <div className="w-8 flex justify-center content-center md:w-12">
+                    <img src="./icons/d-checkmark.svg" alt="like" className="cursor-pointer w-full" />
+                  </div>
+                  <div className="flex items-center w-3/4 ml-1 md:ml-3 sm:w-5/6 sm:text-sm lg:w-full ">
+                    <p className="inline-block align-bottom text-xs dynamic-text md:text-base">
+                      <span className="font-semibold dynamic-text">Nickname</span> Lorem ipsum dolor, sit amet consectetur adipisicing el
+                    </p>
+                  </div>
+                  <div className="bg-d-text w-10 h-10 ml-auto sm:w-12 sm:h-10 cursor-pointer"></div>
+                </div>
+              </div>
+
+              <div className="w-full border-b mt-5"></div>
+
+              <div className="w-full flex flex-col mt-2 gap-2">
+                <div className="flex gap-2 p-1 content-center">
+                  <div className="py-1 flex text-md font-bold dynamic-text">Hari ini</div>
+                </div>
+
+                <NotificationCard />
+                <NotificationCard />
+                <NotificationCard />
+                <NotificationCard />
+              </div>
+
+              <div className="w-full border-b mt-5"></div>
+
+              <div className="w-full flex flex-col mt-2 gap-2">
+                <div className="flex gap-2 p-1 content-center">
+                  <div className="py-1 flex text-md font-bold dynamic-text">Kemarin</div>
+                </div>
+
+                <NotificationCard />
+                <NotificationCard />
+                <NotificationCard />
+                <NotificationCard />
+              </div>
+            </div>
+          </div>
+          {/* End Posts */}
+        </div>
+        <Friendlist />
+        {/* End main content */}
+      </div>
+    </>
+  );
 }

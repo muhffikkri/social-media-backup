@@ -2,27 +2,26 @@ import { Link, useNavigate } from "react-router-dom";
 import NavbarPlain from "../components/navbarPlain";
 import Form from "../components/Form";
 import HeroImage from "../components/HeroImage";
+import axios from "axios";
 export default function SignUp({ handleShowToast }) {
-	const navigate = useNavigate(); // Store the navigation function
+	const navigate = useNavigate();
 	const handleSignUp = async (email, password) => {
-		const user = {
-			email,
-			password,
-		};
-
-		return fetch("http://localhost:3000/signup", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(user),
-		})
-			.then((response) => response.json())
-			.then((response) => {
-				handleShowToast(response.status, response.msg);
-				if (response.status === "success") navigate("/", { replace: true }); // Perform navigation here
-			})
-			.catch((err) => console.log(err));
+		try {
+			await axios
+				.post("http://localhost:3001/api/auth/signup", { email, password })
+				.then((res) => {
+					handleShowToast(res.data.status, res.data.msg);
+					if (res.data.status === "success")
+						navigate("/login", { replace: true });
+				})
+				.catch((err) => {
+					console.error(err);
+					handleShowToast("error", err.response.data.msg);
+				});
+		} catch (err) {
+			console.error(err);
+			handleShowToast("error", err.msg);
+		}
 	};
 	return (
 		<div className="bg-d-bgc w-screen h-screen px-6 py-2 xl:py-4 xl:px-12">

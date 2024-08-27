@@ -2,36 +2,36 @@ import { Link, useNavigate } from "react-router-dom";
 import Form from "../components/Form";
 import NavbarPlain from "../components/navbarPlain";
 import HeroImage from "../components/HeroImage";
-
+import axios from "axios";
 export default function Login({ handleShowToast }) {
-	const navigate = useNavigate(); // Store the navigation function
+	const navigate = useNavigate();
 	const handleLogIn = async (email, password) => {
-		const user = {
-			email,
-			password,
-		};
-
-		return fetch("http://localhost:3000/login", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(user),
-		})
-			.then((response) => response.json())
-			.then((response) => {
-				handleShowToast(response.status, response.msg);
-				if (response.status === "success") {
-					console.log(response.accessToken);
-					navigate("/create", {
-						state: { token: response.accessToken, _id: response._id },
-					});
-				} // Perform navigation here
-			})
-			.catch((err) => {
-				handleShowToast("error", "Internal server error!");
-				console.log(err);
-			});
+		try {
+			await axios
+				.post("http://localhost:3001/api/auth/login", { email, password })
+				.then((res) => {
+					handleShowToast(res.data.status, res.data.msg);
+					if (res.data.status === "success") {
+						if (res.data.displayName.length > 3) {
+							localStorage.setItem("user", res.data._id);
+							localStorage.setItem("picturePath", res.data.picturePath);
+							localStorage.setItem("token", res.data.accessToken);
+							navigate("/home");
+						} else {
+							localStorage.setItem("user", res.data._id);
+							localStorage.setItem("token", res.data.accessToken);
+							navigate("/create");
+						}
+					}
+				})
+				.catch((res) => {
+					console.error(res.response.data);
+					handleShowToast(res.response.data.status, res.response.data.msg);
+				});
+		} catch (err) {
+			console.error(err);
+			handleShowToast("error", "Something went wrong!");
+		}
 	};
 
 	return (

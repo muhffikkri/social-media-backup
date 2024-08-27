@@ -1,21 +1,24 @@
-export default function Comment() {
+import updatePath from "../functions/updatePath";
+
+export default function Comment({ comment }) {
 	return (
 		<>
 			<div className="flex items-start space-x-2 mb-4">
 				<img
 					className="w-8 h-8 rounded-full"
-					src="https://via.placeholder.com/150"
+					src={
+						comment.picturePath
+							? `http://localhost:3001/${updatePath(comment.picturePath)}`
+							: "/images/default-profile-picture.png"
+					}
 					alt="User avatar"
 				/>
 				<div className="flex flex-col">
-					<span className="font-semibold text-d-text text-sm lg:text-base">
-						User Name
+					<span className="font-semibold text-d-text text-sm lg:text-base dynamic-text">
+						{comment.displayName}
 					</span>
-					<span className="text-d-text text-sm lg:text-base font-normal">
-						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas
-						libero earum cum cupiditate! Temporibus ex voluptatibus distinctio
-						saepe, autem atque numquam. Quos eveniet consectetur unde mollitia
-						eos ducimus aspernatur facilis.
+					<span className="text-d-text text-sm lg:text-base font-normal dynamic-text">
+						{comment.comment}
 					</span>
 				</div>
 			</div>

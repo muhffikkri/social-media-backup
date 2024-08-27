@@ -40,18 +40,15 @@ export default function Form({ type, handleSubmit }) {
 					placeholder="Password"
 					className="bg-d-secondary w-full pl-4 pr-12 py-4 text-sm rounded-lg my-1 outline-none tracking-wider focus:ring-2 focus:ring-d-accent transition-all duration-300 font-medium md:my-2 md:pr-14 md:text-base lg:rounded-2xl"
 				/>
-				
-					<img
-						src={`./icons/${showPassword ? "eye-off" : "eye"}.svg`}
-						alt="email icon"
-						className="absolute right-4 top-1/2 w-6 -translate-y-1/2 cursor-pointer md:w-8"
-	
-						onClick={() => {
-						  setShowPassword(!showPassword)
-							console.log(showPassword)
-						}}
-					/>
-				
+
+				<img
+					src={`./icons/${showPassword ? "eye-off" : "eye"}.svg`}
+					alt="email icon"
+					className="absolute right-4 top-1/2 w-6 -translate-y-1/2 cursor-pointer md:w-8"
+					onClick={() => {
+						setShowPassword(!showPassword);
+					}}
+				/>
 			</div>
 			<button
 				className="w-36 bg-d-accent opacity-80 text-d-text text-sm p-2.5 rounded-xl my-1 font-semibold hover:opacity-100 transition-all duration-300 md:text-base md:p-3 md:w-40 lg:rounded-2xl"
