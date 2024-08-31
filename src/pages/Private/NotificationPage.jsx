@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Friendlist from "../components/Friendlist";
-import NotificationCard from "../components/NotificationCard";
+import Friendlist from "../../components/Private/Friendlist";
+import NotificationCard from "../../components/Private/NotificationCard"
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
-export default function Notification() {
+export default function NotificationPage() {
 	const { setActivePage } = useOutletContext();
 	const [notifications, setNotifications] = useState();
 	setActivePage("notification-page");

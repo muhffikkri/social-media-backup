@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import handleShowToast from "../functions/showToast";
-import updatePath from "../functions/updatePath";
+import handleShowToast from "../../functions/showToast";
+import updatePath from "../../functions/updatePath"
 export default function Navbar({
 	isDarkMode,
 	setDarkMode,

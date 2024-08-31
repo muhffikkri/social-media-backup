@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import Comment from "./Comment";
-import handleShowToast from "../functions/showToast";
+import handleShowToast from "../../functions/showToast";
 import axios from "axios";
-import updatePath from "../functions/updatePath";
+import updatePath from "../../functions/updatePath";
 export default function CommentsSection({
 	isDarkMode,
 	setSectionActive,

@@ -1,13 +1,17 @@
+import { useOutletContext } from "react-router-dom";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function PostForm({ handleShowToast }) {
+export default function CreatePostPage({ handleShowToast }) {
+	const { setActivePage } = useOutletContext();
 	const [previewImage, setPreviewImage] = useState(null);
 	const [image, setImage] = useState(null);
 	const desciption = useRef(null);
 	const hashtags = useRef(null);
 	const navigate = useNavigate();
+	
+	setActivePage("post-page");
 
 	const uploadImage = async (desc = "", hashtag = "") => {
 		try {
@@ -38,6 +42,7 @@ export default function PostForm({ handleShowToast }) {
 			handleShowToast("error", "Something went wrong, please try again!");
 		}
 	};
+
 	return (
 		<>
 			<div className="container h-16 lg:hidden"></div>
@@ -162,6 +167,6 @@ export default function PostForm({ handleShowToast }) {
 					</div>
 				</div>
 			</form>
-		</>
-	);
+			</>
+			)
 }

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import Form from "../components/Form";
-import NavbarPlain from "../components/navbarPlain";
-import HeroImage from "../components/HeroImage";
+import Form from "../../components/Public/Form";
+import NavbarPlain from "../../components/Navbar/NavbarPublic";
+import HeroImage from "../../components/Public/HeroImage";
 import axios from "axios";
 export default function Login({ handleShowToast }) {
 	const navigate = useNavigate();
