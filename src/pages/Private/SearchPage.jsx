@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import Friendlist from "../components/Friendlist";
+import Friendlist from "../../components/Private/Friendlist";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 export default function SearchPage({ handleShowToast }) {
