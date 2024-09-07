@@ -1,4 +1,16 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+<<<<<<< HEAD:src/components/Navbar.jsx
+import handleShowToast from "../functions/showToast";
+import updatePath from "../functions/updatePath";
+export default function Navbar({ isDarkMode, setDarkMode, activePage, setActivePage }) {
+  function toggleDarkMode() {
+    setDarkMode(!isDarkMode);
+    document.getElementsByTagName("html")[0].classList.toggle("dark");
+  }
+  let path = "";
+  !localStorage.getItem("user") ? handleShowToast("error", "Please login first!") : (path = updatePath(localStorage.getItem("picturePath")));
+  console.log(path);
+=======
 import handleShowToast from "../../functions/showToast";
 import updatePath from "../../functions/updatePath";
 import { useState } from "react";
@@ -8,16 +20,16 @@ export default function Navbar({
   activePage,
   setActivePage,
 }) {
-  function toggleDarkMode() {
-    setDarkMode(!isDarkMode);
-    document.getElementsByTagName("html")[0].classList.toggle("dark");
-  }
-  let path = "";
-  const [showSettings, setShowSettings] = useState(false);
-
-  // !localStorage.getItem("user")
-  //   ? handleShowToast("error", "Please login first!")
-  //   : (path = updatePath(localStorage.getItem("picturePath")));
+	function toggleDarkMode() {
+		setDarkMode(!isDarkMode);
+		document.getElementsByTagName("html")[0].classList.toggle("dark");
+	}
+	let path = "";
+	!localStorage.getItem("user")
+		? handleShowToast("error", "Please login first!")
+		: (path = updatePath(localStorage.getItem("picturePath")));
+	console.log(path);
+>>>>>>> 186907dbeeceabaea1753e9b44ffe4d35f1317b0:src/components/Navbar/Navbar.jsx
 
   return (
     <>

@@ -87,7 +87,11 @@ export default function CreatePostPage({ handleShowToast }) {
 	return (
 		<>
 			<div className="container h-16 lg:hidden"></div>
+<<<<<<< HEAD
 >>>>>>> 9d3797af20e7512562083a37e817ea8ab9fd8c96:src/pages/Private/CreatePostPage.jsx
+=======
+>>>>>>> 186907dbeeceabaea1753e9b44ffe4d35f1317b0:src/pages/Private/CreatePostPage.jsx
+>>>>>>> 6f7282c0b7028cfc16182148e29de069f30aa71f
 
       <form
         className="w-[calc(100% - 288px)] sm:h-[calc(100vh-73px)] xl:ml-[288px] xl:mt-[73px] p-3"
@@ -207,5 +211,9 @@ export default function CreatePostPage({ handleShowToast }) {
 			</form>
 			</>
 			)
+<<<<<<< HEAD
 >>>>>>> 9d3797af20e7512562083a37e817ea8ab9fd8c96:src/pages/Private/CreatePostPage.jsx
+=======
+>>>>>>> 186907dbeeceabaea1753e9b44ffe4d35f1317b0:src/pages/Private/CreatePostPage.jsx
+>>>>>>> 6f7282c0b7028cfc16182148e29de069f30aa71f
 }

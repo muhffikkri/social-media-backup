@@ -13,7 +13,11 @@ export default function NotificationPage() {
 	const { setActivePage } = useOutletContext();
 	const [notifications, setNotifications] = useState();
 	setActivePage("notification-page");
+<<<<<<< HEAD
 >>>>>>> 9d3797af20e7512562083a37e817ea8ab9fd8c96:src/pages/Private/NotificationPage.jsx
+=======
+>>>>>>> 186907dbeeceabaea1753e9b44ffe4d35f1317b0:src/pages/Private/NotificationPage.jsx
+>>>>>>> 6f7282c0b7028cfc16182148e29de069f30aa71f
 
   useEffect(() => {
     fetchUserNotifications(localStorage.getItem("user"));
