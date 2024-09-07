@@ -1,23 +1,12 @@
 import { useEffect, useState } from "react";
 import Friendlist from "../../components/Private/Friendlist";
-import NotificationCard from "../../components/Private/NotificationCard"
+import NotificationCard from "../../components/Private/NotificationCard";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
-<<<<<<< HEAD:src/pages/Notification.jsx
-export default function Notification() {
+export default function NotificationPage() {
   const { setActivePage } = useOutletContext();
   const [notifications, setNotifications] = useState();
   setActivePage("notification-page");
-=======
-export default function NotificationPage() {
-	const { setActivePage } = useOutletContext();
-	const [notifications, setNotifications] = useState();
-	setActivePage("notification-page");
-<<<<<<< HEAD
->>>>>>> 9d3797af20e7512562083a37e817ea8ab9fd8c96:src/pages/Private/NotificationPage.jsx
-=======
->>>>>>> 186907dbeeceabaea1753e9b44ffe4d35f1317b0:src/pages/Private/NotificationPage.jsx
->>>>>>> 6f7282c0b7028cfc16182148e29de069f30aa71f
 
   useEffect(() => {
     fetchUserNotifications(localStorage.getItem("user"));
@@ -45,7 +34,7 @@ export default function NotificationPage() {
         {/* Main content */}
         <div className="font-open-sans w-full md:px-4 mx-auto sm:pt-3">
           {/* Posts container */}
-          <div className="w-full h-[100svh] overflow-y-auto" id="postsContainer">
+          <div className="w-full h-[calc(100% - 117px)]" id="postsContainer">
             <div className="w-full h-auto flex flex-col dynamic-primary sm:rounded-xl mb-2 p-4 pb-2 dynamic-text">
               <div className="text-2xl font-bold dynamic-text">Notification</div>
 
@@ -65,8 +54,6 @@ export default function NotificationPage() {
                 </div>
               </div>
 
-              <div className="w-full border-b mt-5"></div>
-
               <div className="w-full flex flex-col mt-2 gap-2">
                 <div className="flex gap-2 p-1 content-center">
                   <div className="py-1 flex text-md font-bold dynamic-text">Hari ini</div>
@@ -77,8 +64,6 @@ export default function NotificationPage() {
                 <NotificationCard />
                 <NotificationCard />
               </div>
-
-              <div className="w-full border-b mt-5"></div>
 
               <div className="w-full flex flex-col mt-2 gap-2">
                 <div className="flex gap-2 p-1 content-center">
