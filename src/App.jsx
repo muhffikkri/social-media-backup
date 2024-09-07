@@ -6,8 +6,8 @@ import CreateProfile from "./pages/Private/CreateProfile";
 import Layout from "./components/Private/Layout";
 import HomePage from "./pages/private/HomePage";
 import CreatePostPage from "./pages/private/CreatePostPage";
-// import NotificationPage from "./pages/private/NotificationPage";
-// import ProfilePage from "./pages/private/ProfilePage";
+import NotificationPage from "./pages/private/NotificationPage";
+import ProfilePage from "./pages/private/ProfilePage";
 import SearchPage from "./pages/private/SearchPage";
 
 import handleShowToast from "./functions/showToast";
