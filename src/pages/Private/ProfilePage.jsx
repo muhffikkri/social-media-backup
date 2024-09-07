@@ -1,4 +1,5 @@
 import { useOutletContext } from "react-router-dom";
+<<<<<<< HEAD:src/pages/Profile.jsx
 export default function Profile() {
   const { setActivePage } = useOutletContext();
   setActivePage("profile-page");
@@ -26,4 +27,10 @@ export default function Profile() {
       </div>
     </>
   );
+=======
+export default function ProfilePage() {
+	const { setActivePage } = useOutletContext();
+	setActivePage("profile-page");
+	return <></>;
+>>>>>>> 9d3797af20e7512562083a37e817ea8ab9fd8c96:src/pages/Private/ProfilePage.jsx
 }

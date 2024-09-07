@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import Friendlist from "../components/Friendlist";
-import Post from "../components/Post";
+import Friendlist from "../../components/Private/Friendlist";
+import Post from "../../components/Post/Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 
-export default function Home({ handleShowToast }) {
+export default function HomePage({ handleShowToast }) {
 	const { isDarkMode, setActivePage } = useOutletContext();
 	const [posts, setPosts] = useState([]);
 	const [hasMore, setHasMore] = useState(true);

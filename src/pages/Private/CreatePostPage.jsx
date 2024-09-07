@@ -1,7 +1,9 @@
+import { useOutletContext } from "react-router-dom";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+<<<<<<< HEAD:src/components/PostForm.jsx
 export default function PostForm({ handleShowToast }) {
   const [previewImage, setPreviewImage] = useState(null);
   const [image, setImage] = useState(null);
@@ -41,6 +43,51 @@ export default function PostForm({ handleShowToast }) {
   return (
     <>
       <div className="container h-16 lg:hidden"></div>
+=======
+export default function CreatePostPage({ handleShowToast }) {
+	const { setActivePage } = useOutletContext();
+	const [previewImage, setPreviewImage] = useState(null);
+	const [image, setImage] = useState(null);
+	const desciption = useRef(null);
+	const hashtags = useRef(null);
+	const navigate = useNavigate();
+	
+	setActivePage("post-page");
+
+	const uploadImage = async (desc = "", hashtag = "") => {
+		try {
+			const formData = new FormData();
+			if (image !== null) {
+				formData.append("image", image);
+			}
+			formData.append("_id", localStorage.getItem("user"));
+			formData.append("description", desc);
+			formData.append("hashtags", hashtag);
+			await axios
+				.post("http://localhost:3001/api/posts/create", formData, {
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("token")}`,
+					},
+				})
+				.then((res) => {
+					console.log(res.data);
+					handleShowToast(res.data.status, res.data.msg);
+					navigate("/home");
+				})
+				.catch((err) => {
+					handleShowToast("error", err.message);
+					console.error(err);
+				});
+		} catch (err) {
+			console.error(err);
+			handleShowToast("error", "Something went wrong, please try again!");
+		}
+	};
+
+	return (
+		<>
+			<div className="container h-16 lg:hidden"></div>
+>>>>>>> 9d3797af20e7512562083a37e817ea8ab9fd8c96:src/pages/Private/CreatePostPage.jsx
 
       <form
         className="w-[calc(100% - 288px)] sm:h-[calc(100vh-73px)] xl:ml-[288px] xl:mt-[73px] p-3"
@@ -103,6 +150,7 @@ export default function PostForm({ handleShowToast }) {
             </div>
           </div>
 
+<<<<<<< HEAD:src/components/PostForm.jsx
           <div className="flex flex-col grow">
             <textarea
               name="description"
@@ -129,4 +177,35 @@ export default function PostForm({ handleShowToast }) {
       </form>
     </>
   );
+=======
+					<div className="flex flex-col grow">
+						<textarea
+							name="description"
+							id="description"
+							cols="10"
+							ref={desciption}
+							rows="5"
+							className="rounded-md min-h-1 dynamic-secondary dynamic-text p-2 text-lg mb-2 focus:ring-2 focus:ring-d-accent outline-none"
+							placeholder="What's on your mind?"
+						></textarea>
+						<input
+							type="text"
+							name="hashtags"
+							ref={hashtags}
+							className="rounded-md dynamic-secondary h-10 p-2 dynamic-text text-lg focus:ring-2 focus:ring-d-accent outline-none"
+							placeholder="#hashtags (separate with space)"
+							autoComplete="off"
+						/>
+						<button
+							type="submit"
+							className="w-24 h-10 opacity-90 hover:opacity-100 bg-l-accent dark:bg-d-accent rounded-md mt-3 place-self-end"
+						>
+							Post
+						</button>
+					</div>
+				</div>
+			</form>
+			</>
+			)
+>>>>>>> 9d3797af20e7512562083a37e817ea8ab9fd8c96:src/pages/Private/CreatePostPage.jsx
 }

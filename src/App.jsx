@@ -1,19 +1,18 @@
 import { Route, Routes } from "react-router-dom";
-import Error from "./pages/Error";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import Home from "./pages/Home";
-import CreateProfile from "./pages/CreateProfile";
-import CreatePost from "./pages/CreatePost";
-import Notification from "./pages/Notification";
-import SearchPage from "./pages/SearchPage";
-import Profile from "./pages/Profile";
+import Error from "./pages/Public/Error";
+import Login from "./pages/Public/Login";
+import SignUp from "./pages/Public/SignUp";
+import CreateProfile from "./pages/Private/CreateProfile"
+import Layout from "./components/Private/Layout";
+import HomePage from "./pages/private/HomePage";
+import CreatePostPage from "./pages/private/CreatePostPage";
+import NotificationPage from "./pages/private/NotificationPage";
+import ProfilePage from "./pages/private/ProfilePage";
+import SearchPage from "./pages/private/SearchPage";
 
 import handleShowToast from "./functions/showToast";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Layout from "./components/Layout";
-import PageTester from "./pages/PageTester";
 
 function App() {
 	return (
@@ -36,14 +35,14 @@ function App() {
 				<Route element={<Layout />}>
 					<Route
 						path="/post"
-						element={<CreatePost handleShowToast={handleShowToast} />}
+						element={<CreatePostPage handleShowToast={handleShowToast} />}
 					/>
 					<Route
 						path="/home"
-						element={<Home handleShowToast={handleShowToast} />}
+						element={<HomePage handleShowToast={handleShowToast} />}
 					/>
-					<Route path="/profile" element={<Profile />} />
-					<Route path="/notification" element={<Notification />} />
+					<Route path="/profile" element={<ProfilePage />} />
+					<Route path="/notification" element={<NotificationPage />} />
 					<Route
 						path="/search-page"
 						element={<SearchPage handleShowToast={handleShowToast} />}

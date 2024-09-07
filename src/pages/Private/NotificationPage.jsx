@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
-import Friendlist from "../components/Friendlist";
-import NotificationCard from "../components/NotificationCard";
+import Friendlist from "../../components/Private/Friendlist";
+import NotificationCard from "../../components/Private/NotificationCard"
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
+<<<<<<< HEAD:src/pages/Notification.jsx
 export default function Notification() {
   const { setActivePage } = useOutletContext();
   const [notifications, setNotifications] = useState();
   setActivePage("notification-page");
+=======
+export default function NotificationPage() {
+	const { setActivePage } = useOutletContext();
+	const [notifications, setNotifications] = useState();
+	setActivePage("notification-page");
+>>>>>>> 9d3797af20e7512562083a37e817ea8ab9fd8c96:src/pages/Private/NotificationPage.jsx
 
   useEffect(() => {
     fetchUserNotifications(localStorage.getItem("user"));

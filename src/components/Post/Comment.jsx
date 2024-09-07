@@ -1,4 +1,4 @@
-import updatePath from "../functions/updatePath";
+import updatePath from "../../functions/updatePath";
 
 export default function Comment({ comment }) {
 	return (
