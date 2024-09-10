@@ -6,7 +6,7 @@
 
 @layer base {
   * {
-    @apply transition-all duration-300;
+    @apply transition-all duration-300 font-open-sans;
   }
   /* ::selection {
 		@apply bg-d-accent text-d-bgc;
