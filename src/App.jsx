@@ -9,6 +9,7 @@ import CreatePostPage from "./pages/private/CreatePostPage";
 import NotificationPage from "./pages/private/NotificationPage";
 import ProfilePage from "./pages/private/ProfilePage";
 import SearchPage from "./pages/private/SearchPage";
+import AboutPage from "./pages/Private/AboutPage";
 
 import handleShowToast from "./functions/showToast";
 import { ToastContainer } from "react-toastify";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/notification" element={<NotificationPage />} />
           <Route path="/search-page" element={<SearchPage handleShowToast={handleShowToast} />} />
+          <Route path="/about" element={<AboutPage handleShowToast={handleShowToast} />} />
         </Route>
 
         <Route path="*" element={<Error />} />
