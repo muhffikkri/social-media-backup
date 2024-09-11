@@ -30,45 +30,42 @@ export default function AboutPage() {
               <p className=" font-bold dynamic-text text-lg">Features:</p>
               <ul className="list-disc ml-8 mb-2">
                 <li className="dynamic-text font-semibold text-lg">
-                  Login and Sign Up:
+                  Sign Up or Log In:
                   <span className="font-normal ml-2 dynamic-text">
-                    Easy access and secure registration.
+                    Quickly create an account or sign in to access the app.
                   </span>
                 </li>
+
                 <li className="dynamic-text font-semibold text-lg">
-                  Verification Account:
+                  Share a Post:
                   <span className="font-normal ml-2 dynamic-text">
-                    Ensure authenticity with account verification.
-                  </span>
-                </li>
-                <li className="dynamic-text font-semibold text-lg">
-                  Post Something:
-                  <span className="font-normal ml-2 dynamic-text">
-                    Share your updates, photos, and thoughts.
+                    Post updates, photos, or thoughts with your friends and
+                    followers.
                   </span>
                 </li>
                 <li className="dynamic-text font-semibold text-lg">
                   Like, Comment, and Share:
                   <span className="font-normal ml-2 dynamic-text">
-                    Interact with other through likes, comments, and shares.
+                    Interact with posts by liking, commenting, or sharing.
                   </span>
                 </li>
+
                 <li className="dynamic-text font-semibold text-lg">
-                  Notifications:
+                  Manage Your Profile:
                   <span className="font-normal ml-2 dynamic-text">
-                    Stay updated with real-time notifications.
-                  </span>
-                </li>
-                <li className="dynamic-text font-semibold text-lg">
-                  Profile Management:
-                  <span className="font-normal ml-2 dynamic-text">
-                    View and manage your account.
+                    Easily update and manage your account details.
                   </span>
                 </li>
                 <li className="dynamic-text font-semibold text-lg">
                   Infinite Scrolling:
                   <span className="font-normal ml-2 dynamic-text">
-                    Seamlessly browse through an endless feed of content.
+                    Enjoy a never-ending feed of content to explore.
+                  </span>
+                </li>
+                <li className="dynamic-text font-semibold text-lg">
+                  Search Friends or Posts:
+                  <span className="font-normal ml-2 dynamic-text">
+                    Search for friends or posts using names or hashtags.
                   </span>
                 </li>
               </ul>
@@ -86,21 +83,23 @@ export default function AboutPage() {
               {showMinorDetails && (
                 <ul className="list-disc ml-8 mb-2">
                   <li className="dynamic-text font-semibold text-lg">
-                    Login and Sign Up:
+                    Switch Themes:
                     <span className="font-normal ml-2 dynamic-text">
-                      Easy access and secure registration.
+                      Choose between light or dark mode to match your
+                      preference.
                     </span>
                   </li>
                   <li className="dynamic-text font-semibold text-lg">
-                    Verification Account:
+                    Stay Notified:
                     <span className="font-normal ml-2 dynamic-text">
-                      Ensure authenticity with account verification.
+                      Get real-time alerts to keep up with what’s happening.
                     </span>
                   </li>
                   <li className="dynamic-text font-semibold text-lg">
-                    Post Something:
+                    Log Out or Delete Account:
                     <span className="font-normal ml-2 dynamic-text">
-                      Share your updates, photos, and thoughts.
+                      Log out when you're done, or delete your account if you
+                      decide to leave.
                     </span>
                   </li>
                 </ul>

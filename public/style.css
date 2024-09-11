@@ -1028,9 +1028,9 @@ video {
   margin-right: 0.5rem;
 }
 
-.mx-8{
-  margin-left: 2rem;
-  margin-right: 2rem;
+.mx-\[34px\]{
+  margin-left: 34px;
+  margin-right: 34px;
 }
 
 .mx-auto{
@@ -1051,16 +1051,6 @@ video {
 .my-4{
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-
-.mx-9{
-  margin-left: 2.25rem;
-  margin-right: 2.25rem;
-}
-
-.mx-\[34px\]{
-  margin-left: 34px;
-  margin-right: 34px;
 }
 
 .-mt-4{
