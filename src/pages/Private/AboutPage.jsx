@@ -179,56 +179,56 @@ export default function AboutPage() {
                   <img
                     src="./icons/icon-mongodb.svg"
                     alt="MongoDB"
-                    className="h-10 mx-8"
+                    className="h-10 mx-[34px]"
                   />
                 </a>
                 <a href="https://expressjs.com/" target="_blank">
                   <img
                     src="./icons/icon-express.svg"
                     alt="ExpressJS"
-                    className="h-10 mx-8 bg-d-text rounded-sm"
+                    className="h-10 mx-[34px] bg-d-text rounded-sm"
                   />
                 </a>
                 <a href="https://react.dev/" target="_blank">
                   <img
                     src="./icons/icon-react.svg"
                     alt="ReactJS"
-                    className="h-10 mx-8 bg-d-secondary rounded-sm"
+                    className="h-10 mx-[34px] bg-d-secondary rounded-sm"
                   />
                 </a>
                 <a href="https://nodejs.org/en" target="_blank">
                   <img
                     src="./icons/icon-nodejs.svg"
                     alt="NodeJS"
-                    className="w-10 h-10 mx-8"
+                    className="w-10 h-10 mx-[34px]"
                   />
                 </a>
                 <a href="https://vitejs.dev/" target="_blank">
                   <img
                     src="./icons/icon-vite.svg"
                     alt="ReactJS"
-                    className="h-10 mx-8"
+                    className="h-10 mx-[34px]"
                   />
                 </a>
                 <a href="https://axios-http.com/" target="_blank">
                   <img
                     src="./icons/icon-axios.svg"
                     alt="Axios"
-                    className="bg-d-text rounded-sm h-10 mx-8"
+                    className="bg-d-text rounded-sm h-10 mx-[34px]"
                   />
                 </a>
                 <a href="https://tailwindcss.com/" target="_blank">
                   <img
                     src="./icons/icon-tailwind.svg"
                     alt="TailwindCSS"
-                    className="w-10 h-10 mx-8"
+                    className="w-10 h-10 mx-[34px]"
                   />
                 </a>
                 <a href="https://www.figma.com/" target="_blank">
                   <img
                     src="./icons/icon-figma.svg"
                     alt="Figma"
-                    className="w-10 h-10 mx-8"
+                    className="w-10 h-10 mx-[34px]"
                   />
                 </a>
               </Marquee>
