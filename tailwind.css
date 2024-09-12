@@ -72,7 +72,7 @@
     @apply font-bold text-l-accent dark:text-d-accent text-2xl md:text-3xl xl:text-4xl;
   }
   .nav-icon {
-    @apply w-8 h-8 cursor-pointer p-1 hover:bg-l-secondary dark:hover:bg-d-secondary rounded-full md:w-12 md:h-12 md:p-2;
+    @apply w-9 h-9 cursor-pointer p-1 hover:bg-l-secondary dark:hover:bg-d-secondary rounded-full md:w-12 md:h-12 md:p-2;
   }
   /* End Navbar */
 
