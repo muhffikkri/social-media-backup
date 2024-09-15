@@ -3,6 +3,7 @@ import handleShowToast from "../../functions/showToast";
 import updatePath from "../../functions/updatePath";
 import SettingsMenu from "../Private/SettingsList";
 import { useState } from "react";
+import ModalBox from "../Private/ModalBox";
 export default function Navbar({
   isDarkMode,
   setDarkMode,
@@ -15,6 +16,7 @@ export default function Navbar({
   }
   let path = "";
   const [showSettings, setShowSettings] = useState(false);
+  const [showModalBox, setShowModalBox] = useState(false);
 
   // !localStorage.getItem("user")
   //   ? handleShowToast("error", "Please login first!")
@@ -50,6 +52,8 @@ export default function Navbar({
               <SettingsMenu
                 isDarkMode={isDarkMode}
                 setShowSettings={setShowSettings}
+                setShowModalBox={setShowModalBox}
+                showModalBox={showModalBox}
               />
             )}
           </section>
@@ -189,6 +193,9 @@ export default function Navbar({
         <hr className="hr order-6" />
       </aside>
       {/* End sidebar */}
+
+      {/* Modal box */}
+      {showModalBox && <ModalBox />}
     </>
   );
 }

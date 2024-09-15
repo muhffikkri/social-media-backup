@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
-
-export default function SettingsMenu({ isDarkMode, setShowSettings }) {
+export default function SettingsMenu({
+  isDarkMode,
+  setShowSettings,
+  setShowModalBox,
+  showModalBox,
+}) {
   return (
     <>
       <div className="dynamic-primary border-solid border-[0.5px] border-d-text dark:border-opacity-20 absolute right-[5px] xl:bottom-[-85px] md:bottom-[-88px] bottom-[-88px] xl:w-40 w-36 shadow-2xl rounded-lg animate-slide-bottom overflow-hidden ">
@@ -22,7 +26,13 @@ export default function SettingsMenu({ isDarkMode, setShowSettings }) {
             </li>
           </Link>
           <hr className="border-t-[1px] border-l-text dark:border-d-text w-full rounded-xl opacity-20" />
-          <li className="p-2 py-[10px] flex items-center  cursor-pointer gap-1 hover:bg-red-100 dark:hover:bg-red-950">
+          <li
+            className="p-2 py-[10px] flex items-center  cursor-pointer gap-1 hover:bg-red-100 dark:hover:bg-red-950"
+            onClick={() => {
+              setShowModalBox(!showModalBox);
+              setShowSettings(false);
+            }}
+          >
             <p
               className="text-l-danger dark:text-d-danger xl:text-base text-sm
             "
