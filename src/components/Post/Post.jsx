@@ -1,8 +1,9 @@
 import { useState } from "react";
 import CommentsSection from "./CommentSection";
+
 import axios from "axios";
-import updatePath from "../functions/updatePath";
-import formatDate from "../functions/formatDate";
+import updatePath from "../../functions/updatePath";
+import formatDate from "../../functions/formatDate";
 
 export default function Post({ isDarkMode, post }) {
 	const [hasLiked, setHasLiked] = useState(
