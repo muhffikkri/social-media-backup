@@ -1375,6 +1375,10 @@ video {
   width: 15%;
 }
 
+.w-\[25\%\]{
+  width: 25%;
+}
+
 .w-\[28\%\]{
   width: 28%;
 }
@@ -1397,14 +1401,6 @@ video {
 
 .w-screen{
   width: 100vw;
-}
-
-.w-\[26\%\]{
-  width: 26%;
-}
-
-.w-\[25\%\]{
-  width: 25%;
 }
 
 .max-w-7xl{
@@ -1525,10 +1521,6 @@ video {
   justify-content: space-between;
 }
 
-.justify-around{
-  justify-content: space-around;
-}
-
 .gap-1{
   gap: 0.25rem;
 }
@@ -1620,13 +1612,12 @@ video {
   border-width: 0.5px;
 }
 
-.border-x-2{
-  border-left-width: 2px;
-  border-right-width: 2px;
-}
-
 .border-b{
   border-bottom-width: 1px;
+}
+
+.border-l-\[1px\]{
+  border-left-width: 1px;
 }
 
 .border-t{
@@ -1635,10 +1626,6 @@ video {
 
 .border-t-\[1px\]{
   border-top-width: 1px;
-}
-
-.border-l-\[1px\]{
-  border-left-width: 1px;
 }
 
 .border-solid{
@@ -1683,14 +1670,6 @@ video {
 
 .border-opacity-20{
   --tw-border-opacity: 0.2;
-}
-
-.border-opacity-30{
-  --tw-border-opacity: 0.3;
-}
-
-.border-opacity-10{
-  --tw-border-opacity: 0.1;
 }
 
 .border-opacity-5{
@@ -2928,6 +2907,10 @@ video {
     margin-left: 288px;
   }
 
+  .xl\:mr-\[25\%\]{
+    margin-right: 25%;
+  }
+
   .xl\:mr-\[28\%\]{
     margin-right: 28%;
   }
@@ -2938,10 +2921,6 @@ video {
 
   .xl\:mt-\[73px\]{
     margin-top: 73px;
-  }
-
-  .xl\:mr-\[25\%\]{
-    margin-right: 25%;
   }
 
   .xl\:block{
