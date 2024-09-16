@@ -27,27 +27,6 @@ export default function SearchHistory({ isDarkMode }) {
                 alt=""
               />
             </div>
-            <div className="flex flex-row justify-between items-center hover:bg-d-secondary px-2 py-1 rounded-md cursor-pointer">
-              <p className="font-medium dynamic-text ">Udin Jati Nagor</p>
-              <img
-                src={`./icons/${isDarkMode ? "d-" : "l-"}close.svg`}
-                alt=""
-              />
-            </div>
-            <div className="flex flex-row justify-between items-center hover:bg-d-secondary px-2 py-1 rounded-md cursor-pointer">
-              <p className="font-medium dynamic-text ">Rizal Nasi Goreng</p>
-              <img
-                src={`./icons/${isDarkMode ? "d-" : "l-"}close.svg`}
-                alt=""
-              />
-            </div>
-            <div className="flex flex-row justify-between items-center hover:bg-d-secondary px-2 py-1 rounded-md cursor-pointer">
-              <p className="font-medium dynamic-text ">Richard Galon</p>
-              <img
-                src={`./icons/${isDarkMode ? "d-" : "l-"}close.svg`}
-                alt=""
-              />
-            </div>
           </div>
         </div>
       </section>
