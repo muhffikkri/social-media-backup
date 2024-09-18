@@ -1,13 +1,31 @@
 import { Link } from "react-router-dom";
+import { useRef, useEffect } from "react";
+
 export default function SettingsMenu({
   isDarkMode,
   setShowSettings,
   setShowModalBox,
   showModalBox,
 }) {
+  const settingsRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (settingsRef.current && !settingsRef.current.contains(event.target)) {
+      setShowSettings(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <>
-      <div className="dynamic-primary border-solid border-[0.5px] border-d-text dark:border-opacity-20 absolute right-[5px] xl:bottom-[-85px] md:bottom-[-88px] bottom-[-88px] xl:w-40 w-36 shadow-2xl rounded-lg animate-slide-bottom overflow-hidden ">
+      <div
+        ref={settingsRef}
+        className="dynamic-primary border-solid border-[0.5px] border-d-text dark:border-opacity-20 absolute right-[5px] xl:bottom-[-85px] md:bottom-[-88px] bottom-[-88px] xl:w-40 w-36 shadow-2xl rounded-lg animate-slide-bottom overflow-hidden "
+      >
         <ul>
           <Link
             to="/about"
