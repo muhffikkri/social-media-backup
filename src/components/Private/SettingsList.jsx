@@ -6,6 +6,7 @@ export default function SettingsMenu({
   setShowSettings,
   setShowModalBox,
   showModalBox,
+  setModalAction,
 }) {
   const settingsRef = useRef(null);
 
@@ -49,6 +50,7 @@ export default function SettingsMenu({
             onClick={() => {
               setShowModalBox(!showModalBox);
               setShowSettings(false);
+              setModalAction("log-out");
             }}
           >
             <p
@@ -64,7 +66,14 @@ export default function SettingsMenu({
             />
           </li>
           <hr className="border-t-[1px] border-l-text dark:border-d-text w-full rounded-xl opacity-20" />
-          <li className="p-2 py-[10px] flex items-center  cursor-pointer gap-1 hover:bg-red-100 dark:hover:bg-red-950">
+          <li
+            className="p-2 py-[10px] flex items-center  cursor-pointer gap-1 hover:bg-red-100 dark:hover:bg-red-950"
+            onClick={() => {
+              setShowModalBox(!showModalBox);
+              setShowSettings(false);
+              setModalAction("delete-account");
+            }}
+          >
             <p className="text-l-danger dark:text-d-danger xl:text-base text-sm">
               Delete Account
             </p>
