@@ -12,6 +12,7 @@ export default function Navbar({ isDarkMode, setDarkMode, activePage, setActiveP
   let path = "";
   const [showSettings, setShowSettings] = useState(false);
   const [showModalBox, setShowModalBox] = useState(false);
+  const [modalAction, setModalAction] = useState("");
 
   // !localStorage.getItem("user")
   //   ? handleShowToast("error", "Please login first!")
@@ -33,7 +34,7 @@ export default function Navbar({ isDarkMode, setDarkMode, activePage, setActiveP
           <img src={`./icons/${isDarkMode ? "d-sunny" : "l-moon"}.svg`} alt="toggle dark mode" className="nav-icon mx-2" onClick={toggleDarkMode} />
           <section className="flex justify-end">
             <img src={`./icons/${isDarkMode ? "d-" : "l-"}settings.svg`} alt="settings" className="hover:rotate-90 nav-icon relative " onClick={() => setShowSettings(!showSettings)} />
-            {showSettings && <SettingsMenu isDarkMode={isDarkMode} setShowSettings={setShowSettings} setShowModalBox={setShowModalBox} showModalBox={showModalBox} />}
+            {showSettings && <SettingsMenu isDarkMode={isDarkMode} setShowSettings={setShowSettings} setShowModalBox={setShowModalBox} showModalBox={showModalBox} setModalAction={setModalAction} />}
           </section>
         </div>
       </nav>
@@ -73,7 +74,7 @@ export default function Navbar({ isDarkMode, setDarkMode, activePage, setActiveP
       {/* End sidebar */}
 
       {/* Modal box */}
-      {showModalBox && <ModalBox />}
+      {showModalBox && <ModalBox showModalBox={showModalBox} setShowModalBox={setShowModalBox} modalAction={modalAction} />}
     </>
   );
 }
