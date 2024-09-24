@@ -3,33 +3,19 @@ import handleShowToast from "../../functions/showToast";
 import updatePath from "../../functions/updatePath";
 import SettingsMenu from "../Private/SettingsList";
 import { useState } from "react";
-<<<<<<< HEAD
-export default function Navbar({ isDarkMode, setDarkMode, activePage, setActivePage }) {
-=======
 import ModalBox from "../Private/ModalBox";
-export default function Navbar({
-  isDarkMode,
-  setDarkMode,
-  activePage,
-  setActivePage,
-}) {
->>>>>>> a8fc88edc15f695d86abd38ad9c4e9ba1abdcd4e
+export default function Navbar({ isDarkMode, setDarkMode, activePage, setActivePage }) {
   function toggleDarkMode() {
     setDarkMode(!isDarkMode);
     document.getElementsByTagName("html")[0].classList.toggle("dark");
   }
   let path = "";
-<<<<<<< HEAD
-  !localStorage.getItem("user") ? handleShowToast("error", "Please login first!") : (path = updatePath(localStorage.getItem("picturePath")));
-  console.log(path);
-=======
   const [showSettings, setShowSettings] = useState(false);
   const [showModalBox, setShowModalBox] = useState(false);
 
   // !localStorage.getItem("user")
   //   ? handleShowToast("error", "Please login first!")
   //   : (path = updatePath(localStorage.getItem("picturePath")));
->>>>>>> a8fc88edc15f695d86abd38ad9c4e9ba1abdcd4e
 
   return (
     <>
@@ -46,25 +32,8 @@ export default function Navbar({
         <div className="w-1/2 flex justify-end items-center text-l-text dark:text-d-text">
           <img src={`./icons/${isDarkMode ? "d-sunny" : "l-moon"}.svg`} alt="toggle dark mode" className="nav-icon mx-2" onClick={toggleDarkMode} />
           <section className="flex justify-end">
-<<<<<<< HEAD
             <img src={`./icons/${isDarkMode ? "d-" : "l-"}settings.svg`} alt="settings" className="hover:rotate-90 nav-icon relative " onClick={() => setShowSettings(!showSettings)} />
-            {showSettings && <SettingsMenu isDarkMode={isDarkMode} setShowSettings={setShowSettings} />}
-=======
-            <img
-              src={`./icons/${isDarkMode ? "d-" : "l-"}settings.svg`}
-              alt="settings"
-              className="hover:rotate-90 nav-icon relative "
-              onClick={() => setShowSettings(!showSettings)}
-            />
-            {showSettings && (
-              <SettingsMenu
-                isDarkMode={isDarkMode}
-                setShowSettings={setShowSettings}
-                setShowModalBox={setShowModalBox}
-                showModalBox={showModalBox}
-              />
-            )}
->>>>>>> a8fc88edc15f695d86abd38ad9c4e9ba1abdcd4e
+            {showSettings && <SettingsMenu isDarkMode={isDarkMode} setShowSettings={setShowSettings} setShowModalBox={setShowModalBox} showModalBox={showModalBox} />}
           </section>
         </div>
       </nav>
