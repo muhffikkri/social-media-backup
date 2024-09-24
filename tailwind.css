@@ -66,13 +66,13 @@
   /* ! Home */
   /* Navbar */
   .nav-container {
-    @apply w-full bg-l-primary dark:bg-d-primary p-3.5 flex justify-between items-center fixed top-0 left-0 border-b-[1px] border-l-secondary dark:border-d-secondary md:p-3 xl:px-6 xl:py-3 z-50;
+    @apply w-full bg-l-primary dark:bg-d-primary p-3.5 flex justify-between items-center fixed top-0 left-0 border-b-[1px] border-l-secondary dark:border-d-secondary md:p-3 xl:px-6 xl:py-3 z-40;
   }
   .nav-brand {
     @apply font-bold text-l-accent dark:text-d-accent text-2xl md:text-3xl xl:text-4xl;
   }
   .nav-icon {
-    @apply w-8 h-8 cursor-pointer p-1 hover:bg-l-secondary dark:hover:bg-d-secondary rounded-full md:w-12 md:h-12 md:p-2;
+    @apply w-9 h-9 cursor-pointer p-1 hover:bg-l-secondary dark:hover:bg-d-secondary rounded-full md:w-12 md:h-12 md:p-2;
   }
   /* End Navbar */
 

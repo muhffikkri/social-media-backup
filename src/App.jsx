@@ -6,7 +6,7 @@ import CreateProfile from "./pages/Private/CreateProfile";
 import Layout from "./components/Private/Layout";
 import HomePage from "./pages/private/HomePage";
 import CreatePostPage from "./pages/private/CreatePostPage";
-import NotificationPage from "./pages/private/NotificationPage";
+import NotificationPage from "./pages/Private/NotificationPage";
 import ProfilePage from "./pages/private/ProfilePage";
 import SearchPage from "./pages/private/SearchPage";
 import AboutPage from "./pages/Private/AboutPage";

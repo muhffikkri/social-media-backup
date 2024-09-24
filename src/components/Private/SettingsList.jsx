@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
-
-export default function SettingsMenu({ isDarkMode, setShowSettings }) {
+export default function SettingsMenu({
+  isDarkMode,
+  setShowSettings,
+  setShowModalBox,
+  showModalBox,
+}) {
   return (
     <>
-      <div className="dynamic-primary border-solid border-[0.5px] border-d-text dark:border-opacity-20 absolute right-[5px] bottom-[-85px] w-40  shadow-2xl rounded-lg animate-slide-bottom overflow-hidden ">
+      <div className="dynamic-primary border-solid border-[0.5px] border-d-text dark:border-opacity-20 absolute right-[5px] xl:bottom-[-85px] md:bottom-[-88px] bottom-[-88px] xl:w-40 w-36 shadow-2xl rounded-lg animate-slide-bottom overflow-hidden ">
         <ul>
           <Link
             to="/about"
@@ -12,31 +16,44 @@ export default function SettingsMenu({ isDarkMode, setShowSettings }) {
               setShowSettings(false);
             }}
           >
-            <li className="px-2 flex items-center  cursor-pointer gap-1 pt-2 pb-2 hover:bg-l-secondary dark:hover:bg-d-secondary ">
-              <p className="dynamic-text ">About</p>
+            <li className="p-2 py-[10px] flex items-center  cursor-pointer gap-1 hover:bg-l-secondary dark:hover:bg-d-secondary ">
+              <p className="dynamic-text xl:text-base text-sm">About</p>
               <img
                 src={`./icons/${isDarkMode ? "d-" : "l-"}about.svg`}
                 alt="about"
-                className="h-6 w-6"
+                className="xl:h-6 xl:w-6  w-5 h-5"
               />
             </li>
           </Link>
           <hr className="border-t-[1px] border-l-text dark:border-d-text w-full rounded-xl opacity-20" />
-          <li className="p-2 flex items-center  cursor-pointer gap-1 hover:bg-red-100 dark:hover:bg-red-950">
-            <p className="text-l-danger dark:text-d-danger ">Log Out</p>
+          <li
+            className="p-2 py-[10px] flex items-center  cursor-pointer gap-1 hover:bg-red-100 dark:hover:bg-red-950"
+            onClick={() => {
+              setShowModalBox(!showModalBox);
+              setShowSettings(false);
+            }}
+          >
+            <p
+              className="text-l-danger dark:text-d-danger xl:text-base text-sm
+            "
+            >
+              Log Out
+            </p>
             <img
               src={`./icons/${isDarkMode ? "d-" : "l-"}log-out.svg`}
               alt="Log-out"
-              className="h-6 w-6"
+              className="xl:h-6 xl:w-6  w-5 h-5"
             />
           </li>
           <hr className="border-t-[1px] border-l-text dark:border-d-text w-full rounded-xl opacity-20" />
-          <li className="p-2 flex items-center  cursor-pointer gap-1 hover:bg-red-100 dark:hover:bg-red-950">
-            <p className="text-l-danger dark:text-d-danger ">Delete Account</p>
+          <li className="p-2 py-[10px] flex items-center  cursor-pointer gap-1 hover:bg-red-100 dark:hover:bg-red-950">
+            <p className="text-l-danger dark:text-d-danger xl:text-base text-sm">
+              Delete Account
+            </p>
             <img
               src={`./icons/${isDarkMode ? "d-" : "l-"}trash.svg`}
               alt="Delete Account"
-              className="h-[20px] w-[20px]"
+              className="xl:w-5 xl:h-5 md:w-4 md:h-4 w-4 h-4"
             />
           </li>
         </ul>

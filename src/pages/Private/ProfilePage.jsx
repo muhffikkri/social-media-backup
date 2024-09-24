@@ -1,5 +1,6 @@
 import { useOutletContext } from "react-router-dom";
 export default function ProfilePage() {
+<<<<<<< HEAD
   const { setActivePage } = useOutletContext();
   setActivePage("profile-page");
   return (
@@ -26,4 +27,9 @@ export default function ProfilePage() {
       </div>
     </>
   );
+=======
+	const { setActivePage } = useOutletContext();
+	setActivePage("profile-page");
+	return <></>;
+>>>>>>> a8fc88edc15f695d86abd38ad9c4e9ba1abdcd4e
 }
