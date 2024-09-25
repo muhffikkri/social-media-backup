@@ -30,16 +30,21 @@ export default function NotificationPage() {
 
   return (
     <>
-      <div className="xl:flex h-[calc(100lvh - 117px)] mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-between xl:mr-[28%] sm:mt-3 box-border">
+      <div className="xl:flex h-[calc(100lvh - 117px)] mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-center sm:mt-3 box-border">
         {/* Main content */}
-        <div className="font-open-sans w-full md:px-4 mx-auto sm:pt-3">
+        <div className="font-open-sans w-full md:px-4 mx-auto sm:pt-3 ">
           {/* Posts container */}
-          <div className="w-full h-[calc(100% - 117px)]" id="postsContainer">
-            <div className="w-full h-auto flex flex-col dynamic-primary sm:rounded-xl mb-2 p-4 pb-2 dynamic-text">
-              <div className="text-2xl font-bold dynamic-text">Notification</div>
+          <div className="w-full h-[calc(100% - 117px)] border-[0.5px] border-d-text border-opacity-20 rounded-lg overflow-hidden" id="postsContainer">
+            <div className="w-full h-auto flex flex-col dynamic-primary sm:rounded-xl mb-2 pb-2 dynamic-text">
+              <div className="border-b border-opacity-20 border-d-text flex justify-between items-center p-4 bg-[#19191e]">
+                <div className="text-2xl font-bold dynamic-text">Notification</div>
+                <div>
+                  <p>Read All</p>
+                </div>
+              </div>
 
               {/* Container section */}
-              <div className="w-full flex flex-col mt-2 gap-2">
+              <div className="w-full flex flex-col mt-2 gap-2 p-2">
                 {/* Card Section */}
                 <div className="flex content-center box-border gap-2 md:gap-0">
                   <div className="w-8 flex justify-center content-center md:w-12">
@@ -62,7 +67,7 @@ export default function NotificationPage() {
                 <NotificationCard />
                 <NotificationCard />
                 <NotificationCard />
-                <NotificationCard />
+                {/* <NotificationCard /> */}
               </div>
 
               <div className="w-full flex flex-col mt-2 gap-2">
@@ -79,7 +84,6 @@ export default function NotificationPage() {
           </div>
           {/* End Posts */}
         </div>
-        <Friendlist />
         {/* End main content */}
       </div>
     </>
