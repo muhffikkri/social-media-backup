@@ -9,7 +9,7 @@ export default function AboutPage() {
   return (
     <>
       <div className="xl:flex mt-[61px] md:mt-[73px] xl:ml-[288px] xl:justify-between p-4 md:pb-8 pb-16">
-        <div className=" w-full xl:p-8 p-4 h-full mx-auto dynamic-primary rounded-lg">
+        <div className=" w-full xl:p-8 p-4 h-full mx-auto dynamic-primary rounded-lg dark:border-d-primary border-2 border-l-secondary shadow-lg dark:shadow-none ">
           <section className="center gap-1">
             <h1 className="dynamic-text font-bold xl:text-2xl md:text-xl text-xl">
               About
