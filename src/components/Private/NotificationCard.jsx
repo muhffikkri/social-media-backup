@@ -1,20 +1,23 @@
 export default function NotificationCard() {
 	return (
 		<>
-			<div className="flex content-center box-border gap-2 md:gap-0">
-				<div className="w-8 flex justify-center content-center md:w-12">
-					<div
-						className="w-full h-full rounded-full dynamic-bgc"
-						id="image"
-					></div>
-				</div>
-				<div className="flex items-center w-3/4 ml-1 md:ml-3 sm:w-5/6 sm:text-sm lg:w-full ">
-					<p className="inline-block align-bottom text-xs md:text-base dynamic-text">
-						<span className="font-semibold dynamic-text">Nickname</span> Lorem
-						ipsum dolor, sit amet consectetur adipisicing el
+			<div className="w-full xl:p-2 p-1 flex flex-row items-center justify-between flex-wrap">
+				<div className="center flex-row xl:gap-2 gap-1 ">
+					<img
+						src="./images/default-profile-picture.png"
+						alt="profile pict"
+						className="xl:w-8 xl:h-8 w-6 h-6 rounded-full"
+					/>
+					<p className="font-semibold md:text-base text-sm dynamic-text">
+						Dummy Friend
 					</p>
+					<span className="dynamic-text md:text-base text-sm">
+						commented on your post
+					</span>
 				</div>
-				<div className="bg-d-text w-10 h-10 ml-auto sm:w-12 sm:h-10 cursor-pointer"></div>
+				<span className="dynamic-text opacity-80 md:text-base text-sm xl:p-1 p-[2px]">
+					18 minutes ago
+				</span>
 			</div>
 		</>
 	);

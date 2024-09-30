@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import Friendlist from "../../components/Private/Friendlist";
 import Post from "../../components/Post/Post";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Loading from "../../components/Public/Loading";
 import axios from "axios";
 
 export default function HomePage({ handleShowToast }) {
@@ -57,7 +58,7 @@ export default function HomePage({ handleShowToast }) {
 						dataLength={posts.length}
 						next={fetchMoreData}
 						hasMore={hasMore}
-						loader={<h4 className="dynamic-text center">Loading...</h4>}
+						loader={<Loading />}
 						endMessage={
 							<p className="dynamic-text w-full center p-2">
 								<b>Yay! You have seen it all</b>
