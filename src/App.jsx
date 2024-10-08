@@ -20,55 +20,23 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Login handleShowToast={handleShowToast} />} />
-        <Route
-          path="/login"
-          element={<Login handleShowToast={handleShowToast} />}
-        />
-        <Route
-          path="/signup"
-          element={<SignUp handleShowToast={handleShowToast} />}
-        />
-        <Route
-          path="/create"
-          element={<CreateProfile handleShowToast={handleShowToast} />}
-        />
+        <Route path="/login" element={<Login handleShowToast={handleShowToast} />} />
+        <Route path="/signup" element={<SignUp handleShowToast={handleShowToast} />} />
+        <Route path="/create" element={<CreateProfile handleShowToast={handleShowToast} />} />
         {/* Routes that need Navbar */}
         <Route element={<Layout />}>
-          <Route
-            path="/post"
-            element={<CreatePostPage handleShowToast={handleShowToast} />}
-          />
-          <Route
-            path="/home"
-            element={<HomePage handleShowToast={handleShowToast} />}
-          />
+          <Route path="/post" element={<CreatePostPage handleShowToast={handleShowToast} />} />
+          <Route path="/home" element={<HomePage handleShowToast={handleShowToast} />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/notification" element={<NotificationPage />} />
-          <Route
-            path="/search-page"
-            element={<SearchPage handleShowToast={handleShowToast} />}
-          />
-          <Route
-            path="/about"
-            element={<AboutPage handleShowToast={handleShowToast} />}
-          />
+          <Route path="/search-page" element={<SearchPage handleShowToast={handleShowToast} />} />
+          <Route path="/about" element={<AboutPage handleShowToast={handleShowToast} />} />
         </Route>
 
         <Route path="*" element={<Error />} />
       </Routes>
 
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-        theme="dark"
-      />
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover={false} theme="dark" />
     </>
   );
 }
