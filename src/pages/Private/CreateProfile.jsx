@@ -13,6 +13,15 @@ export default function CreateProfile({ handleShowToast }) {
   const loc = useRef(null);
   const handleCreate = async (displayName, bio = "", location = "") => {
     try {
+      if (displayName > 20) {
+        handleShowToast("error", "Display name is too long");
+        return;
+      }
+      if (locatuib > 25) {
+        handleShowToast("error", "Maximal character location is 25");
+        return;
+      }
+
       const user = {
         _id: localStorage.getItem("user"),
         displayName,
@@ -149,7 +158,7 @@ export default function CreateProfile({ handleShowToast }) {
           }}
         />
         <div className="w-screen h-screen overflow-hidden flex items-center justify-center shadow-lg relative">
-          <div className="flex flex-col lg:w-3/5 bg-d-primary rounded-lg overflow-hidden items-center justify-center w-4/5">
+          <div className="flex flex-col lg:w-3/5 bg-d-primary rounded-lg overflow-hidden items-center justify-center w-[90%]">
             <div className="w-full h-32 bg-d-text rounded-lg relative group md:h-[168px] md:rounded-xl ">
               <label
                 htmlFor="banner"
@@ -207,13 +216,13 @@ export default function CreateProfile({ handleShowToast }) {
                 />
               </label>
             </div>
-            <section className="flex flex-col lg:w-1/2 w-3/4 h-84 items-center justify-between lg:-mt-8 -mt-4 py-4 lg:py-2">
+            <section className="flex flex-col lg:w-1/2 w-3/4 h-80 items-center justify-between lg:-mt-8 -mt-4 py-4 lg:py-2">
               <div className="container lg:mb-2">
                 <label
                   htmlFor="displayName"
-                  className="text-d-text lg:py-2 py-1 font-bold font-poppins cursor-pointer lg:text-lg text-base after:content-['*'] after:text-red-500"
+                  className="text-d-text lg:py-2 py-1 font-bold font-open-sans cursor-pointer lg:text-lg text-base after:content-['*'] after:text-red-500"
                 >
-                  Display name
+                  Display Name
                 </label>
                 <input
                   type="textarea"
@@ -222,13 +231,14 @@ export default function CreateProfile({ handleShowToast }) {
                   ref={displayName}
                   required
                   autoComplete="off"
+                  placeholder="max character 20"
                   className="text-d-text lg:my-1 my-2 lg:px-4 lg:py-2 py-3 px-3 font-medium font-open-sans lg:text-base text-sm bg-d-secondary rounded-lg w-full outline-none focus:ring-2 focus:ring-d-accent transition-all duration-300"
                 />
               </div>
               <div className="container">
                 <label
                   htmlFor="bio"
-                  className="text-d-text py-1 mt-1 font-bold font-poppins cursor-pointer lg:text-lg text-base"
+                  className="text-d-text py-1 mt-1 font-bold font-open-sans cursor-pointer lg:text-lg text-base"
                 >
                   Bio
                 </label>
@@ -246,7 +256,7 @@ export default function CreateProfile({ handleShowToast }) {
               <div className="container lg:mt-2">
                 <label
                   htmlFor="location"
-                  className="text-d-text mt-1 lg:py-2 py-1 font-bold lg:text-lg text-base font-poppins cursor-pointer"
+                  className="text-d-text mt-1 lg:py-2 py-1 font-bold lg:text-lg text-base font-open-sans cursor-pointer"
                 >
                   Location
                 </label>
@@ -262,21 +272,21 @@ export default function CreateProfile({ handleShowToast }) {
             </section>
             <div className="flex justify-between w-full my-2">
               <div className="group">
-                <div className="w-[365px] h-[365px] rounded-full bg-red-800 absolute -bottom-[200px] -left-[300px] lg:-left-[200px] blur-[256px] -z-10 animate-bounce-slow group-hover:-bottom-[125px] group-hover:bg-red-700 transition-all"></div>
+                <div className="w-[365px] h-[365px] rounded-full bg-red-800 absolute -bottom-[200px] -left-[300px] lg:-left-[200px] blur-[256px] -z-10 animate-bounce-slow group-hover:-bottom-[125px] group-hover:bg-[#d32a2a] transition-all"></div>
                 <Link to="/login">
                   <button
                     type="button"
-                    className="lg:w-24 w-20 bg-red-700 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text ml-2 lg:text-base text-sm opacity-80 transition-all duration-300 hover:opacity-100"
+                    className="lg:w-24 w-20 bg-red-700 lg:p-[6px] p-2 lg:rounded-lg rounded-md font-semibold text-d-text ml-2 lg:text-base text-sm transition-all duration-300 hover:bg-[#d32a2a]"
                   >
                     <p className="w-full h-full rounded-[inherit]">Back</p>
                   </button>
                 </Link>
               </div>
               <div className="group">
-                <div className="w-[365px] h-[365px] rounded-full bg-d-accent absolute -bottom-[200px] -right-[300px] lg:-right-[200px] blur-[256px] -z-10 animate-bounce-slow opacity-80 group-hover:-bottom-[125px] transition-all group-hover:bg-d-accent/100"></div>
+                <div className="w-[365px] h-[365px] rounded-full bg-d-accent absolute -bottom-[200px] -right-[350px] lg:-right-[200px] blur-[256px] -z-10 animate-bounce-slow group-hover:-bottom-[125px] transition-all group-hover:bg-[#1070ed]"></div>
                 <button
                   type="submit"
-                  className="lg:w-24 w-20 bg-d-accent/70 p-2 lg:rounded-xl rounded-lg font-semibold text-d-text mr-2 opacity-80 text-sm transition-all duration-300 hover:opacity-100"
+                  className="lg:w-24 w-20 bg-d-accent lg:p-[6px] p-2 lg:rounded-lg rounded-md font-semibold text-d-text mr-2 lg:text-base text-sm transition-all duration-300 hover:bg-[#1070ed]"
                 >
                   <p className="w-full h-full rounded-[inherit]">Next</p>
                 </button>
