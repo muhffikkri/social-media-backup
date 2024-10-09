@@ -17,6 +17,7 @@ export default function Navbar({
   let path = "";
   const [showSettings, setShowSettings] = useState(false);
   const [showModalBox, setShowModalBox] = useState(false);
+  const [modalAction, setModalAction] = useState("");
 
   // !localStorage.getItem("user")
   //   ? handleShowToast("error", "Please login first!")
@@ -54,6 +55,7 @@ export default function Navbar({
                 setShowSettings={setShowSettings}
                 setShowModalBox={setShowModalBox}
                 showModalBox={showModalBox}
+                setModalAction={setModalAction}
               />
             )}
           </section>
@@ -195,7 +197,13 @@ export default function Navbar({
       {/* End sidebar */}
 
       {/* Modal box */}
-      {showModalBox && <ModalBox />}
+      {showModalBox && (
+        <ModalBox
+          showModalBox={showModalBox}
+          setShowModalBox={setShowModalBox}
+          modalAction={modalAction}
+        />
+      )}
     </>
   );
 }

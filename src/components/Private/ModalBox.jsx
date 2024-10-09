@@ -1,4 +1,4 @@
-export default function ModalBox() {
+export default function ModalBox({ showLogOut, setShowModalBox, modalAction }) {
   return (
     <>
       <section
@@ -15,7 +15,11 @@ export default function ModalBox() {
         >
           {/* Head */}
           <div className="w-full flex justify-between border-b border-l-text dark:border-d-text border-opacity-30 pb-2 px-2">
-            <p className="text-d-danger font-semibold text-lg flex-grow text-center">{modalAction === "log-out" ? "Ready to Log Out?" : "Delete Account?"}</p>
+            <p className="text-d-danger font-semibold text-lg flex-grow text-center">
+              {modalAction === "log-out"
+                ? "Ready to Log Out?"
+                : "Delete Account?"}
+            </p>
           </div>
           {/* End Head */}
           {/* Text Content */}
@@ -37,7 +41,11 @@ export default function ModalBox() {
             >
               Cancel
             </button>
-            <button className="w-1/2 bg-d-danger p-[3px] rounded-[4px] text-base font-medium dynamic-text text-shadow hover:bg-[#d32a2a]">{modalAction === "log-out" ? "Yes, Log me out!" : "Yes, Delete my account"}</button>
+            <button className="w-1/2 bg-d-danger p-[3px] rounded-[4px] text-base font-medium dynamic-text text-shadow hover:bg-[#d32a2a]">
+              {modalAction === "log-out"
+                ? "Yes, Log me out!"
+                : "Yes, Delete my account"}
+            </button>
           </div>
           {/* End Button Confirmation */}
         </div>
