@@ -6,37 +6,20 @@ export default function SearchHistory({ isDarkMode }) {
           <p className="text-lg dynamic-text font-semibold ">History</p>
           <hr className="border-t-[1px] border-l-text dark:border-d-text w-full rounded-xl opacity-40 my-2" />
           <div className="flex flex-col w-full">
-<<<<<<< HEAD
-            <div className="flex flex-row justify-between items-center hover:bg-d-secondary px-2 py-1 rounded-md cursor-pointer">
-              <p className="font-medium dynamic-text ">Udin Jati Nagor</p>
-=======
             <div className="flex flex-row justify-between items-center hover:bg-l-secondary dark:hover:bg-d-secondary px-2 py-1 rounded-md cursor-pointer">
               <p className="font-medium dynamic-text text-ellipsis whitespace-nowrap overflow-hidden">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Consequatur explicabo voluptatum dolores ea? Iusto dicta,
-                tempora velit numquam commodi facere quo exercitationem
-                voluptates expedita nostrum, aliquid pariatur magni ipsam
-                recusandae!
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur explicabo voluptatum dolores ea? Iusto dicta, tempora velit numquam commodi facere quo exercitationem voluptates expedita nostrum, aliquid pariatur magni
+                ipsam recusandae!
               </p>
->>>>>>> eed21ac31e7bc58eb8746f15ff7f18330f2e10e3
-              <img
-                src={`./icons/${isDarkMode ? "d-" : "l-"}close.svg`}
-                alt=""
-              />
+              <img src={`./icons/${isDarkMode ? "d-" : "l-"}close.svg`} alt="" />
             </div>
             <div className="flex flex-row justify-between items-center hover:bg-d-secondary px-2 py-1 rounded-md cursor-pointer">
               <p className="font-medium dynamic-text ">Rizal Nasi Goreng</p>
-              <img
-                src={`./icons/${isDarkMode ? "d-" : "l-"}close.svg`}
-                alt=""
-              />
+              <img src={`./icons/${isDarkMode ? "d-" : "l-"}close.svg`} alt="" />
             </div>
             <div className="flex flex-row justify-between items-center hover:bg-d-secondary px-2 py-1 rounded-md cursor-pointer">
               <p className="font-medium dynamic-text ">Richard Galon</p>
-              <img
-                src={`./icons/${isDarkMode ? "d-" : "l-"}close.svg`}
-                alt=""
-              />
+              <img src={`./icons/${isDarkMode ? "d-" : "l-"}close.svg`} alt="" />
             </div>
           </div>
         </div>

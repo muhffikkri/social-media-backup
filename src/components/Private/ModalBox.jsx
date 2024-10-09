@@ -1,11 +1,6 @@
 export default function ModalBox() {
   return (
     <>
-<<<<<<< HEAD
-      <div className="absolute top-[-20px] left-0 w-full h-full dynamic-secondary z-50">
-        <p>Hello</p>
-      </div>
-=======
       <section
         className="fixed top-0 left-0 w-full h-full bg-[rgba(214,215,216,0.7)] dark:bg-[rgba(214,215,216,0.2)] z-50 center cursor-pointer"
         onClick={() => {
@@ -20,11 +15,7 @@ export default function ModalBox() {
         >
           {/* Head */}
           <div className="w-full flex justify-between border-b border-l-text dark:border-d-text border-opacity-30 pb-2 px-2">
-            <p className="text-d-danger font-semibold text-lg flex-grow text-center">
-              {modalAction === "log-out"
-                ? "Ready to Log Out?"
-                : "Delete Account?"}
-            </p>
+            <p className="text-d-danger font-semibold text-lg flex-grow text-center">{modalAction === "log-out" ? "Ready to Log Out?" : "Delete Account?"}</p>
           </div>
           {/* End Head */}
           {/* Text Content */}
@@ -46,16 +37,11 @@ export default function ModalBox() {
             >
               Cancel
             </button>
-            <button className="w-1/2 bg-d-danger p-[3px] rounded-[4px] text-base font-medium dynamic-text text-shadow hover:bg-[#d32a2a]">
-              {modalAction === "log-out"
-                ? "Yes, Log me out!"
-                : "Yes, Delete my account"}
-            </button>
+            <button className="w-1/2 bg-d-danger p-[3px] rounded-[4px] text-base font-medium dynamic-text text-shadow hover:bg-[#d32a2a]">{modalAction === "log-out" ? "Yes, Log me out!" : "Yes, Delete my account"}</button>
           </div>
           {/* End Button Confirmation */}
         </div>
       </section>
->>>>>>> eed21ac31e7bc58eb8746f15ff7f18330f2e10e3
     </>
   );
 }
