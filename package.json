@@ -11,7 +11,7 @@
     "tail": "tailwindcss -i ./tailwind.css -o ./public/style.css --watch"
   },
   "dependencies": {
-    "axios": "^1.7.7",
+    "axios": "^1.7.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-fast-marquee": "^1.6.5",

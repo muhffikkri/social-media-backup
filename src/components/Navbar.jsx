@@ -1,9 +1,6 @@
-import { NavLink, Link } from "react-router-dom";
-import handleShowToast from "../../functions/showToast";
-import updatePath from "../../functions/updatePath";
-import SettingsMenu from "../Private/SettingsList";
-import { useState } from "react";
-import ModalBox from "../Private/ModalBox";
+import { NavLink } from "react-router-dom";
+import handleShowToast from "../functions/showToast";
+import updatePath from "../functions/updatePath";
 export default function Navbar({
   isDarkMode,
   setDarkMode,
@@ -15,12 +12,10 @@ export default function Navbar({
     document.getElementsByTagName("html")[0].classList.toggle("dark");
   }
   let path = "";
-  const [showSettings, setShowSettings] = useState(false);
-  const [showModalBox, setShowModalBox] = useState(false);
-
-  // !localStorage.getItem("user")
-  //   ? handleShowToast("error", "Please login first!")
-  //   : (path = updatePath(localStorage.getItem("picturePath")));
+  !localStorage.getItem("user")
+    ? handleShowToast("error", "Please login first!")
+    : (path = updatePath(localStorage.getItem("picturePath")));
+  console.log(path);
 
   return (
     <>
@@ -34,6 +29,7 @@ export default function Navbar({
         >
           SociaLink
         </NavLink>
+
         <div className="w-1/2 flex justify-end items-center text-l-text dark:text-d-text">
           <img
             src={`./icons/${isDarkMode ? "d-sunny" : "l-moon"}.svg`}
@@ -41,22 +37,12 @@ export default function Navbar({
             className="nav-icon mx-2"
             onClick={toggleDarkMode}
           />
-          <section className="flex justify-end">
-            <img
-              src={`./icons/${isDarkMode ? "d-" : "l-"}settings.svg`}
-              alt="settings"
-              className="hover:rotate-90 nav-icon relative "
-              onClick={() => setShowSettings(!showSettings)}
-            />
-            {showSettings && (
-              <SettingsMenu
-                isDarkMode={isDarkMode}
-                setShowSettings={setShowSettings}
-                setShowModalBox={setShowModalBox}
-                showModalBox={showModalBox}
-              />
-            )}
-          </section>
+
+          <img
+            src={`./icons/${isDarkMode ? "d-" : "l-"}settings.svg`}
+            alt="settings"
+            className="nav-icon"
+          />
         </div>
       </nav>
       {/* End navbar */}
@@ -193,9 +179,6 @@ export default function Navbar({
         <hr className="hr order-6" />
       </aside>
       {/* End sidebar */}
-
-      {/* Modal box */}
-      {showModalBox && <ModalBox />}
     </>
   );
 }
