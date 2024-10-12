@@ -1,4 +1,18 @@
+import { useNavigate } from "react-router-dom";
+import handleShowToast from "../../functions/showToast";
 export default function ModalBox({ showLogOut, setShowModalBox, modalAction }) {
+  const navigate = useNavigate();
+
+  function handleLogOut() {
+    localStorage.clear();
+    handleShowToast("success", "Success loggin out");
+    navigate("/login", { replace: true });
+  }
+
+  function handleDeleteAccount() {
+    return;
+  }
+
   return (
     <>
       <section
@@ -41,7 +55,14 @@ export default function ModalBox({ showLogOut, setShowModalBox, modalAction }) {
             >
               Cancel
             </button>
-            <button className="w-1/2 bg-d-danger p-[3px] rounded-[4px] text-base font-medium dynamic-text text-shadow hover:bg-[#d32a2a]">
+            <button
+              className="w-1/2 bg-d-danger p-[3px] rounded-[4px] text-base font-medium dynamic-text text-shadow hover:bg-[#d32a2a]"
+              onClick={() => {
+                modalAction === "log-out"
+                  ? handleLogOut()
+                  : handleDeleteAccount();
+              }}
+            >
               {modalAction === "log-out"
                 ? "Yes, Log me out!"
                 : "Yes, Delete my account"}

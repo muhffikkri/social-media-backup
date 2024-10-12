@@ -17,7 +17,7 @@ export default function CreateProfile({ handleShowToast }) {
         handleShowToast("error", "Display name is too long");
         return;
       }
-      if (locatuib > 25) {
+      if (location > 25) {
         handleShowToast("error", "Maximal character location is 25");
         return;
       }
@@ -39,7 +39,7 @@ export default function CreateProfile({ handleShowToast }) {
         .then((res) => {
           handleShowToast(res.data.status, res.data.msg);
           if (res.data.status === "success") {
-            navigate("/home");
+            navigate("/home", { replace: true });
           }
         })
         .catch((res) => {
@@ -96,6 +96,7 @@ export default function CreateProfile({ handleShowToast }) {
         action="POST"
         onSubmit={async (e) => {
           e.preventDefault();
+          localStorage.setItem("picturePath", "");
           if (profilePict) {
             await uploadProfilePict();
           }

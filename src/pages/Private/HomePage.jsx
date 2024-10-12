@@ -55,14 +55,14 @@ export default function HomePage({ handleShowToast }) {
         {/* Main content */}
         <div className="font-open-sans w-full py-2 px-4 h-full mx-auto pb-[54px] md:pb-[72px] xl:pb-0">
           {/* Posts container */}
-          {/* <InfiniteScroll
+          <InfiniteScroll
             dataLength={posts.length}
             next={fetchMoreData}
             hasMore={hasMore}
             loader={<Loading />}
             endMessage={
               <p className="dynamic-text w-full center p-2">
-                <b>Yay! You have seen it all</b>
+                <b>No more posts here. Why not share something?</b>
               </p>
             }
           >
@@ -74,13 +74,13 @@ export default function HomePage({ handleShowToast }) {
               >
                 <Post isDarkMode={isDarkMode} post={post} />
               </div>
-			  ))}
-			  </InfiniteScroll> */}
-          <div className="w-full h-auto mb-2 " id="postsContainer">
+            ))}
+          </InfiniteScroll>
+          {/* <div className="w-full h-auto mb-2 " id="postsContainer">
             <PostSkeleton isDarkMode={isDarkMode} />
             <PostSkeleton isDarkMode={isDarkMode} />
             <PostSkeleton isDarkMode={isDarkMode} />
-          </div>
+          </div> */}
 
           {/* End Posts */}
         </div>

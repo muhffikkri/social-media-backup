@@ -176,8 +176,10 @@ export default function Navbar({
           <img
             src={
               localStorage.getItem("picturePath") !== ""
-                ? `http://localhost:3001/${path}`
-                : "/images/default-profile-picture.png"
+                ? `http://localhost:3001/${updatePath(
+                    localStorage.getItem("picturePath")
+                  )}`
+                : "./images/default-profile-picture.png"
             }
             alt="profile"
             className="w-full h-full rounded-full xl:w-14 xl:h-14 xl:p-2"
