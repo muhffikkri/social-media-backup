@@ -1,29 +1,48 @@
 import { useEffect, useState } from "react";
-import Friendlist from "../../components/Private/Friendlist";
+import handleShowToast from "../../functions/showToast";
 import NotificationCard from "../../components/Private/NotificationCard";
 import { useOutletContext } from "react-router-dom";
+import Loading from "../../components/Public/Loading";
 import axios from "axios";
 export default function NotificationPage() {
   const { setActivePage, isDarkMode } = useOutletContext();
-  const [notifications, setNotifications] = useState();
+  const [notifications, setNotifications] = useState([]);
+  const [loading, setLoading] = useState(false);
   setActivePage("notification-page");
 
   useEffect(() => {
+    console.log("hello");
     fetchUserNotifications(localStorage.getItem("user"));
   }, []);
 
   const fetchUserNotifications = async (userId) => {
     try {
+      setLoading(true);
       await axios
-        .post("http://localhost:3001/api/users/get/notifications", { userId })
+        .post(
+          "http://localhost:3001/api/users/get/notifications",
+          { userId },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              "Content-Type": "application/json",
+            },
+          }
+        )
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data.notifications);
           setNotifications(res.data.notifications);
+          setLoading(false);
         })
         .catch((err) => {
+          handleShowToast(err.response.data.status, err.response.data.msg);
+          setLoading(false);
           console.error(err.response.data);
         });
     } catch (err) {
+      handleShowToast("error", "Something went wrong!");
+      setLoading(false);
+
       console.error(err.message);
     }
   };
@@ -57,10 +76,16 @@ export default function NotificationPage() {
             {/* Container section */}
             <div className="w-full h-full flex flex-col xl:p-2 p-[6px] dynamic-primary overflow-y-scroll pb-20">
               {/* Card Section */}
-
-              <NotificationCard />
-              <NotificationCard />
-              <NotificationCard />
+              {loading ? (
+                <Loading />
+              ) : (
+                notifications.map((notification, index) => {
+                  return <NotificationCard notification={notification} />;
+                })
+              )}
+              {/* {notifications.map((notification, index) => {
+                <NotificationCard />;
+              })} */}
             </div>
           </div>
         </div>

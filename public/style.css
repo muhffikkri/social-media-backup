@@ -2510,14 +2510,14 @@ video {
   border-color: rgb(30 31 36 / var(--tw-border-opacity));
 }
 
-.dark\:border-d-text:is(.dark *){
-  --tw-border-opacity: 1;
-  border-color: rgb(214 215 216 / var(--tw-border-opacity));
-}
-
 .dark\:border-d-secondary:is(.dark *){
   --tw-border-opacity: 1;
   border-color: rgb(39 41 47 / var(--tw-border-opacity));
+}
+
+.dark\:border-d-text:is(.dark *){
+  --tw-border-opacity: 1;
+  border-color: rgb(214 215 216 / var(--tw-border-opacity));
 }
 
 .dark\:border-opacity-20:is(.dark *){
