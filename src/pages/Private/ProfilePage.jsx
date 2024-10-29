@@ -6,31 +6,33 @@ export default function ProfilePage() {
     <>
       <div className="md:h-[calc(100vh-73px)] mt-[61px] md:mt-[73px] xl:ml-[288px]">
         <div className="flex items-center justify-center w-full">
-          <div className="w-full h-64 bg-d-text"></div>
+          <div className="w-full h-32 md:h-64 bg-d-text"></div>
         </div>
         <div className="w-full h-auto px-6 lg:px-8 relative">
           <div htmlFor="profile-pict" className="lg:w-24 lg:h-24 w-16 h-16 absolute">
             <img src={"./images/default-profile-picture.png"} alt="" className="-translate-y-1/2 bg-cover rounded-full w-full h-full shadow-inner ring-2 ring-d-primary cursor-pointer" />
           </div>
           <div className="box-border">
-            <div className="w-full h-10 justify-items-end d-flex dynamic-text">
-              <div className="flex flex-row h-full justify-end text-sm sm:text-md xl:text-2xl items-end gap-2 md:gap-5">
-                <div className="">
+            <div className="w-full h-16 md:h-10 dynamic-text">
+              <div className="flex flex-row h-full md:justify-end items-end gap-2 md:gap-5">
+                <div className="text-md md:text-xl xl:text-2xl">
                   <span className="font-bold">5</span> Post
                 </div>
-                <div className="">
+                <div className="text-md md:text-xl xl:text-2xl">
                   <span className="font-bold">5</span> Follower
                 </div>
-                <div className="">
+                <div className="text-md md:text-xl xl:text-2xl">
                   <span className="font-bold">5</span> Following
                 </div>
               </div>
               <div className="w-full h-auto gap-3 flex mt-3 xl:mt-5 flex-row dynamic-text">
                 <div>
-                  <div className="font-bold text-md cursor-pointer dynamic-text text-ellipsis whitespace-nowrap overflow-hidden">Dummy Friend</div>
-                  <div className="font-semibold text-xs opacity-80 dynamic-text">Location</div>
+                  <div className="font-bold text-md md:text-xl cursor-pointer dynamic-text text-ellipsis whitespace-nowrap overflow-hidden">Dummy Friend</div>
+                  <div className="font-semibold text-xs md:text-sm opacity-80 dynamic-text">Location</div>
                 </div>
-                <button className="py-1 px-3 md:px-6 bg-d-accent font-bold text-lg rounded-sm">Follow</button>
+                <div className="py-1 px-6 md:px-6 bg-d-accent rounded-sm">
+                  <button className="w-full h-full font-bold text-lg">Follow</button>
+                </div>
               </div>
               <div className="mt-3 mb-3">
                 <p>
@@ -58,6 +60,8 @@ export default function ProfilePage() {
                   </div>
                 </div>
               </div>
+              <div className="w-full h-16"></div>
+              <div className="w-full h-16 hidden md:block"></div>
             </div>
           </div>
         </div>
