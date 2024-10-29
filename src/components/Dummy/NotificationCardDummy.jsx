@@ -1,5 +1,4 @@
-import formatDate from "../../functions/formatDate";
-export default function NotificationCard({ notification }) {
+export default function NotificationCard() {
   return (
     <>
       <div className="w-full xl:p-2 p-1 flex flex-row items-center justify-between flex-wrap">
@@ -10,14 +9,14 @@ export default function NotificationCard({ notification }) {
             className="xl:w-8 xl:h-8 w-6 h-6 rounded-full"
           />
           <p className="font-semibold md:text-base text-sm dynamic-text">
-            {notification.displayName}
+            Dummy Friend
           </p>
           <span className="dynamic-text md:text-base text-sm">
-            {notification.notification}
+            commented on your post
           </span>
         </div>
         <span className="dynamic-text opacity-80 md:text-base text-sm xl:p-1 p-[2px]">
-          {formatDate(notification.date)}
+          18 minutes ago
         </span>
       </div>
     </>
