@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import Friendlist from "../../components/Private/Friendlist";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Loading from "../../components/Public/Loading";
 import SearchHistory from "../../components/Private/SearchHistory";
 import UserCard from "../../components/Private/UserCard";
 export default function SearchPage({ handleShowToast }) {
@@ -16,9 +17,11 @@ export default function SearchPage({ handleShowToast }) {
   const searchUser = async (displayName) => {
     try {
       await axios
-        .post("http://localhost:3001/api/search/hashtags", {
+        .post("http://localhost:3001/api/search/users", {
           userId: localStorage.getItem("user"),
           displayName,
+          limit: 4,
+          skipUser: 0,
         })
         .then((res) => {
           setUsers(res.data.users);
@@ -33,6 +36,28 @@ export default function SearchPage({ handleShowToast }) {
       handleShowToast("error", "Something went wrong, please try again later!");
     }
   };
+
+  // const fetchMoreUser = async () => {
+  //   try {
+  //     await axios
+  //       .get("http://localhost:3001/api/posts/get", {
+  //         params: { skipPost, limit: 4 },
+  //       })
+  //       .then((res) => {
+  //         setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
+  //         res.data.data.length > 0 ? setHasMore(true) : setHasMore(false);
+  //       })
+  //       .catch((err) => {
+  //         console.error(err.response.data);
+  //         handleShowToast(err.response.data.status, err.response.data.msg);
+  //       });
+
+  //     setSkipPost((prevSkipPost) => prevSkipPost + 4);
+  //   } catch (err) {
+  //     console.error(err);
+  //     handleShowToast("error", "Something went wrong, please try again later!");
+  //   }
+  // };
 
   const searchHashtags = async (hashtag) => {
     try {
@@ -60,14 +85,26 @@ export default function SearchPage({ handleShowToast }) {
         <div className="font-open-sans w-full py-2 px-4 mx-auto ">
           {/* Posts container */}
           <div className="w-full h-auto mt-2 " id="postsContainer">
-            <div className="w-full h-auto flex mb-3">
+            <form
+              className="w-full h-auto flex mb-3"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (searchQuery.current.value.length <= 0) {
+                  handleShowToast("error", "Please input something!");
+                } else {
+                  searchUser(searchQuery.current.value);
+                }
+
+                console.log(searchQuery.current.value);
+              }}
+            >
               <input
-                type="text"
+                type="search"
                 ref={searchQuery}
                 className="rounded-lg dynamic-primary w-full h-12 p-2 pl-4 dynamic-text text-lg focus:ring-2 focus:ring-d-accent outline-none shadow-xl dark:shadow-none"
                 placeholder="Search Your Friends Or Hashtags!"
               />
-            </div>
+            </form>
 
             <div className="w-full h-auto flex mb-3 justify-between items-center">
               <div
@@ -107,9 +144,22 @@ export default function SearchPage({ handleShowToast }) {
             </div>
 
             {/* Search result below */}
-
-            <UserCard />
-            <UserCard />
+            {/* 
+            <InfiniteScroll
+              dataLength={users.length}
+              next={fetchMoreData}
+              hasMore={hasMore}
+              loader={<Loading />}
+              endMessage={
+                <p className="dynamic-text w-full center p-2">
+                  <b>No more users here.</b>
+                </p>
+              }
+            >
+              {users.map((user, index) => (
+                <UserCard key={index} />
+              ))}
+            </InfiniteScroll> */}
             <UserCard />
 
             {/* End Posts */}
