@@ -50,6 +50,10 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply hidden;
   }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    cursor: pointer;
+  }
 }
 
 @layer components {

@@ -1,4 +1,4 @@
-export default function UserCard() {
+export default function UserCard({ user }) {
   return (
     <>
       <div className="w-full max-h-[70px] flex dynamic-primary p-3 lg:rounded-lg rounded-md	items-center justify-between gap-3 shadow-lg dark:shadow-none mb-2 cursor-pointer">
@@ -9,10 +9,10 @@ export default function UserCard() {
         />
         <div className="flex flex-col flex-grow text-ellipsis whitespace-nowrap overflow-hidden">
           <p className="font-semibold lg:text-lg text-base dynamic-text text-ellipsis whitespace-nowrap overflow-hidden">
-            Dummy Friend
+            {user.displayName}
           </p>
           <p className="font-medium lg:text-base text-sm  dynamic-text opacity-80 text-ellipsis whitespace-nowrap overflow-hidden">
-            location
+            {user.location}
           </p>
         </div>
         <button className="bg-l-accent dark:bg-d-accent p-2 rounded-md xl:w-24 w-20 font-semibold dark:text-d-text text-l-secondary text-shadow hover:bg-[#1070ed] dark:hover:bg-[#1070ed]">

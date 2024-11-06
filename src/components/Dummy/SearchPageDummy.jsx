@@ -5,56 +5,76 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../../components/Public/Loading";
 import SearchHistory from "../../components/Private/SearchHistory";
 import UserCard from "../../components/Private/UserCard";
-import debounce from "../../functions/debounce";
-
 export default function SearchPage({ handleShowToast }) {
-  const { setActivePage, isDarkMode } = useOutletContext();
-  setActivePage("search-page");
-  const searchQuery = useRef();
+  const [users, setUsers] = useState({});
+
+  // if search type is by username then its true and if type is by hashtags then its false
   const [searchByUsername, setSearchType] = useState(true);
-  const [users, setUsers] = useState([]);
-  const [skipUser, setSkipUser] = useState(0);
-  const [hasMore, setHasMore] = useState(false);
-  const [notFound, setNotFound] = useState(false);
-  const limit = 8;
-  // Fetch initial results based on query
-  const fetchUsers = async () => {
+  const { setActivePage, isDarkMode } = useOutletContext();
+  const searchQuery = useRef();
+  setActivePage("search-page");
+
+  const searchUser = async (displayName) => {
     try {
-      const res = await axios.post("http://localhost:3001/api/search/users", {
-        userId: localStorage.getItem("user"),
-        displayName: searchQuery.current.value,
-        limit,
-        skipUser: 0,
-      });
-      setUsers(res.data.users);
-      console.log(res.data.users);
-      setSkipUser(4);
-      setHasMore(res.data.users.length === limit);
-      setNotFound(res.data.users.length === 0);
+      await axios
+        .post("http://localhost:3001/api/search/users", {
+          userId: localStorage.getItem("user"),
+          displayName,
+          limit: 4,
+          skipUser: 0,
+        })
+        .then((res) => {
+          setUsers(res.data.users);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.error(err.response.data);
+          handleShowToast(err.response.data.status, err.response.data.msg);
+        });
     } catch (err) {
-      console.error(err.response.data);
+      console.error(err);
       handleShowToast("error", "Something went wrong, please try again later!");
     }
   };
 
-  // Debounce wrapper for fetchUsers
-  const debouncedFetchUsers = debounce(fetchUsers, 300);
+  // const fetchMoreUser = async () => {
+  //   try {
+  //     await axios
+  //       .get("http://localhost:3001/api/posts/get", {
+  //         params: { skipPost, limit: 4 },
+  //       })
+  //       .then((res) => {
+  //         setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
+  //         res.data.data.length > 0 ? setHasMore(true) : setHasMore(false);
+  //       })
+  //       .catch((err) => {
+  //         console.error(err.response.data);
+  //         handleShowToast(err.response.data.status, err.response.data.msg);
+  //       });
 
-  // Fetch additional results for infinite scroll
-  const fetchMoreData = async () => {
+  //     setSkipPost((prevSkipPost) => prevSkipPost + 4);
+  //   } catch (err) {
+  //     console.error(err);
+  //     handleShowToast("error", "Something went wrong, please try again later!");
+  //   }
+  // };
+
+  const searchHashtags = async (hashtag) => {
     try {
-      const res = await axios.post("http://localhost:3001/api/search/users", {
-        userId: localStorage.getItem("user"),
-        displayName: query,
-        limit,
-        skipUser,
-      });
-      setUsers((prevUsers) => [...prevUsers, ...res.data.users]);
-      console.log(res.data.users);
-      setSkipUser((prevSkip) => prevSkip + 4);
-      setHasMore(res.data.users.length === 4);
+      await axios
+        .post("http://localhost:3001/api/search/hashtags", {
+          hashtag,
+        })
+        .then((res) => {
+          setUsers(res.data.posts);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.error(err.response.data);
+          handleShowToast(err.response.data.status, err.response.data.msg);
+        });
     } catch (err) {
-      console.error(err.response.data);
+      console.error(err);
       handleShowToast("error", "Something went wrong, please try again later!");
     }
   };
@@ -65,20 +85,26 @@ export default function SearchPage({ handleShowToast }) {
         <div className="font-open-sans w-full py-2 px-4 mx-auto ">
           {/* Posts container */}
           <div className="w-full h-auto mt-2 " id="postsContainer">
-            <div className="w-full h-auto flex mb-3">
+            <form
+              className="w-full h-auto flex mb-3"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (searchQuery.current.value.length <= 0) {
+                  handleShowToast("error", "Please input something!");
+                } else {
+                  searchUser(searchQuery.current.value);
+                }
+
+                console.log(searchQuery.current.value);
+              }}
+            >
               <input
                 type="search"
                 ref={searchQuery}
                 className="rounded-lg dynamic-primary w-full h-12 p-2 pl-4 dynamic-text text-lg focus:ring-2 focus:ring-d-accent outline-none shadow-xl dark:shadow-none"
                 placeholder="Search Your Friends Or Hashtags!"
-                onChange={(e) => {
-                  setUsers([]); // Clear previous results
-                  setSkipUser(0); // Reset pagination
-                  setHasMore(false); // Reset hasMore
-                  if (e.target.value.trim()) debouncedFetchUsers(); // Fetch new results if query is not empty
-                }}
               />
-            </div>
+            </form>
 
             <div className="w-full h-auto flex mb-3 justify-between items-center">
               <div
@@ -119,23 +145,23 @@ export default function SearchPage({ handleShowToast }) {
 
             {/* Search result below */}
 
-            {notFound ? (
-              <p className="dynamic-text w-full center p-2">
-                <b>User not found</b>
-              </p>
-            ) : (
-              <InfiniteScroll
-                dataLength={users.length}
-                next={fetchMoreData}
-                hasMore={hasMore}
-                loader={<Loading />}
-                endMessage={<span></span>}
-              >
-                {users.map((user, index) => (
-                  <UserCard key={index} user={user} />
-                ))}
-              </InfiniteScroll>
-            )}
+            <InfiniteScroll
+              dataLength={users.length}
+              next={fetchMoreData}
+              hasMore={hasMore}
+              loader={<Loading />}
+              endMessage={
+                <p className="dynamic-text w-full center p-2">
+                  <b>No more users here.</b>
+                </p>
+              }
+            >
+              {users.map((user, index) => (
+                <UserCard key={index} />
+              ))}
+            </InfiniteScroll>
+            <UserCard />
+
             {/* End Posts */}
           </div>
         </div>

@@ -507,6 +507,10 @@ video {
   display: none;
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
