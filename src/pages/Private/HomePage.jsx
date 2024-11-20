@@ -6,6 +6,7 @@ import PostSkeleton from "../../components/Post/PostSkeleton";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../../components/Public/Loading";
 import axios from "axios";
+import SuggestedFriends from "../../components/Private/SuggestedFriends";
 
 export default function HomePage({ handleShowToast }) {
   const { isDarkMode, setActivePage } = useOutletContext();
@@ -86,7 +87,7 @@ export default function HomePage({ handleShowToast }) {
         </div>
         {/* End main content */}
 
-        <Friendlist />
+        <SuggestedFriends />
       </div>
     </>
   );

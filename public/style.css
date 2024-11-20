@@ -1323,6 +1323,10 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 100vh;
 }
 
+.h-\[100\%\]{
+  height: 100%;
+}
+
 .max-h-10{
   max-height: 2.5rem;
 }
@@ -2921,6 +2925,10 @@ input[type="search"]::-webkit-search-cancel-button {
     margin-top: 1rem;
   }
 
+  .lg\:ml-\[288px\]{
+    margin-left: 288px;
+  }
+
   .lg\:block{
     display: block;
   }
@@ -2951,6 +2959,10 @@ input[type="search"]::-webkit-search-cancel-button {
 
   .lg\:h-\[500px\]{
     height: 500px;
+  }
+
+  .lg\:h-\[calc\(100vh-73px\)\]{
+    height: calc(100vh - 73px);
   }
 
   .lg\:w-1\/2{
