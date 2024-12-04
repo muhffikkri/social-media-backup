@@ -4,12 +4,7 @@ import updatePath from "../../functions/updatePath";
 import SettingsMenu from "../Private/SettingsList";
 import { useState } from "react";
 import ModalBox from "../Private/ModalBox";
-export default function Navbar({
-  isDarkMode,
-  setDarkMode,
-  activePage,
-  setActivePage,
-}) {
+export default function Navbar({ isDarkMode, setDarkMode, activePage, setActivePage }) {
   function toggleDarkMode() {
     setDarkMode(!isDarkMode);
     document.getElementsByTagName("html")[0].classList.toggle("dark");
@@ -36,28 +31,10 @@ export default function Navbar({
           SociaLink
         </NavLink>
         <div className="w-1/2 flex justify-end items-center text-l-text dark:text-d-text">
-          <img
-            src={`./icons/${isDarkMode ? "d-sunny" : "l-moon"}.svg`}
-            alt="toggle dark mode"
-            className="nav-icon mx-2"
-            onClick={toggleDarkMode}
-          />
+          <img src={`./icons/${isDarkMode ? "d-sunny" : "l-moon"}.svg`} alt="toggle dark mode" className="nav-icon mx-2" onClick={toggleDarkMode} />
           <section className="flex justify-end">
-            <img
-              src={`./icons/${isDarkMode ? "d-" : "l-"}settings.svg`}
-              alt="settings"
-              className="hover:rotate-90 nav-icon relative "
-              onClick={() => setShowSettings(!showSettings)}
-            />
-            {showSettings && (
-              <SettingsMenu
-                isDarkMode={isDarkMode}
-                setShowSettings={setShowSettings}
-                setShowModalBox={setShowModalBox}
-                showModalBox={showModalBox}
-                setModalAction={setModalAction}
-              />
-            )}
+            <img src={`./icons/${isDarkMode ? "d-" : "l-"}settings.svg`} alt="settings" className="hover:rotate-90 nav-icon relative " onClick={() => setShowSettings(!showSettings)} />
+            {showSettings && <SettingsMenu isDarkMode={isDarkMode} setShowSettings={setShowSettings} setShowModalBox={setShowModalBox} showModalBox={showModalBox} setModalAction={setModalAction} />}
           </section>
         </div>
       </nav>
@@ -65,107 +42,23 @@ export default function Navbar({
 
       {/* Sidebar */}
       <aside className="sidebar-container">
-        <NavLink
-          to="/home"
-          className={`container-sidebar-icon xl:order-3 ${
-            activePage === "home-page" ? "dynamic-secondary" : ""
-          }`}
-        >
-          <img
-            src={`./icons/${
-              activePage === "home-page" ? "active-" : isDarkMode ? "d-" : "l-"
-            }home.svg`}
-            alt="home"
-            className="sidebar-icon"
-          />
-          <p
-            className={`hidden xl:block text-xl px-1 xl:-mb-1 ${
-              activePage === "home-page"
-                ? "font-bold dark:text-d-accent text-l-accent"
-                : "font-semibold dynamic-text"
-            }`}
-          >
-            Home
-          </p>
+        <NavLink to="/home" className={`container-sidebar-icon xl:order-3 ${activePage === "home-page" ? "dynamic-secondary" : ""}`}>
+          <img src={`./icons/${activePage === "home-page" ? "active-" : isDarkMode ? "d-" : "l-"}home.svg`} alt="home" className="sidebar-icon" />
+          <p className={`hidden xl:block text-xl px-1 xl:-mb-1 ${activePage === "home-page" ? "font-bold dark:text-d-accent text-l-accent" : "font-semibold dynamic-text"}`}>Home</p>
         </NavLink>
 
         <hr className="hr order-2" />
-        <NavLink
-          to="/search-page"
-          className={`container-sidebar-icon xl:order-1 mb-0 ${
-            activePage === "search-page" ? "dynamic-secondary" : ""
-          }`}
-        >
-          <img
-            src={`./icons/${
-              activePage === "search-page"
-                ? "active-"
-                : isDarkMode
-                ? "d-"
-                : "l-"
-            }search.svg`}
-            alt="search"
-            className="sidebar-icon"
-          />
-          <p
-            className={`sidebar-text ${
-              activePage === "search-page"
-                ? "dark:text-d-accent text-l-accent font-bold"
-                : "font-semibold dynamic-text"
-            }`}
-          >
-            Search
-          </p>
+        <NavLink to="/search-page" className={`container-sidebar-icon xl:order-1 mb-0 ${activePage === "search-page" ? "dynamic-secondary" : ""}`}>
+          <img src={`./icons/${activePage === "search-page" ? "active-" : isDarkMode ? "d-" : "l-"}search.svg`} alt="search" className="sidebar-icon" />
+          <p className={`sidebar-text ${activePage === "search-page" ? "dark:text-d-accent text-l-accent font-bold" : "font-semibold dynamic-text"}`}>Search</p>
         </NavLink>
-        <NavLink
-          to="/post"
-          className={`container-sidebar-icon xl:order-4 ${
-            activePage === "post-page" ? "dynamic-secondary" : ""
-          }`}
-        >
-          <img
-            src={`./icons/${
-              activePage === "post-page" ? "active-" : isDarkMode ? "d-" : "l-"
-            }post.svg`}
-            alt="post"
-            className="sidebar-icon"
-          />
-          <p
-            className={`sidebar-text ${
-              activePage === "post-page"
-                ? "dark:text-d-accent text-l-accent font-bold"
-                : "font-semibold dynamic-text"
-            }`}
-          >
-            Post
-          </p>
+        <NavLink to="/post" className={`container-sidebar-icon xl:order-4 ${activePage === "post-page" ? "dynamic-secondary" : ""}`}>
+          <img src={`./icons/${activePage === "post-page" ? "active-" : isDarkMode ? "d-" : "l-"}post.svg`} alt="post" className="sidebar-icon" />
+          <p className={`sidebar-text ${activePage === "post-page" ? "dark:text-d-accent text-l-accent font-bold" : "font-semibold dynamic-text"}`}>Post</p>
         </NavLink>
-        <NavLink
-          to="/notification"
-          className={`container-sidebar-icon xl:order-5 ${
-            activePage === "notification-page" ? "dynamic-secondary" : ""
-          }`}
-        >
-          <img
-            src={`./icons/${
-              activePage === "notification-page"
-                ? "active-"
-                : isDarkMode
-                ? "d-"
-                : "l-"
-            }notification.svg`}
-            alt="notification"
-            className="sidebar-icon"
-          />
-          <p
-            className={`sidebar-text ${
-              activePage === "notification-page"
-                ? "dark:text-d-accent text-l-accent font-bold"
-                : "font-semibold dynamic-text"
-            }`}
-          >
-            Notification
-          </p>
+        <NavLink to="/notification" className={`container-sidebar-icon xl:order-5 ${activePage === "notification-page" ? "dynamic-secondary" : ""}`}>
+          <img src={`./icons/${activePage === "notification-page" ? "active-" : isDarkMode ? "d-" : "l-"}notification.svg`} alt="notification" className="sidebar-icon" />
+          <p className={`sidebar-text ${activePage === "notification-page" ? "dark:text-d-accent text-l-accent font-bold" : "font-semibold dynamic-text"}`}>Notification</p>
         </NavLink>
         <NavLink
           to="/profile"
@@ -174,39 +67,25 @@ export default function Navbar({
           }`}
         >
           <img
-            src={
-              localStorage.getItem("picturePath") !== ""
-                ? `http://localhost:3001/${updatePath(
-                    localStorage.getItem("picturePath")
-                  )}`
-                : "./images/default-profile-picture.png"
-            }
-            // src="./images/default-profile-picture.png"
+            // src={
+            //   localStorage.getItem("picturePath") !== ""
+            //     ? `http://localhost:3001/${updatePath(
+            //         localStorage.getItem("picturePath")
+            //       )}`
+            //     : "./images/default-profile-picture.png"
+            // }
+            src="./images/default-profile-picture.png"
             alt="profile"
             className="w-full h-full rounded-full xl:w-14 xl:h-14 xl:p-2"
           />
-          <p
-            className={`sidebar-text ${
-              activePage === "profile-page"
-                ? "dark:text-d-accent text-l-accent font-bold"
-                : "font-semibold dynamic-text"
-            }`}
-          >
-            Profile
-          </p>
+          <p className={`sidebar-text ${activePage === "profile-page" ? "dark:text-d-accent text-l-accent font-bold" : "font-semibold dynamic-text"}`}>Profile</p>
         </NavLink>
         <hr className="hr order-6" />
       </aside>
       {/* End sidebar */}
 
       {/* Modal box */}
-      {showModalBox && (
-        <ModalBox
-          showModalBox={showModalBox}
-          setShowModalBox={setShowModalBox}
-          modalAction={modalAction}
-        />
-      )}
+      {showModalBox && <ModalBox showModalBox={showModalBox} setShowModalBox={setShowModalBox} modalAction={modalAction} />}
     </>
   );
 }
