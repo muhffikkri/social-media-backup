@@ -1,7 +1,6 @@
 import { useOutletContext } from "react-router-dom";
 import Friendlist from "../../components/Private/Friendlist";
-import ProfileFriendlist from "../../components/Private/ProfileFriendlist";
-import ProfileSuggestedFriends from "./ProfileSuggestedFriends";
+import PostSkeleton from "../../components/Post/PostSkeleton";
 export default function ProfilePage() {
   const { setActivePage } = useOutletContext();
   setActivePage("profile-page");
@@ -57,14 +56,14 @@ export default function ProfilePage() {
                   architecto id et atque ab accusantium praesentium adipisci ea debitis maiores sit magni.
                 </p>
               </div>
-              <div className="w-full h-auto flex dynamic-primary justify-between rounded-xl mt-2">
-                <div className="flex flex-col shrink lg:w-[65%]">
-                  <ProfileFriendlist />
-                  <ProfileFriendlist />
-                  <ProfileFriendlist />
+              <div className="flex gap-3">
+                <div className="flex flex-col h-auto justify-between gap-3 rounded-xl shrink xl:w-[70%] mt-2">
+                  <PostSkeleton />
+                  <PostSkeleton />
+                  <PostSkeleton />
                 </div>
-                <div className="w-[35%] hidden lg:block">
-                  <ProfileSuggestedFriends />
+                <div className="w-[30%]">
+                  <Friendlist />
                 </div>
               </div>
               <div className="w-full h-16"></div>

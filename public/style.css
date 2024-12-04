@@ -975,6 +975,10 @@ input[type="search"]::-webkit-search-cancel-button {
   bottom: -200px;
 }
 
+.-left-1{
+  left: -0.25rem;
+}
+
 .-left-\[300px\]{
   left: -300px;
 }
@@ -1021,30 +1025,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .top-\[61px\]{
   top: 61px;
-}
-
-.left-2{
-  left: 0.5rem;
-}
-
-.left-4{
-  left: 1rem;
-}
-
-.-left-2{
-  left: -0.5rem;
-}
-
-.-left-3{
-  left: -0.75rem;
-}
-
-.-left-1{
-  left: -0.25rem;
-}
-
-.bottom-1{
-  bottom: 0.25rem;
 }
 
 .-z-10{
@@ -1477,6 +1457,18 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .w-screen{
   width: 100vw;
+}
+
+.w-\[60\%\]{
+  width: 60%;
+}
+
+.w-\[70\%\]{
+  width: 70%;
+}
+
+.w-\[30\%\]{
+  width: 30%;
 }
 
 .max-w-7xl{
@@ -2665,6 +2657,10 @@ input[type="search"]::-webkit-search-cancel-button {
     width: auto;
   }
 
+  .sm\:w-full{
+    width: 100%;
+  }
+
   .sm\:flex-row{
     flex-direction: row;
   }
@@ -2838,11 +2834,6 @@ input[type="search"]::-webkit-search-cancel-button {
     padding-right: 0.75rem;
   }
 
-  .md\:px-6{
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
   .md\:pb-2{
     padding-bottom: 0.5rem;
   }
@@ -2904,6 +2895,10 @@ input[type="search"]::-webkit-search-cancel-button {
     bottom: -1.25rem;
   }
 
+  .lg\:-left-3{
+    left: -0.75rem;
+  }
+
   .lg\:-left-\[200px\]{
     left: -200px;
   }
@@ -2914,26 +2909,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
   .lg\:right-4{
     right: 1rem;
-  }
-
-  .lg\:left-4{
-    left: 1rem;
-  }
-
-  .lg\:-left-4{
-    left: -1rem;
-  }
-
-  .lg\:-left-5{
-    left: -1.25rem;
-  }
-
-  .lg\:-left-3{
-    left: -0.75rem;
-  }
-
-  .lg\:-left-3\.5{
-    left: -0.875rem;
   }
 
   .lg\:my-1{
@@ -3035,6 +3010,10 @@ input[type="search"]::-webkit-search-cancel-button {
 
   .lg\:w-\[65\%\]{
     width: 65%;
+  }
+
+  .lg\:w-\[70\%\]{
+    width: 70%;
   }
 
   .lg\:flex-row{
@@ -3259,6 +3238,26 @@ input[type="search"]::-webkit-search-cancel-button {
 
   .xl\:w-full{
     width: 100%;
+  }
+
+  .xl\:w-\[70\%\]{
+    width: 70%;
+  }
+
+  .xl\:w-\[76\%\]{
+    width: 76%;
+  }
+
+  .xl\:w-\[60\%\]{
+    width: 60%;
+  }
+
+  .xl\:w-\[66\%\]{
+    width: 66%;
+  }
+
+  .xl\:w-\[65\%\]{
+    width: 65%;
   }
 
   .xl\:items-center{
