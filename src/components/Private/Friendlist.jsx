@@ -1,4 +1,4 @@
-export default function Friendlist(Friends) {
+export default function Friendlist() {
   // dummy
   const friends = [
     {
@@ -25,7 +25,7 @@ export default function Friendlist(Friends) {
   return (
     <section className="right-0 w-full hidden h-[calc(100vh-73px)] lg:block">
       <div className="w-full h-full flex flex-col">
-        <div className="w-full h-[55%] pb-1 pt-2 pr-2">
+        <div className="w-full h-full pb-1 pt-2 pr-2">
           <div className="w-full h-full dynamic-primary rounded-2xl p-4">
             <h1 className="dynamic-text font-bold text-xl">Your Friend</h1>
             <hr className="hr my-2" />
