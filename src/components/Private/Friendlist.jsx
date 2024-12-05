@@ -23,7 +23,7 @@ export default function Friendlist(Friends) {
     },
   ];
   return (
-    <section className="right-0 w-full hidden h-[calc(100vh-73px)] xl:block">
+    <section className="right-0 w-full hidden h-[calc(100vh-73px)] lg:block">
       <div className="w-full h-full flex flex-col">
         <div className="w-full h-[55%] pb-1 pt-2 pr-2">
           <div className="w-full h-full dynamic-primary rounded-2xl p-4">

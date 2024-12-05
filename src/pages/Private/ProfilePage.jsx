@@ -40,7 +40,7 @@ export default function ProfilePage() {
                   <span className="font-bold">5</span> Following
                 </div>
               </div>
-              <div className="w-full h-auto gap-3 flex mt-1 lg:mt-3 xl:mt-5 flex-row dynamic-text">
+              <div className="w-full h-auto gap-3 flex mt-1 lg:mt-3 xl:mt-5 flex-row dynamic-text relative">
                 <div>
                   <div className="font-bold text-md md:text-xl cursor-pointer dynamic-text text-ellipsis whitespace-nowrap overflow-hidden">Dummy Friend</div>
                   <div className="font-semibold text-xs md:text-sm opacity-80 dynamic-text">Location</div>
@@ -49,20 +49,20 @@ export default function ProfilePage() {
                   <button className="w-full h-full font-bold text-lg">Follow</button>
                 </div>
               </div>
-              <div className="mt-3 mb-3">
+              <div className="mt-3 mb-3 relative">
                 <p>
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, commodi debitis ad voluptatibus libero at neque est autem tempore perspiciatis, et nihil sapiente natus corporis veritatis voluptas quisquam cupiditate
                   repellat, harum odio expedita esse velit. Eaque, accusamus enim incidunt distinctio, error veritatis cumque non quos vitae, voluptatum dolor? Explicabo, ducimus, amet ut cum blanditiis, consequatur officiis quisquam
                   architecto id et atque ab accusantium praesentium adipisci ea debitis maiores sit magni.
                 </p>
               </div>
-              <div className="flex gap-3">
-                <div className="flex flex-col h-auto justify-between gap-3 rounded-xl shrink xl:w-[70%] mt-2">
+              <div className="flex gap-3 h-96 lg:h-[calc(89vh)] xl:h-[calc(92vh)]">
+                <div className="flex flex-col h-auto justify-between gap-3 rounded-xl shrink xl:w-[70%] mt-2 overflow-y-auto">
                   <PostSkeleton />
                   <PostSkeleton />
                   <PostSkeleton />
                 </div>
-                <div className="w-[30%]">
+                <div className="w-[30%] hidden lg:block">
                   <Friendlist />
                 </div>
               </div>
