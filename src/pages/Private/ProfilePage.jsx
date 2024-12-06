@@ -5,6 +5,28 @@ export default function ProfilePage() {
   const { setActivePage } = useOutletContext();
   setActivePage("profile-page");
 
+  const fetchMoreData = async () => {
+    try {
+      await axios
+        .get("  http://localhost:3001/api/posts/get", {
+          params: { skipPost, limit: 4 },
+        })
+        .then((res) => {
+          setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
+          res.data.data.length > 0 ? setHasMore(true) : setHasMore(false);
+        })
+        .catch((err) => {
+          console.error(err.response.data);
+          handleShowToast(err.response.data.status, err.response.data.msg);
+        });
+
+      setSkipPost((prevSkipPost) => prevSkipPost + 4);
+    } catch (err) {
+      console.error(err);
+      handleShowToast("error", "Something went wrong, please try again later!");
+    }
+  };
+
   return (
     <>
       <div className="md:h-[calc(100vh-73px)] mt-[61px] md:mt-[73px] xl:ml-[288px]">
