@@ -2964,8 +2964,8 @@ input[type="search"]::-webkit-search-cancel-button {
     height: calc(100vh - 73px);
   }
 
-  .lg\:h-\[calc\(89vh\)\]{
-    height: calc(89vh);
+  .lg\:h-\[calc\(94vh\)\]{
+    height: calc(94vh);
   }
 
   .lg\:w-1\/2{
@@ -3196,8 +3196,8 @@ input[type="search"]::-webkit-search-cancel-button {
     height: 2rem;
   }
 
-  .xl\:h-\[calc\(92vh\)\]{
-    height: calc(92vh);
+  .xl\:h-\[calc\(96vh\)\]{
+    height: calc(96vh);
   }
 
   .xl\:w-10{

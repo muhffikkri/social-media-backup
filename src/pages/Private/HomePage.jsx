@@ -13,6 +13,7 @@ export default function HomePage({ handleShowToast }) {
   const [posts, setPosts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [skipPost, setSkipPost] = useState(0);
+
   setActivePage("home-page");
   useEffect(() => {
     axios
@@ -68,11 +69,7 @@ export default function HomePage({ handleShowToast }) {
             }
           >
             {posts.map((post, index) => (
-              <div
-                className="w-full h-auto mb-2 "
-                id="postsContainer"
-                key={index}
-              >
+              <div className="w-full h-auto mb-2 " id="postsContainer" key={index}>
                 <Post isDarkMode={isDarkMode} post={post} />
               </div>
             ))}

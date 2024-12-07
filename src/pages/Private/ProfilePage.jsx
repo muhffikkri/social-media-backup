@@ -1,14 +1,38 @@
 import { useOutletContext } from "react-router-dom";
 import Friendlist from "../../components/Private/Friendlist";
 import PostSkeleton from "../../components/Post/PostSkeleton";
+import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Loading from "../../components/Public/Loading";
+import axios from "axios";
+import Post from "../../components/Post/Post";
 export default function ProfilePage() {
-  const { setActivePage } = useOutletContext();
+  const { isDarkMode, setActivePage } = useOutletContext();
   setActivePage("profile-page");
+  const [posts, setPosts] = useState([]);
+  const [profile, setProfile] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [skipPost, setSkipPost] = useState(0);
+  useEffect(() => {
+    fetchProfileData();
+    axios
+      .get("http://localhost:3001/api/posts/get", {
+        params: { skipPost, limit: 4 },
+      })
+      .then((res) => {
+        setPosts(res.data.data);
+        setSkipPost((prev) => prev + 2);
+      })
+      .catch((err) => {
+        console.error(err.response.data);
+        handleShowToast(err.response.data.status, err.response.data.msg);
+      });
+  }, []);
 
   const fetchMoreData = async () => {
     try {
       await axios
-        .get("  http://localhost:3001/api/posts/get", {
+        .get("http://localhost:3001/api/posts/get", {
           params: { skipPost, limit: 4 },
         })
         .then((res) => {
@@ -27,11 +51,36 @@ export default function ProfilePage() {
     }
   };
 
+  const fetchProfileData = async () => {
+    try {
+      const userId = localStorage.getItem("user"); // Ambil userId dari local storage
+      if (!userId) {
+        console.error("User ID tidak ditemukan di local storage.");
+        handleShowToast("error", "User ID tidak ditemukan.");
+        return;
+      }
+
+      const res = await axios.get("http://localhost:3001/api/users/profile", {
+        params: { userId },
+      });
+      // setProfileData(res.data.data);
+      setProfile(res.data); // Data profil disimpan ke state
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+      handleShowToast("error", "Gagal mengambil data profil.");
+    }
+  };
+
   return (
     <>
       <div className="md:h-[calc(100vh-73px)] mt-[61px] md:mt-[73px] xl:ml-[288px]">
         <div className="flex items-center justify-center w-full relative">
-          <div className="w-full h-32 md:h-64 bg-d-text"></div>
+          <div
+            className="w-full h-32 md:h-64 bg-d-text"
+            style={{
+              backgroundImage: `url(${profile?.bannerPath ? `http://localhost:3001/${profile.bannerPath}` : "./images/default-banner.jpg"})`,
+            }}
+          ></div>
           <label
             htmlFor="profile-pict"
             className="rounded-full bg-d-text w-7 h-7 lg:w-10 lg:h-10 flex items-center justify-center bg-cover absolute lg:-bottom-3 lg:right-4 -bottom-4 right-2 backdrop:cursor-pointer transition-all duration-300 hover:bg-d-secondary shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.15)]"
@@ -47,42 +96,64 @@ export default function ProfilePage() {
             >
               <img src="./icons/pencil.svg" alt="upload" className="lg:w-8 lg:h-8 w-5 h-5" />
             </label>
-            <img src={"./images/default-profile-picture.png"} alt="" className="-translate-y-1/2 bg-cover rounded-full w-full h-full shadow-inner ring-2 ring-d-primary cursor-pointer z-0" />
+            <img
+              src={profile?.picturePath ? `http://localhost:3001/${profile.picturePath}` : "./images/default-profile-picture.png"}
+              alt="Profile"
+              className="-translate-y-1/2 bg-cover rounded-full w-full h-full shadow-inner ring-2 ring-d-primary cursor-pointer z-0"
+            />
+            {/* <img
+              src={post.picturePath ? `http://localhost:3001/${updatePath(post.picturePath)}` : "/images/default-profile-picture.png"}
+              alt="profile pict"
+              className="-translate-y-1/2 bg-cover rounded-full w-full h-full shadow-inner ring-2 ring-d-primary cursor-pointer z-0"
+            /> */}
           </div>
           <div className="box-border">
             <div className="w-full h-16 md:h-10 dynamic-text">
               <div className="flex flex-row h-full md:justify-end items-end gap-2 md:gap-5">
                 <div className="text-md md:text-xl xl:text-2xl">
-                  <span className="font-bold">5</span> Post
+                  <span className="font-bold">{posts.length}</span> Post
                 </div>
                 <div className="text-md md:text-xl xl:text-2xl">
-                  <span className="font-bold">5</span> Follower
+                  <span className="font-bold">{profile?.followers?.length || 0}</span> Follower
                 </div>
                 <div className="text-md md:text-xl xl:text-2xl">
-                  <span className="font-bold">5</span> Following
+                  <span className="font-bold">{profile?.followings?.length || 0}</span> Following
                 </div>
               </div>
               <div className="w-full h-auto gap-3 flex mt-1 lg:mt-3 xl:mt-5 flex-row dynamic-text relative">
                 <div>
-                  <div className="font-bold text-md md:text-xl cursor-pointer dynamic-text text-ellipsis whitespace-nowrap overflow-hidden">Dummy Friend</div>
-                  <div className="font-semibold text-xs md:text-sm opacity-80 dynamic-text">Location</div>
+                  <div className="font-bold text-md md:text-xl cursor-pointer dynamic-text text-ellipsis whitespace-nowrap overflow-hidden">{profile?.displayName || "Nama Tidak Diketahui"}</div>
+                  <div className="font-semibold text-xs md:text-sm opacity-80 dynamic-text">{profile?.location || "Lokasi Tidak Diketahui"}</div>
                 </div>
                 <div className="py-1 w-36 bg-d-accent rounded-sm">
                   <button className="w-full h-full font-bold text-lg">Follow</button>
                 </div>
               </div>
               <div className="mt-3 mb-3 relative">
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, commodi debitis ad voluptatibus libero at neque est autem tempore perspiciatis, et nihil sapiente natus corporis veritatis voluptas quisquam cupiditate
-                  repellat, harum odio expedita esse velit. Eaque, accusamus enim incidunt distinctio, error veritatis cumque non quos vitae, voluptatum dolor? Explicabo, ducimus, amet ut cum blanditiis, consequatur officiis quisquam
-                  architecto id et atque ab accusantium praesentium adipisci ea debitis maiores sit magni.
-                </p>
+                <p>{profile?.bio || "Bio tidak tersedia."}</p>
               </div>
-              <div className="flex gap-3 h-96 lg:h-[calc(89vh)] xl:h-[calc(92vh)]">
+              <div className="flex gap-3 h-96 lg:h-[calc(94vh)] xl:h-[calc(96vh)]">
                 <div className="flex flex-col h-auto justify-between gap-3 rounded-xl shrink xl:w-[70%] mt-2 overflow-y-auto">
+                  {/* <PostSkeleton />
                   <PostSkeleton />
-                  <PostSkeleton />
-                  <PostSkeleton />
+                  <PostSkeleton /> */}
+                  <InfiniteScroll
+                    dataLength={posts.length}
+                    next={fetchMoreData}
+                    hasMore={hasMore}
+                    loader={<Loading />}
+                    endMessage={
+                      <p className="dynamic-text w-full center p-2">
+                        <b>No more posts here. Why not share something?</b>
+                      </p>
+                    }
+                  >
+                    {posts.map((post, index) => (
+                      <div className="w-full h-auto mb-2 " id="postsContainer" key={index}>
+                        <Post isDarkMode={isDarkMode} post={post} />
+                      </div>
+                    ))}
+                  </InfiniteScroll>
                 </div>
                 <div className="w-[30%] hidden lg:block">
                   <Friendlist />
