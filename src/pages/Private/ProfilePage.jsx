@@ -15,18 +15,18 @@ export default function ProfilePage() {
   const [skipPost, setSkipPost] = useState(0);
   useEffect(() => {
     fetchProfileData();
-    axios
-      .get("http://localhost:3001/api/posts/get", {
-        params: { skipPost, limit: 4 },
-      })
-      .then((res) => {
-        setPosts(res.data.data);
-        setSkipPost((prev) => prev + 2);
-      })
-      .catch((err) => {
-        console.error(err.response.data);
-        handleShowToast(err.response.data.status, err.response.data.msg);
-      });
+    // axios
+    //   .get("http://localhost:3001/api/posts/get", {
+    //     params: { skipPost, limit: 4 },
+    //   })
+    //   .then((res) => {
+    //     setPosts(res.data.data);
+    //     setSkipPost((prev) => prev + 2);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err.response.data);
+    //     handleShowToast(err.response.data.status, err.response.data.msg);
+    //   });
   }, []);
 
   const fetchMoreData = async () => {
@@ -60,11 +60,14 @@ export default function ProfilePage() {
         return;
       }
 
-      const res = await axios.get("http://localhost:3001/api/users/profile", {
-        params: { userId },
-      });
+      // const res = await axios.get("http://localhost:3001/api/users/profile", {
+      const res = await axios.get(`http://localhost:3001/api/users/get/userProfile/${userId}`, {});
       // setProfileData(res.data.data);
-      setProfile(res.data); // Data profil disimpan ke state
+      console.log(res.data);
+      console.log(res.data.user);
+      console.log(res.data.userPosts);
+      setProfile(res.data.user); // Data profil disimpan ke state
+      setPosts(res.data.userPosts);
     } catch (err) {
       console.error(err.response?.data || err.message);
       handleShowToast("error", "Gagal mengambil data profil.");
