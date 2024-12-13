@@ -15,18 +15,6 @@ export default function ProfilePage() {
   const [skipPost, setSkipPost] = useState(0);
   useEffect(() => {
     fetchProfileData();
-    // axios
-    //   .get("http://localhost:3001/api/posts/get", {
-    //     params: { skipPost, limit: 4 },
-    //   })
-    //   .then((res) => {
-    //     setPosts(res.data.data);
-    //     setSkipPost((prev) => prev + 2);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err.response.data);
-    //     handleShowToast(err.response.data.status, err.response.data.msg);
-    //   });
   }, []);
 
   const fetchMoreData = async () => {
@@ -36,6 +24,7 @@ export default function ProfilePage() {
           params: { skipPost, limit: 4 },
         })
         .then((res) => {
+          setSkipPost((prevSkipPost) => prevSkipPost + 4);
           setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
           res.data.data.length > 0 ? setHasMore(true) : setHasMore(false);
         })
@@ -43,8 +32,6 @@ export default function ProfilePage() {
           console.error(err.response.data);
           handleShowToast(err.response.data.status, err.response.data.msg);
         });
-
-      setSkipPost((prevSkipPost) => prevSkipPost + 4);
     } catch (err) {
       console.error(err);
       handleShowToast("error", "Something went wrong, please try again later!");
@@ -60,14 +47,9 @@ export default function ProfilePage() {
         return;
       }
 
-      // const res = await axios.get("http://localhost:3001/api/users/profile", {
       const res = await axios.get(`http://localhost:3001/api/users/get/userProfile/${userId}`, {});
-      // setProfileData(res.data.data);
-      console.log(res.data);
-      console.log(res.data.user);
-      console.log(res.data.userPosts);
       setProfile(res.data.user); // Data profil disimpan ke state
-      setPosts(res.data.userPosts);
+      // setPosts(res.data.userPosts);
     } catch (err) {
       console.error(err.response?.data || err.message);
       handleShowToast("error", "Gagal mengambil data profil.");
@@ -81,7 +63,7 @@ export default function ProfilePage() {
           <div
             className="w-full h-32 md:h-64 bg-d-text"
             style={{
-              backgroundImage: `url(${profile?.bannerPath ? `http://localhost:3001/${profile.bannerPath}` : "./images/default-banner.jpg"})`,
+              backgroundImage: `url(${profile?.bannerPath ? `http://localhost:3001/${profile.bannerPath}` : ""})`,
             }}
           ></div>
           <label
@@ -111,35 +93,32 @@ export default function ProfilePage() {
             /> */}
           </div>
           <div className="box-border">
-            <div className="w-full h-16 md:h-10 dynamic-text">
+            <div className="w-full h-16 md:h-10 ">
               <div className="flex flex-row h-full md:justify-end items-end gap-2 md:gap-5">
-                <div className="text-md md:text-xl xl:text-2xl">
-                  <span className="font-bold">{posts.length}</span> Post
+                <div className="text-md md:text-xl xl:text-2xl dynamic-text">
+                  <span className="font-bold dynamic-text">{posts.length}</span> Post
                 </div>
-                <div className="text-md md:text-xl xl:text-2xl">
-                  <span className="font-bold">{profile?.followers?.length || 0}</span> Follower
+                <div className="text-md md:text-xl xl:text-2xl dynamic-text">
+                  <span className="font-bold dynamic-text">{profile?.followers?.length || 0}</span> Follower
                 </div>
-                <div className="text-md md:text-xl xl:text-2xl">
-                  <span className="font-bold">{profile?.followings?.length || 0}</span> Following
+                <div className="text-md md:text-xl xl:text-2xl dynamic-text">
+                  <span className="font-bold dynamic-text">{profile?.followings?.length || 0}</span> Following
                 </div>
               </div>
-              <div className="w-full h-auto gap-3 flex mt-1 lg:mt-3 xl:mt-5 flex-row dynamic-text relative">
+              <div className="w-full h-auto gap-3 flex mt-1 lg:mt-3 xl:mt-5 flex-row relative">
                 <div>
                   <div className="font-bold text-md md:text-xl cursor-pointer dynamic-text text-ellipsis whitespace-nowrap overflow-hidden">{profile?.displayName || "Nama Tidak Diketahui"}</div>
                   <div className="font-semibold text-xs md:text-sm opacity-80 dynamic-text">{profile?.location || "Lokasi Tidak Diketahui"}</div>
                 </div>
                 <div className="py-1 w-36 bg-d-accent rounded-sm">
-                  <button className="w-full h-full font-bold text-lg">Follow</button>
+                  <button className="w-full h-full font-bold text-lg dynamic-text">Follow</button>
                 </div>
               </div>
               <div className="mt-3 mb-3 relative">
-                <p>{profile?.bio || "Bio tidak tersedia."}</p>
+                <p className="dynamic-text">{profile?.bio || "Bio tidak tersedia."}</p>
               </div>
               <div className="flex gap-3 h-96 lg:h-[calc(94vh)] xl:h-[calc(96vh)]">
                 <div className="flex flex-col h-auto justify-between gap-3 rounded-xl shrink xl:w-[70%] mt-2 overflow-y-auto">
-                  {/* <PostSkeleton />
-                  <PostSkeleton />
-                  <PostSkeleton /> */}
                   <InfiniteScroll
                     dataLength={posts.length}
                     next={fetchMoreData}

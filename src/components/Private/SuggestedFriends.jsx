@@ -25,7 +25,6 @@ export default function SuggestedFriends() {
       })
       .then((res) => {
         setSuggestedFriends(res.data.users);
-        console.log(res.data.users);
       })
       .catch((err) => {
         console.error(err.response);
@@ -41,27 +40,14 @@ export default function SuggestedFriends() {
           <div className="flex flex-col h-[calc(100%-36px)] overflow-y-auto rounded-lg">
             {friends.map((friend, i) => {
               return (
-                <div
-                  key={i}
-                  className="flex w-full items-center justify-between mb-2 pr-2 dynamic-text"
-                >
-                  <img
-                    src="/images/default-profile-picture.png"
-                    alt="profile picture"
-                    className="w-10 rounded-full"
-                  />
+                <div key={i} className="flex w-full items-center justify-between mb-2 pr-2 dynamic-text">
+                  <img src="/images/default-profile-picture.png" alt="profile picture" className="w-10 rounded-full" />
                   <div className="flex flex-col w-[calc(100%-90px)] px-1">
-                    <p className="text-base font-semibold text-ellipsis w-full whitespace-nowrap overflow-hidden dynamic-text">
-                      {friend.name}
-                    </p>
+                    <p className="text-base font-semibold text-ellipsis w-full whitespace-nowrap overflow-hidden dynamic-text">{friend.name}</p>
                     <p className="text-base dynamic-text">{friend.location}</p>
                   </div>
                   <div className="rounded-full cursor-pointer dynamic-secondary p-2 w-10 h-10 flex items-center">
-                    <img
-                      src="/icons/person-add.svg"
-                      alt="add friend"
-                      className="w-full"
-                    />
+                    <img src="/icons/person-add.svg" alt="add friend" className="w-full" />
                   </div>
                 </div>
               );
